@@ -1,5 +1,5 @@
 # arquivos de teste
-*.test.php
+*.test.*
 
 # propriedades conexao
 conexao_dados.php
