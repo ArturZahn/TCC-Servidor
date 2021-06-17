@@ -1,5 +1,5 @@
-.sass-cache/
-*.css.map
-*.sass.map
-*.scss.map
+# arquivos de teste
 *.test.php
+
+# propriedades conexao
+conexao_dados.php
