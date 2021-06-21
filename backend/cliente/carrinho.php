@@ -4,7 +4,7 @@
 
     include("../conexao.php");
     session_start();
-    $query = mysqli_query($con, "SELECT itemCarrinho_quantidade, produto_cod, produto_nome, produto_preco, produto_foto, tipocontagem_nome FROM itemcarrinho JOIN produto USING(produto_cod) JOIN tipocontagem USING(tipocontagem_cod) WHERE cliente_cod = $_SESSION[cliente_cod];");
+    $query = mysqli_query($con, "SELECT produto_quantidadeEmEstoque, itemCarrinho_quantidade, produto_cod, produto_nome, produto_preco, produto_foto, produto_tipocontagem FROM itemcarrinho JOIN produto USING(produto_cod) WHERE cliente_cod = $_SESSION[cliente_cod];");
 
     if($query == false)
     {
@@ -15,11 +15,12 @@
     $itens = [];
     while($produto = mysqli_fetch_object($query)){
         $itens[] = array(
-            'produtoCod' => $produto->produto_cod,
+            'produtoCod' => intval($produto->produto_cod),
             'produtoFoto' => "data:image/gif;base64,$produto->produto_foto",
             'produtoNome' => "$produto->produto_nome",
-            'itemQuantidade' => $produto->itemCarrinho_quantidade,
-            'precoUnidade' => $produto->produto_preco
+            'itemQuantidade' => intval($produto->itemCarrinho_quantidade),
+            'precoUnidade' => floatval($produto->produto_preco),
+            'itemQuantidadeEmEstoque' => intval($produto->produto_quantidadeEmEstoque)
         );
     }
 
