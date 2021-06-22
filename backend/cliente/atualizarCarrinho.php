@@ -1,12 +1,14 @@
 <?php
 
-$msg = var_export($_POST, true);
-$time = date("H:i:s");
+// esse arquivo ainda nao foi programado, foi apenas usado para alguns testes...
 
-include("../conexao.php");
+// $msg = var_export($_POST, true);
+// $time = date("H:i:s");
 
-$t = base64_encode("$time > $msg");
-$query = mysqli_query($con, "INSERT INTO console (log) VALUES ('$t')");
-var_dump($query);
+// include("../conexao.php");
+
+// $t = base64_encode("$time > $msg");
+// $query = mysqli_query($con, "INSERT INTO console (log) VALUES ('$t')");
+// var_dump($query);
 
 ?>
