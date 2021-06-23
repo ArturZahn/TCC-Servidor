@@ -18,7 +18,7 @@
             'produtoCod' => intval($produto->produto_cod),
             'produtoFoto' => "data:image/gif;base64,$produto->produto_foto",
             'produtoNome' => "$produto->produto_nome",
-            'itemQuantidade' => intval($produto->itemCarrinho_quantidade),
+            'quantidade' => intval($produto->itemCarrinho_quantidade),
             'precoUnidade' => floatval($produto->produto_preco),
             'itemQuantidadeEmEstoque' => intval($produto->produto_quantidadeEmEstoque)
         );

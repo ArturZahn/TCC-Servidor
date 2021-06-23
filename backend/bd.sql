@@ -110,3 +110,8 @@ CREATE TABLE itemPedido (
     FOREIGN KEY (pedido_cod) REFERENCES pedido(pedido_cod),
     FOREIGN KEY (produto_cod) REFERENCES produto(produto_cod)
 );
+
+CREATE TABLE console (
+	cod INT PRIMARY KEY AUTO_INCREMENT,
+	log VARCHAR(1000)
+);
