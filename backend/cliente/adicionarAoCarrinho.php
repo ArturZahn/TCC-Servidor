@@ -15,7 +15,11 @@ if(empty($_POST['produtoCod']) || empty($_POST['produtoQuantidade']))
     die();
 }
 
+$asd = "";
+
 $itemCarrinho_quantidade = intval($_POST['produtoQuantidade']);
+
+$asd .= $itemCarrinho_quantidade."\n";
 
 include("../conexao.php");
 
@@ -23,13 +27,24 @@ $query = mysqli_query($con, "SELECT itemCarrinho_quantidade FROM itemCarrinho WH
 
 if(mysqli_num_rows($query) > 0)
 {
+    $asd .= "ja tem\n";
     $itemCarrinho_quantidade += intval(mysqli_fetch_object($query)->itemCarrinho_quantidade);
+    $query = mysqli_query($con, "UPDATE itemCarrinho SET itemCarrinho_quantidade = $itemCarrinho_quantidade WHERE produto_cod = $_POST[produtoCod] AND cliente_cod = $_SESSION[cliente_cod];");
+}
+else
+{
+    $asd .= "nao tem\n";
+    $query = mysqli_query($con, "INSERT INTO itemCarrinho (itemCarrinho_quantidade, cliente_cod, produto_cod) VALUES ($itemCarrinho_quantidade, $_SESSION[cliente_cod], $_POST[produtoCod])");
 }
 
-$query = mysqli_query($con, "UPDATE itemCarrinho SET itemCarrinho_quantidade = $itemCarrinho_quantidade WHERE produto_cod = $_POST[produtoCod] AND cliente_cod = $_SESSION[cliente_cod];");
+$asd .= $itemCarrinho_quantidade."\n";
 
-// $query = mysqli_query($con, "INSERT INTO itemCarrinho (itemCarrinho_quantidade, cliente_cod, produto_cod) VALUES (, $_SESSION[cliente_cod], $_POST[produtoCod])");
+if($query != true)
+{
+    echo json_encode(Array("success"=> false)); 
+    die();
+}
 
-echo json_encode(Array("success" => true));
+echo json_encode(Array("success" => true, "log" => $asd));
 
 ?>

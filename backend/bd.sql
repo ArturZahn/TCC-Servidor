@@ -7,7 +7,9 @@ CREATE TABLE endereco (
     endereco_cidade VARCHAR(50) NOT NULL,
     endereco_bairro VARCHAR(50) NOT NULL,
     endereco_rua VARCHAR(50) NOT NULL,
-    endereco_numero INT NOT NULL,
+    endereco_estado VARCHAR(2),
+    endereco_numero INT,
+    endereco_cep VARCHAR(9) NOT NULL,
     endereco_complemento VARCHAR(100) NOT NULL,
     endereco_informacoesAdicinais VARCHAR(200) NOT NULL
 );
