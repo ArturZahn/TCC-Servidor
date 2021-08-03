@@ -4,7 +4,7 @@
 
     include("../conexao.php");
 
-    if(!empty($_GET['pesquisa'])) $sqlQuery = "SELECT produto_nome, produto_cod, produto_preco, produto_foto, produtor_nome FROM produto JOIN produtor USING(produtor_cod) WHERE produto_nome LIKE '%$_GET[pesquisa]%'";
+    if(!empty($_GET['s'])) $sqlQuery = "SELECT produto_nome, produto_cod, produto_preco, produto_foto, produtor_nome FROM produto JOIN produtor USING(produtor_cod) WHERE produto_nome LIKE '%$_GET[s]%'";
     else $sqlQuery = "SELECT produto_nome, produto_cod, produto_preco, produto_foto, produtor_nome FROM produto JOIN produtor USING(produtor_cod)";
 
     $query = mysqli_query($con, $sqlQuery);
