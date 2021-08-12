@@ -6,11 +6,11 @@
 
     session_start();
 
-    $query = mysqli_query($con, "SELECT produtor_nome, produtor_fotoDePerfil, endereco_estado, endereco_cidade, endereco_bairro, endereco_cod FROM produtor LEFT JOIN endereco USING(endereco_cod) WHERE produtor_cod = 1");
+    $query = mysqli_query($con, "SELECT produtor_nome, produtor_fotoDePerfil, endereco_estado, endereco_cidade, endereco_bairro, endereco_cod FROM produtor LEFT JOIN endereco USING(endereco_cod) WHERE produtor_cod = $_GET[cp]");
 
     if($query == false || mysqli_num_rows($query) < 1)
     {
-        echo json_encode(Array("success"=> false)); 
+        echo json_encode(Array("success"=> false, "a" => $_GET["cp"]));
         die();
     }
 

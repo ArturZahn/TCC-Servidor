@@ -10,7 +10,7 @@
         die();
     }
 
-    $query = mysqli_query($con, "SELECT produto_nome, produto_descricao, produto_preco, produto_quantidadeEmEstoque, produto_tipoContagem, produto_foto, produtor_nome, produtor_fotoDePerfil FROM produto JOIN(produtor) USING(produtor_cod) WHERE produto_cod = $_GET[produtoCod];");
+    $query = mysqli_query($con, "SELECT produto_nome, produto_descricao, produto_preco, produto_quantidadeEmEstoque, produto_tipoContagem, produto_foto, produtor_nome, produtor_fotoDePerfil, produtor_cod FROM produto JOIN(produtor) USING(produtor_cod) WHERE produto_cod = $_GET[produtoCod];");
 
     if($query == false || mysqli_num_rows($query) < 1)
     {
@@ -28,6 +28,7 @@
         'produtoQuantidadeEmEstoque' => intval($exibe->produto_quantidadeEmEstoque),
         'produtoTipoContagem' => $exibe->produto_tipoContagem,
         'produtorNome' => $exibe->produtor_nome,
+        'produtorCod' => $exibe->produtor_cod,
         'produtorFotoDePerfil' => "data:image/gif;base64,$exibe->produtor_fotoDePerfil"
     ));
 
