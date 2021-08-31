@@ -93,19 +93,22 @@ CREATE TABLE estadoPedido (
 
 CREATE TABLE pedido (
     pedido_cod INT PRIMARY KEY AUTO_INCREMENT,
-    pedido_dataPagamento DATE,
+    pedido_dataCompra DATETIME,
+    pedido_pagamento VARCHAR(100),
 
     cliente_cod INT NOT NULL,
     estadoPedido_cod INT NOT NULL,
+    endereco_cod INT NOT NULL,
 
     FOREIGN KEY (cliente_cod) REFERENCES cliente(cliente_cod),
-    FOREIGN KEY (estadoPedido_cod) REFERENCES estadoPedido(estadoPedido_cod)
+    FOREIGN KEY (estadoPedido_cod) REFERENCES estadoPedido(estadoPedido_cod),
+    FOREIGN KEY (endereco_cod) REFERENCES endereco(endereco_cod)
 );
 
 CREATE TABLE itemPedido (
     itemPedido_cod INT PRIMARY KEY AUTO_INCREMENT,
     itemPedido_quantidade INT NOT NULL,
-    itemPedido_precoPago REAL NOT NULL,
+    itemPedido_precoUnitarioPago REAL NOT NULL,
 
     pedido_cod INT NOT NULL,
     produto_cod INT NOT NULL,

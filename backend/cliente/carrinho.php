@@ -1,7 +1,6 @@
 <?php
 
     header("Access-Control-Allow-Origin: *");
-
     include("../conexao.php");
     session_start();
     $query = mysqli_query($con, "SELECT produto_quantidadeEmEstoque, itemCarrinho_quantidade, produto_cod, produto_nome, produto_preco, produto_foto, produto_tipocontagem FROM itemcarrinho JOIN produto USING(produto_cod) WHERE cliente_cod = $_SESSION[cliente_cod];");
