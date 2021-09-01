@@ -76,7 +76,7 @@ CREATE TABLE produto (
     FOREIGN KEY (produtor_cod) REFERENCES produtor(produtor_cod)
 );
 
-CREATE TABLE itemCarrinho (
+CREATE TABLE itemcarrinho (
     itemCarrinho_cod INT PRIMARY KEY AUTO_INCREMENT,
     itemCarrinho_quantidade INT NOT NULL,
 
@@ -86,7 +86,7 @@ CREATE TABLE itemCarrinho (
     FOREIGN KEY (produto_cod) REFERENCES produto(produto_cod)
 );
 
-CREATE TABLE estadoPedido (
+CREATE TABLE estadopedido (
     estadoPedido_cod INT PRIMARY KEY,
     estadoPedido_estado VARCHAR(50) NOT NULL
 );
@@ -105,7 +105,7 @@ CREATE TABLE pedido (
     FOREIGN KEY (endereco_cod) REFERENCES endereco(endereco_cod)
 );
 
-CREATE TABLE itemPedido (
+CREATE TABLE itempedido (
     itemPedido_cod INT PRIMARY KEY AUTO_INCREMENT,
     itemPedido_quantidade INT NOT NULL,
     itemPedido_precoUnitarioPago REAL NOT NULL,
@@ -114,6 +114,18 @@ CREATE TABLE itemPedido (
     produto_cod INT NOT NULL,
     FOREIGN KEY (pedido_cod) REFERENCES pedido(pedido_cod),
     FOREIGN KEY (produto_cod) REFERENCES produto(produto_cod)
+);
+
+CREATE TABLE pagamento (
+    pagamento_cod INT PRIMARY KEY AUTO_INCREMENT,
+    pagamento_data DATETIME
+);
+
+CREATE TABLE itempagamento (
+    itemPagamento_cod INT PRIMARY KEY AUTO_INCREMENT,
+
+    itemPedido_cod INT NOT NULL,
+    FOREIGN KEY (itemPedido_cod) REFERENCES itemPedido(itemPedido_cod)
 );
 
 CREATE TABLE console (
