@@ -71,7 +71,7 @@ $pagamento .= ".";
 
 //========================================= produtos =========================================//
 $produtos = "";
-$query = mysqli_query($con, "SELECT produto_nome, itemCarrinho_quantidade FROM itemCarrinho JOIN produto USING(produto_cod) WHERE cliente_cod = $_SESSION[cliente_cod];");
+$query = mysqli_query($con, "SELECT produto_nome, itemCarrinho_quantidade FROM itemcarrinho JOIN produto USING(produto_cod) WHERE cliente_cod = $_SESSION[cliente_cod];");
 
 if($query == false || mysqli_num_rows($query) < 1)
 {

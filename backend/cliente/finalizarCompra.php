@@ -90,7 +90,7 @@ case "presencialDinheiro":
 
     if(!isset($_GET["trocoPara"]))
     {
-        echo json_encode(Array("success"=> false)); 
+        echo json_encode(Array("success6"=> false)); 
         die();
     }
 
@@ -131,10 +131,10 @@ if($query == false || mysqli_num_rows($query) < 1)
 
 while($e = mysqli_fetch_object($query))
 {
-    $query2 = mysqli_query($con, "INSERT INTO itemPedido (itemPedido_quantidade, itemPedido_precoUnitarioPago, pedido_cod, produto_cod) VALUES ($e->itemCarrinho_quantidade, $e->produto_preco, $pedido_cod, $e->produto_cod)");
+    $query2 = mysqli_query($con, "INSERT INTO itempedido (itemPedido_quantidade, itemPedido_precoUnitarioPago, pedido_cod, produto_cod) VALUES ($e->itemCarrinho_quantidade, $e->produto_preco, $pedido_cod, $e->produto_cod)");
 }
 
-$query = mysqli_query($con, "DELETE FROM itemCarrinho WHERE cliente_cod = $_SESSION[cliente_cod];");
+$query = mysqli_query($con, "DELETE FROM itemcarrinho WHERE cliente_cod = $_SESSION[cliente_cod];");
 
 //============================================================================================//
 
