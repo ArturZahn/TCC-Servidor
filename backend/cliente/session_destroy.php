@@ -1,10 +1,5 @@
 <?php
-    session_destroy();  
+    session_start();
+    session_destroy();
     echo json_encode(Array("success"=> true)); 
-?>
-<?php
-// echo json_encode(Array(
-//     "nome" => "dayana"
-// ));
-
 ?>
