@@ -18,7 +18,7 @@
     }
 
     session_start();
-    $_SESSION['cliente_cod'] = mysqli_fetch_array($query)[0];
+    $_SESSION['produtor_cod'] = mysqli_fetch_array($query)[0];
 
     echo json_encode(Array("success"=> true));    
 
