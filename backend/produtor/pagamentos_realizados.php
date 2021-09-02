@@ -5,7 +5,7 @@
     include("../conexao.php");
 
     session_start();
-    $query = mysqli_query($con, "SELECT pagamento_data, itemPedido_precoUnitarioPago * itemPedido_quantidade AS precoItem FROM itempagamento RIGHT JOIN itempedido USING(itemPedido_cod) JOIN produto USING(produto_cod) JOIN pagamento USING(pagamento_cod) WHERE pagamento_cod = $_SESSION[produtor_cod]");
+    $query = mysqli_query($con, "SELECT pagamento_data, itempedido_precounitariopago * itempedido_quantidade AS precoItem FROM itempagamento RIGHT JOIN itempedido USING(itempedido_cod) JOIN produto USING(produto_cod) JOIN pagamento USING(pagamento_cod) WHERE pagamento_cod = $_SESSION[produtor_cod]");
 
     if($query == false)
     {

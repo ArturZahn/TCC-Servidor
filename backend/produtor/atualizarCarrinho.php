@@ -26,7 +26,7 @@ foreach ($json as $item) {
         }
         else
         {
-            $query = mysqli_query($con, "UPDATE itemcarrinho SET itemCarrinho_quantidade = $item->quantidade WHERE produto_cod = $item->produtoCod AND cliente_cod = $_SESSION[cliente_cod];");
+            $query = mysqli_query($con, "UPDATE itemcarrinho SET itemcarrinho_quantidade = $item->quantidade WHERE produto_cod = $item->produtoCod AND cliente_cod = $_SESSION[cliente_cod];");
         }
     }
 }

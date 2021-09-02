@@ -6,7 +6,7 @@
 
     session_start();
 
-    $query = mysqli_query($con, "SELECT produtor_nome, produtor_fotoDePerfil, endereco_estado, endereco_cidade, endereco_bairro, endereco_cod FROM produtor LEFT JOIN endereco USING(endereco_cod) WHERE produtor_cod = $_GET[cp]");
+    $query = mysqli_query($con, "SELECT produtor_nome, produtor_fotodeperfil, endereco_estado, endereco_cidade, endereco_bairro, endereco_cod FROM produtor LEFT JOIN endereco USING(endereco_cod) WHERE produtor_cod = $_GET[cp]");
 
     if($query == false || mysqli_num_rows($query) < 1)
     {
@@ -18,7 +18,7 @@
 
     $resposta = array(
         'produtor_nome' => $e->produtor_nome,
-        'produtor_fotoDePerfil' => "data:image/gif;base64,$e->produtor_fotoDePerfil"
+        'produtor_fotodeperfil' => "data:image/gif;base64,$e->produtor_fotodeperfil"
     );
 
     if(empty($e->endereco_cod))

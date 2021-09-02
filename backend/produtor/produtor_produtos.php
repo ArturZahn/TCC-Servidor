@@ -5,8 +5,8 @@
     include("../conexao.php");
 
     session_start();
-    if(!empty($_GET['s'])) $sqlQuery = "SELECT produtor_cod, produto_cod, produto_foto, produto_nome, produto_quantidadeEmEstoque FROM produto JOIN produtor USING(produtor_cod) WHERE produto_nome LIKE '%$_GET[s]%'";
-    else $sqlQuery = "SELECT produtor_cod, produto_cod, produto_foto, produto_nome, produto_tipoContagem, produto_quantidadeEmEstoque, produto_preco FROM produto JOIN produtor USING(produtor_cod) WHERE produtor_cod = $_SESSION[produtor_cod]";
+    if(!empty($_GET['s'])) $sqlQuery = "SELECT produtor_cod, produto_cod, produto_foto, produto_nome, produto_quantidadeemestoque FROM produto JOIN produtor USING(produtor_cod) WHERE produto_nome LIKE '%$_GET[s]%'";
+    else $sqlQuery = "SELECT produtor_cod, produto_cod, produto_foto, produto_nome, produto_tipocontagem, produto_quantidadeemestoque, produto_preco FROM produto JOIN produtor USING(produtor_cod) WHERE produtor_cod = $_SESSION[produtor_cod]";
 
     $query = mysqli_query($con, $sqlQuery);
 
@@ -28,8 +28,8 @@
             'produtoPagina'=> "produto.html?p=$produto->produto_cod",
             'produtoFoto'=> "data:image/gif;base64,$produto->produto_foto",
             'produtoNome'=> "$produto->produto_nome",
-            'produtoTipoContagem'=> "$produto->produto_tipoContagem",
-            'produtoQuantidadeEmEstoque'=> $produto->produto_quantidadeEmEstoque,
+            'produtotipocontagem'=> "$produto->produto_tipocontagem",
+            'produtoQuantidadeEmEstoque'=> $produto->produto_quantidadeemestoque,
             'produtoPreco'=> $produto->produto_preco
         );
     }

@@ -4,11 +4,11 @@
     include("../conexao.php");
 
     session_start();
-    $query = mysqli_query($con, "SELECT produto_quantidadeEmEstoque, itemCarrinho_quantidade, produto_cod, produto_nome, produto_preco, produto_foto, produto_tipocontagem FROM itemcarrinho JOIN produto USING(produto_cod) WHERE cliente_cod = $_SESSION[cliente_cod];");
+    $query = mysqli_query($con, "SELECT produto_quantidadeemestoque, itemcarrinho_quantidade, produto_cod, produto_nome, produto_preco, produto_foto, produto_tipocontagem FROM itemcarrinho JOIN produto USING(produto_cod) WHERE cliente_cod = $_SESSION[cliente_cod];");
 
     if($query == false)
     {
-        echo json_encode(Array("q"=> "SELECT produto_quantidadeEmEstoque, itemCarrinho_quantidade, produto_cod, produto_nome, produto_preco, produto_foto, produto_tipocontagem FROM itemcarrinho JOIN produto USING(produto_cod) WHERE cliente_cod = $_SESSION[cliente_cod]","success"=> false)); 
+        echo json_encode(Array("q"=> "SELECT produto_quantidadeemestoque, itemcarrinho_quantidade, produto_cod, produto_nome, produto_preco, produto_foto, produto_tipocontagem FROM itemcarrinho JOIN produto USING(produto_cod) WHERE cliente_cod = $_SESSION[cliente_cod]","success"=> false)); 
         die();
     }
 
@@ -18,9 +18,9 @@
             'produtoCod' => intval($produto->produto_cod),
             'produtoFoto' => "data:image/gif;base64,$produto->produto_foto",
             'produtoNome' => "$produto->produto_nome",
-            'quantidade' => intval($produto->itemCarrinho_quantidade),
+            'quantidade' => intval($produto->itemcarrinho_quantidade),
             'precoUnidade' => floatval($produto->produto_preco),
-            'itemQuantidadeEmEstoque' => intval($produto->produto_quantidadeEmEstoque)
+            'itemQuantidadeEmEstoque' => intval($produto->produto_quantidadeemestoque)
         );
     }
 

@@ -10,7 +10,7 @@
         die();
     }
 
-    $query = mysqli_query($con, "SELECT produto_nome, produto_foto, itemPedido_quantidade, itemPedido_quantidade * itemPedido_precoUnitarioPago AS precoItem FROM itempedido JOIN produto USING(produto_cod) WHERE pedido_cod = $_GET[p];");
+    $query = mysqli_query($con, "SELECT produto_nome, produto_foto, itempedido_quantidade, itempedido_quantidade * itempedido_precounitariopago AS precoItem FROM itempedido JOIN produto USING(produto_cod) WHERE pedido_cod = $_GET[p];");
 
     if($query == false || mysqli_num_rows($query) < 1)
     {
@@ -23,14 +23,14 @@
     {
         $pedidos[] = array(
             'produtoFoto' => "data:image/gif;base64,$e->produto_foto",
-            'itemQuantidade' => $e->itemPedido_quantidade,
+            'itemQuantidade' => $e->itempedido_quantidade,
             'nomeProduto' => $e->produto_nome,
             'itemPreco' => $e->precoItem
         );
     }
 
     //////////////////////
-    $query = mysqli_query($con, "SELECT pedido_cod, pedido_dataCompra, estadoPedido_estado FROM pedido JOIN estadopedido USING(estadoPedido_cod) WHERE pedido_cod = $_GET[p];");
+    $query = mysqli_query($con, "SELECT pedido_cod, pedido_datacompra, estadopedido_estado FROM pedido JOIN estadopedido USING(estadopedido_cod) WHERE pedido_cod = $_GET[p];");
 
     if($query == false || mysqli_num_rows($query) < 1)
     {
@@ -43,8 +43,8 @@
     echo json_encode(Array(
         "itens" => $pedidos,
         'pedido_cod' => $e->pedido_cod,
-        'pedido_dataCompra' => date("d/m/Y", strtotime($e->pedido_dataCompra)),
-        'estadoPedido_estado' => $e->estadoPedido_estado
+        'pedido_datacompra' => date("d/m/Y", strtotime($e->pedido_datacompra)),
+        'estadopedido_estado' => $e->estadopedido_estado
     ));
 
 ?>

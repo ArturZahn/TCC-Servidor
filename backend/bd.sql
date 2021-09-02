@@ -11,7 +11,7 @@ CREATE TABLE endereco (
     endereco_numero INT,
     endereco_cep VARCHAR(9) NOT NULL,
     endereco_complemento VARCHAR(100) NOT NULL,
-    endereco_informacoesAdicinais VARCHAR(200) NOT NULL
+    endereco_informacoesadicinais VARCHAR(200) NOT NULL
 );
 
 CREATE TABLE cooperativa (
@@ -34,7 +34,7 @@ CREATE TABLE cliente (
     cliente_telefone VARCHAR(20) NOT NULL,
     cliente_cpf VARCHAR(20) NOT NULL,
     cliente_senha VARCHAR(32) NOT NULL,
-    cliente_fotoDePerfil MEDIUMBLOB,
+    cliente_fotodeperfil MEDIUMBLOB,
 
     endereco_cod INT,
 
@@ -48,37 +48,37 @@ CREATE TABLE produtor (
     produtor_telefone VARCHAR(20) NOT NULL,
     produtor_cpfcnpj VARCHAR(20) NOT NULL,
     produtor_senha VARCHAR(32) NOT NULL,
-    produtor_fotoDePerfil MEDIUMBLOB,
+    produtor_fotodeperfil MEDIUMBLOB,
 
     endereco_cod INT,
 
     FOREIGN KEY (endereco_cod) REFERENCES endereco(endereco_cod)
 );
 
-/*CREATE TABLE tipoContagem (
-    tipoContagem_cod INT PRIMARY KEY AUTO_INCREMENT,
-    tipoContagem_nome VARCHAR(50) NOT NULL
+/*CREATE TABLE tipocontagem (
+    tipocontagem_cod INT PRIMARY KEY AUTO_INCREMENT,
+    tipocontagem_nome VARCHAR(50) NOT NULL
 );*/
 
 CREATE TABLE produto (
     produto_cod INT PRIMARY KEY AUTO_INCREMENT,
     produto_nome VARCHAR(100) NOT NULL,
     produto_descricao VARCHAR(1000) NOT NULL,
-    produto_quantidadeEmEstoque INT NOT NULL,
+    produto_quantidadeemestoque INT NOT NULL,
     produto_preco REAL NOT NULL,
     produto_foto MEDIUMBLOB,
 
-    /*tipoContagem_cod INT,*/
-    produto_tipoContagem VARCHAR(30) NOT NULL,
+    /*tipocontagem_cod INT,*/
+    produto_tipocontagem VARCHAR(30) NOT NULL,
     produtor_cod INT NOT NULL,
 
-    /*FOREIGN KEY (tipoContagem_cod) REFERENCES tipoContagem(tipoContagem_cod),*/
+    /*FOREIGN KEY (tipocontagem_cod) REFERENCES tipocontagem(tipocontagem_cod),*/
     FOREIGN KEY (produtor_cod) REFERENCES produtor(produtor_cod)
 );
 
 CREATE TABLE itemcarrinho (
-    itemCarrinho_cod INT PRIMARY KEY AUTO_INCREMENT,
-    itemCarrinho_quantidade INT NOT NULL,
+    itemcarrinho_cod INT PRIMARY KEY AUTO_INCREMENT,
+    itemcarrinho_quantidade INT NOT NULL,
 
     cliente_cod INT NOT NULL,
     produto_cod INT NOT NULL,
@@ -87,28 +87,28 @@ CREATE TABLE itemcarrinho (
 );
 
 CREATE TABLE estadopedido (
-    estadoPedido_cod INT PRIMARY KEY,
-    estadoPedido_estado VARCHAR(50) NOT NULL
+    estadopedido_cod INT PRIMARY KEY,
+    estadopedido_estado VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE pedido (
     pedido_cod INT PRIMARY KEY AUTO_INCREMENT,
-    pedido_dataCompra DATETIME,
+    pedido_datacompra DATETIME,
     pedido_pagamento VARCHAR(100),
 
     cliente_cod INT NOT NULL,
-    estadoPedido_cod INT NOT NULL,
+    estadopedido_cod INT NOT NULL,
     endereco_cod INT NOT NULL,
 
     FOREIGN KEY (cliente_cod) REFERENCES cliente(cliente_cod),
-    FOREIGN KEY (estadoPedido_cod) REFERENCES estadoPedido(estadoPedido_cod),
+    FOREIGN KEY (estadopedido_cod) REFERENCES estadopedido(estadopedido_cod),
     FOREIGN KEY (endereco_cod) REFERENCES endereco(endereco_cod)
 );
 
 CREATE TABLE itempedido (
-    itemPedido_cod INT PRIMARY KEY AUTO_INCREMENT,
-    itemPedido_quantidade INT NOT NULL,
-    itemPedido_precoUnitarioPago REAL NOT NULL,
+    itempedido_cod INT PRIMARY KEY AUTO_INCREMENT,
+    itempedido_quantidade INT NOT NULL,
+    itempedido_precounitariopago REAL NOT NULL,
 
     pedido_cod INT NOT NULL,
     produto_cod INT NOT NULL,
@@ -122,11 +122,11 @@ CREATE TABLE pagamento (
 );
 
 CREATE TABLE itempagamento (
-    itemPagamento_cod INT PRIMARY KEY AUTO_INCREMENT,
+    itempagamento_cod INT PRIMARY KEY AUTO_INCREMENT,
 
-    itemPedido_cod INT NOT NULL,
+    itempedido_cod INT NOT NULL,
     pagamento_cod INT NOT NULL,
-    FOREIGN KEY (itemPedido_cod) REFERENCES itemPedido(itemPedido_cod),
+    FOREIGN KEY (itempedido_cod) REFERENCES itempedido(itempedido_cod),
     FOREIGN KEY (pagamento_cod) REFERENCES pagamento(pagamento_cod)
 );
 

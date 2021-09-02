@@ -5,7 +5,7 @@
     include("../conexao.php");
 
     session_start();
-    $query = mysqli_query($con, "SELECT cliente_nome, cliente_fotoDePerfil FROM cliente WHERE cliente_cod = $_SESSION[cliente_cod]");
+    $query = mysqli_query($con, "SELECT cliente_nome, cliente_fotodeperfil FROM cliente WHERE cliente_cod = $_SESSION[cliente_cod]");
 
     if($query == false || mysqli_num_rows($query) < 1)
     {
@@ -17,7 +17,7 @@
 
     echo json_encode(array(
         'nome'=> $exibe->cliente_nome,
-        'fotoDePerfil'=> "data:image/gif;base64,$exibe->cliente_fotoDePerfil"
+        'fotoDePerfil'=> "data:image/gif;base64,$exibe->cliente_fotodeperfil"
     ));
 
 ?>

@@ -24,12 +24,12 @@ if(!empty($_GET["novoEndereco"]) || !empty($_GET["endereco"]))
             "endereco_numero" => $dds->numero,
             "endereco_cep" => $dds->cep,
             "endereco_complemento" => $dds->complemento,
-            "endereco_informacoesAdicinais" => $dds->extras
+            "endereco_informacoesadicinais" => $dds->extras
         );
     }
     else if(!empty($_GET["endereco"])) // endereco cadastrado
     {
-        $query = mysqli_query($con, "SELECT endereco_cidade, endereco_bairro, endereco_rua, endereco_estado, endereco_numero, endereco_cep, endereco_complemento, endereco_informacoesAdicinais FROM cliente LEFT JOIN endereco USING(endereco_cod) WHERE cliente_cod = $_SESSION[cliente_cod] LIMIT 1;");
+        $query = mysqli_query($con, "SELECT endereco_cidade, endereco_bairro, endereco_rua, endereco_estado, endereco_numero, endereco_cep, endereco_complemento, endereco_informacoesadicinais FROM cliente LEFT JOIN endereco USING(endereco_cod) WHERE cliente_cod = $_SESSION[cliente_cod] LIMIT 1;");
         
         if($query == false)
         {
@@ -44,7 +44,7 @@ if(!empty($_GET["novoEndereco"]) || !empty($_GET["endereco"]))
         }
     }
 
-    $query = mysqli_query($con, "INSERT INTO endereco (endereco_cidade, endereco_bairro, endereco_rua, endereco_estado, endereco_numero, endereco_cep, endereco_complemento, endereco_informacoesAdicinais) VALUES ('$dds_FINAL->endereco_cidade', '$dds_FINAL->endereco_bairro', '$dds_FINAL->endereco_rua', '$dds_FINAL->endereco_estado', '$dds_FINAL->endereco_numero', '$dds_FINAL->endereco_cep', '$dds_FINAL->endereco_complemento', '$dds_FINAL->endereco_informacoesAdicinais')");
+    $query = mysqli_query($con, "INSERT INTO endereco (endereco_cidade, endereco_bairro, endereco_rua, endereco_estado, endereco_numero, endereco_cep, endereco_complemento, endereco_informacoesadicinais) VALUES ('$dds_FINAL->endereco_cidade', '$dds_FINAL->endereco_bairro', '$dds_FINAL->endereco_rua', '$dds_FINAL->endereco_estado', '$dds_FINAL->endereco_numero', '$dds_FINAL->endereco_cep', '$dds_FINAL->endereco_complemento', '$dds_FINAL->endereco_informacoesadicinais')");
 
     $query = mysqli_query($con, "SELECT LAST_INSERT_ID() as endereco_cod");
     if($query == false)
@@ -109,7 +109,7 @@ $pagamento .= ".";
 //=============================================================================================//
 
 //========================================= pedido =========================================//
-$query = mysqli_query($con, "INSERT INTO pedido (pedido_dataCompra, cliente_cod, estadoPedido_cod, pedido_pagamento, endereco_cod) VALUES ('".date("Y-m-d H:i:s")."', $_SESSION[cliente_cod], 1, '$pagamento', $endereco_cod)");
+$query = mysqli_query($con, "INSERT INTO pedido (pedido_datacompra, cliente_cod, estadopedido_cod, pedido_pagamento, endereco_cod) VALUES ('".date("Y-m-d H:i:s")."', $_SESSION[cliente_cod], 1, '$pagamento', $endereco_cod)");
 if($query == false)
 {
     echo json_encode(Array("success"=> false)); 
@@ -121,7 +121,7 @@ $pedido_cod = mysqli_insert_id($con);
 
 //========================================= produtos =========================================//
 $produtos = "";
-$query = mysqli_query($con, "SELECT itemCarrinho_quantidade, produto_preco, produto_cod FROM itemcarrinho JOIN produto USING(produto_cod) WHERE cliente_cod = $_SESSION[cliente_cod];");
+$query = mysqli_query($con, "SELECT itemcarrinho_quantidade, produto_preco, produto_cod FROM itemcarrinho JOIN produto USING(produto_cod) WHERE cliente_cod = $_SESSION[cliente_cod];");
 
 if($query == false || mysqli_num_rows($query) < 1)
 {
@@ -131,7 +131,7 @@ if($query == false || mysqli_num_rows($query) < 1)
 
 while($e = mysqli_fetch_object($query))
 {
-    $query2 = mysqli_query($con, "INSERT INTO itempedido (itemPedido_quantidade, itemPedido_precoUnitarioPago, pedido_cod, produto_cod) VALUES ($e->itemCarrinho_quantidade, $e->produto_preco, $pedido_cod, $e->produto_cod)");
+    $query2 = mysqli_query($con, "INSERT INTO itempedido (itempedido_quantidade, itempedido_precounitariopago, pedido_cod, produto_cod) VALUES ($e->itemcarrinho_quantidade, $e->produto_preco, $pedido_cod, $e->produto_cod)");
 }
 
 $query = mysqli_query($con, "DELETE FROM itemcarrinho WHERE cliente_cod = $_SESSION[cliente_cod];");
