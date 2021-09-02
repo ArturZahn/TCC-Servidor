@@ -125,7 +125,9 @@ CREATE TABLE itempagamento (
     itemPagamento_cod INT PRIMARY KEY AUTO_INCREMENT,
 
     itemPedido_cod INT NOT NULL,
-    FOREIGN KEY (itemPedido_cod) REFERENCES itemPedido(itemPedido_cod)
+    pagamento_cod INT NOT NULL,
+    FOREIGN KEY (itemPedido_cod) REFERENCES itemPedido(itemPedido_cod),
+    FOREIGN KEY (pagamento_cod) REFERENCES pagamento(pagamento_cod)
 );
 
 CREATE TABLE console (

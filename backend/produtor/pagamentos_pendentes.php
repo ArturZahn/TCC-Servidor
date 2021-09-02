@@ -4,33 +4,27 @@
 
     include("../conexao.php");
 
-    $query = mysqli_query($con, "SELECT produto_cod, itemPedido_precoUnitarioPago * itemPedido_quantidade AS precoItem, produtor_cod FROM itempedido JOIN produto USING (produto_cod) WHERE produtor_cod = $_SESSION[produtor_cod]");
+    session_start();
+    $query = mysqli_query($con, "SELECT SUM(itemPedido_precoUnitarioPago * itemPedido_quantidade) AS totalItem, produto_nome, produto_foto, SUM(itemPedido_quantidade) AS quantidade FROM itempagamento RIGHT JOIN itempedido USING(itemPedido_cod) JOIN produto USING(produto_cod) WHERE pagamento_cod IS NULL AND produtor_cod = $_SESSION[produtor_cod] GROUP BY produto_cod;");
 
     if($query == false)
     {
         echo json_encode(Array("success"=> false)); 
         die();
     }
-    
-    if(mysqli_num_rows($query) < 1)
-    {
-        echo json_encode(Array("success"=> false, "errorMessage"=> "Nenhum produto foi encontrado.")); 
-        die();
-    }
 
-    $produtos = [];
-    while($produto = mysqli_fetch_object($query)){
-        $produtos[] = array(
-            'produtoPagina'=> "produto.html?p=$produto->produto_cod",
-            'produtoFoto'=> "data:image/gif;base64,$produto->produto_foto",
-            'produtoNome'=> "$produto->produto_nome",
-            'produtoPreco'=> $produto->produto_preco,
-            'produtorNome'=> "$produto->produtor_nome"
+    $pagamentos = [];
+    while($pagamento = mysqli_fetch_object($query)){
+        $pagamentos[] = array(
+            'pagamento_total'=> $pagamento->totalItem,
+            'quantidade'=> $pagamento->quantidade,
+            'produto_nome'=> $pagamento->produto_nome,
+            'produto_foto'=> "data:image/gif;base64,$pagamento->produto_foto"
         );
     }
 
     echo json_encode(array(
-        'produtos'=>$produtos
+        'pagamentos'=>$pagamentos
     ));
 
 ?>
