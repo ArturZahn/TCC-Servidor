@@ -1,0 +1,51 @@
+.bg-verde-1{
+    --bg-opacity:1;
+    background-color:#1D781C;
+    background-color:rgba(126,58,242,var(--bg-opacity))
+}
+.active\:bg-verde-1:active{
+    --bg-opacity:1;
+    background-color:#1D781C;
+    background-color:rgba(126,58,242,var(--bg-opacity))
+}
+.border-verde-1{
+    --border-opacity:1;
+    border-color:#1D781C;
+    border-color:rgba(126,58,242,var(--border-opacity))
+}
+.text-verde-1{
+    --text-opacity:1;
+    color:#1D781C;
+    color:rgba(126,58,242,var(--text-opacity))
+}
+.focus-within\:text-verde-1:focus-within{
+    --text-opacity:1;
+    color:#1D781C;
+    color:rgba(126,58,242,var(--text-opacity))
+}
+
+.bg-verde-2{
+    --bg-opacity:1;
+    background-color:#37AA35;
+    background-color:rgba(126,58,242,var(--bg-opacity))
+}
+.active\:bg-verde-2:active{
+    --bg-opacity:1;
+    background-color:#37AA35;
+    background-color:rgba(126,58,242,var(--bg-opacity))
+}
+.border-verde-2{
+    --border-opacity:1;
+    border-color:#37AA35;
+    border-color:rgba(126,58,242,var(--border-opacity))
+}
+.text-verde-2{
+    --text-opacity:1;
+    color:#37AA35;
+    color:rgba(126,58,242,var(--text-opacity))
+}
+.focus-within\:text-verde-2:focus-within{
+    --text-opacity:1;
+    color:#37AA35;
+    color:rgba(126,58,242,var(--text-opacity))
+}
