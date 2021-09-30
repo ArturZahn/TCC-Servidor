@@ -75,3 +75,21 @@ Coisas no projeto:
 - backend tela ver detalhes do pagamento
 - backend tela tabela dos pedidos
 - backend tela detelhe do pedido
+
+---------------------------------
+Coisas secundárias:
+
+Para mudar no aplicativo mobile:
+- simplificar texto da index
+- mudar imagem de cadastro
+- aumentar tamanho do preco e mudar a posicao (telas: home, carrinho, detalhes da compra)
+- mudar card do carrinho (e lugares onde a foto do produto nao é o foco)
+- colocar pix como opcao de pagamento
+- alterar selecao de endereco do pedido
+- cadastro de foto
+- pesquisa por produtor
+- adicionar mais informacoes sobre o produtor
+- trocar a ordem do card do produtor na tela do produto
+
+outros:
+- aplicativo entregador?
