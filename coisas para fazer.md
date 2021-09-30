@@ -1,22 +1,22 @@
 `Funcionalidades do sistema`
 - login para o sistema
-├─ tela login
+├─ login
 
-- crud produtos (inserção, exclusão e atualização)
-├─ tabela dados
+- Produtos
+├─ tabela dos produtos
 │   ⤷ campos: produtor, preco, qtd estoque
-├─ formulario editar/cadastrar
+├─ formulario editar/cadastrar produtos
 
 - crud produtor
-├─ tabela dados
-├─ formulario editar/cadastrar
+├─ tabela produtos
+├─ formulario editar/cadastrar produtos
 │   ⤷ link para produtos do produtor
 
 - Pagamentos
-├─ produtores que precisam ser pagos
+├─ tebela produtores que precisam ser pagos
 │   ⤷ descricao: ver para quais produtores a pooperativa ta devendo
 │   ⤷ tabela: produtor, status, quanto ta devendo, botoes pagar produtor e ver todos os pagamentos
-├─ tela pagar produtor
+├─ pagar produtor
 │   ⤷ tela para pagar o produtor
 │   ⤷ tabela: mostra por quais itens o pagamento ta sendo feito
 │   ⤷ botao para pagar
@@ -40,14 +40,38 @@ Funções secundarias
 - aba geral / home (produtos vendidos na semana, lucro da semana, etc)
 - pagamento dos funcionários (?)
 
-`Cosias para fazer `
-- mudar tema (cores e afins)
+
+
+---------------------------------------------------------------------------------
+
+Coisas para fazer:
+- logo coopaf
+- documentacao
 - fazer telas (design)
+- slide apresentacao
+- roteiro apresentacao
 
+Coisas no projeto:
+- design tela login
+- design tela tabela dos produtos
+- design tela formulario editar/cadastrar produtos
+- design tela tabela produtos
+- design tela formulario editar/cadastrar produtos
+- design tela tebela produtores que precisam ser pagos
+- design tela pagar produtor
+- design tela ver todos os pagamentos do produtor
+- design tela ver detalhes do pagamento
+- design tela tabela dos pedidos
+- design tela detelhe do pedido
 
-
-
-
-
-
-
+- backend tela login
+- backend tela tabela dos produtos
+- backend tela formulario editar/cadastrar produtos
+- backend tela tabela produtos
+- backend tela formulario editar/cadastrar produtos
+- backend tela tebela produtores que precisam ser pagos
+- backend tela pagar produtor
+- backend tela ver todos os pagamentos do produtor
+- backend tela ver detalhes do pagamento
+- backend tela tabela dos pedidos
+- backend tela detelhe do pedido
