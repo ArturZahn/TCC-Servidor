@@ -7,7 +7,7 @@
 │   ⤷ campos: produtor, preco, qtd estoque
 ├─ formulario editar/cadastrar produtos
 
-- crud produtor
+- Crud produtor
 ├─ tabela produtos
 ├─ formulario editar/cadastrar produtos
 │   ⤷ link para produtos do produtor
@@ -25,7 +25,7 @@
 ├─ ver detalhes do pagamento
 │   ⤷ tabela: valor total, itens (qtd, valor do item)
 
-- tela pedidos realizados (que foram entregues e que ainda falta entregar)
+- Tela pedidos realizados (que foram entregues e que ainda falta entregar)
 ├─ tabela dos pedidos
 │   ⤷ campos: status, cod pedido, cliente, valor total, qtd itens, botao ver mais
 │   ⤷ filtro: por status, cliente
