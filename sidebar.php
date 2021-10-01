@@ -6,7 +6,7 @@ $menu = array(
     array(
         "titulo" => "Painel",
         "url" => "index.php",
-        "icone" => '<i class="fas fa-salad"></i>'
+        "icone" => '<i class="fab fa-accessible-icon"></i><i class="fas fa-salad"></i>'
     ),
     array(
         "titulo" => "Produtor",
