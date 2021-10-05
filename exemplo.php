@@ -1,5 +1,9 @@
 <?php
 include("tabletemplate.php");
+
+include("./backend/conexao.php");
+
+
 ?>
 
 <!DOCTYPE html>
@@ -87,26 +91,40 @@ include("tabletemplate.php");
         <main class="h-full pb-16 overflow-y-auto">
           <!-- Remove everything INSIDE this div to a really blank page -->
           <div class="container px-6 mx-auto grid">
-            <h2
-              class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
-            >
+            <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
               Blank
             </h2>
             <?php
-                tabela(
-                  "Produtos", array("nome", "preco", "quantidade"), array(
-                  array("Limao", "$2,00", "5"),
-                  array("Banana", "$8,00", "25"),
-                  array("Morango", "$3,00", "15")
+
+                // se o $_GET["p"] não esta vazio, coloca ele na variavel, se nao, define numero da pagina como 1
+                $numDaPag = !empty($_GET["p"])?intval($_GET["p"]):1;
+
+
+                // altere esses dados ↓↓↓
+                $itensPorPag = 3;
+                $queryDados       = "SELECT produto_nome, produto_preco from produto limit $itensPorPag offset ".($numDaPag-1)*$itensPorPag;
+                $queryQtdDeLinhas = "SELECT count(produto_cod) from produto";
+                // altere esses dados ↑↑↑
+
+
+                // não precisa alterar essa linha ↓↓↓
+                $qtdDeLinhas = mysqli_fetch_array(mysqli_query($con, $queryQtdDeLinhas))[0];
+
+                tabela(array(
+                  "titulo" => "Titulo da tabela",
+                  "nomeColunas" => array(
+                    "Produto",
+                    "Preço"
                   ),
-                    
-                    
-                  array(
-                    array("", ""),
-                    array("", ""),
-                    array('<span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">', "</span>")
-                  )
-                )
+                  "templateColunas" => array(
+                    function($exibe){return "<span>$exibe[produto_nome]</span>";},
+                    function($exibe){return "R\$ $exibe[produto_preco]";}
+                  ),
+                  "dados" => mysqli_query($con, $queryDados),
+                  "numDaPag" => $numDaPag,
+                  "qtdDeLinhas" => $qtdDeLinhas,
+                  "itensPorPag" => $itensPorPag,
+                ));
             ?>
           </div>
         </main>
@@ -114,3 +132,4 @@ include("tabletemplate.php");
     </div>
   </body>
 </html>
+ 
