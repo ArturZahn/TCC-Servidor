@@ -4,7 +4,7 @@ if(false) // se usuario esta logado
 {
   header("location: painel.php");
 }
-else
+else // se usuario não esta logado
 {
   header("location: login.php");
 }
