@@ -1,21 +1,17 @@
-<?php
-include("tabletemplate.php");
-?>
-
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blank - Windmill Dashboard</title>
+    <title>Painel - CoopAF</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
+      rel="stylesheet"  
     />
     <link rel="stylesheet" href="./assets/css/tailwind.output.css" /><link rel="stylesheet" href="./assets/css/corescustomizadas.css" />
     
     <link rel="stylesheet" href="./assets/css/fontawesome/css/all.css">
-
+    
     <script
       src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
       defer
@@ -92,22 +88,6 @@ include("tabletemplate.php");
             >
               Blank
             </h2>
-            <?php
-                tabela(
-                  "Produtos", array("nome", "preco", "quantidade"), array(
-                  array("Limao", "$2,00", "5"),
-                  array("Banana", "$8,00", "25"),
-                  array("Morango", "$3,00", "15")
-                  ),
-                    
-                    
-                  array(
-                    array("", ""),
-                    array("", ""),
-                    array('<span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">', "</span>")
-                  )
-                )
-            ?>
           </div>
         </main>
       </div>

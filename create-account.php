@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
+<html :class="{ 'theme-dark': dark }" x-data="data()" lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -87,7 +87,7 @@
               <!-- You should use a button here, as the anchor is only used for the example  -->
               <a
                 class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-verdecoopaf-600 border border-transparent rounded-lg active:bg-verdecoopaf-600 hover:bg-verdecoopaf-700 focus:outline-none focus:shadow-outline-verdecoopaf"
-                href="./login.php"
+                href="./index.php"
               >
                 Create account
               </a>
@@ -128,7 +128,7 @@
               <p class="mt-4">
                 <a
                   class="text-sm font-medium text-verdecoopaf-600 dark:text-verdecoopaf-400 hover:underline"
-                  href="./login.php"
+                  href="./index.php"
                 >
                   Already have an account? Login
                 </a>

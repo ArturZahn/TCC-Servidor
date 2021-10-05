@@ -5,7 +5,7 @@
 $menu = array(
     array(
         "titulo" => "Painel",
-        "url" => "index.php",
+        "url" => "painel.php",
         "icone" => '<i class="fas fa-home"></i>'
     ),
     array(
@@ -16,7 +16,7 @@ $menu = array(
     array(
         "titulo" => "Produtos",
         "url" => "produtos.php",
-        "icone" => '<i class="fas fa-apple-alt"></i>'
+        "icone" => '<i class="fas fa-apple-crate"></i>'
     ),
     array(
         "titulo" => "Pedidos",
@@ -72,7 +72,7 @@ function itemMenuEstaSelecionado($urlItemMenu)
 
             <?php } ?>
             
-            <li class="relative px-6 py-3">
+            <!-- <li class="relative px-6 py-3">
                 <button class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" @click="togglePagesMenu" aria-haspopup="true">
                     <span class="inline-flex items-center">
                         <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -98,7 +98,7 @@ function itemMenuEstaSelecionado($urlItemMenu)
                         aria-label="submenu"
                     >
                         <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                            <a class="w-full" href="login.php">Login</a>
+                            <a class="w-full" href="index.php">Login</a>
                         </li>
                         <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
                             <a class="w-full" href="create-account.php">
@@ -118,16 +118,16 @@ function itemMenuEstaSelecionado($urlItemMenu)
                         </li>
                     </ul>
                 </template>
-            </li>
+            </li> -->
         </ul>
-        <div class="px-6 my-6">
+        <!-- <div class="px-6 my-6">
             <button
                 class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-verdecoopaf-600 border border-transparent rounded-lg active:bg-verdecoopaf-600 hover:bg-verdecoopaf-700 focus:outline-none focus:shadow-outline-verdecoopaf"
             >
                 Create account
                 <span class="ml-2" aria-hidden="true">+</span>
             </button>
-        </div>
+        </div> -->
     </div>
 </aside>
 <!-- Mobile sidebar -->
@@ -177,7 +177,7 @@ function itemMenuEstaSelecionado($urlItemMenu)
 
             <?php } ?>
 
-            <li class="relative px-6 py-3">
+            <!-- <li class="relative px-6 py-3">
                 <button class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" @click="togglePagesMenu" aria-haspopup="true">
                     <span class="inline-flex items-center">
                         <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -203,7 +203,7 @@ function itemMenuEstaSelecionado($urlItemMenu)
                         aria-label="submenu"
                     >
                         <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                            <a class="w-full" href="login.php">Login</a>
+                            <a class="w-full" href="index.php">Login</a>
                         </li>
                         <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
                             <a class="w-full" href="create-account.php">
@@ -223,13 +223,13 @@ function itemMenuEstaSelecionado($urlItemMenu)
                         </li>
                     </ul>
                 </template>
-            </li>
+            </li> -->
         </ul>
-        <div class="px-6 my-6">
+        <!-- <div class="px-6 my-6">
             <button class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-verdecoopaf-600 border border-transparent rounded-lg active:bg-verdecoopaf-600 hover:bg-verdecoopaf-700 focus:outline-none focus:shadow-outline-verdecoopaf">
                 Create account
                 <span class="ml-2" aria-hidden="true">+</span>
             </button>
-        </div>
+        </div> -->
     </div>
 </aside>
