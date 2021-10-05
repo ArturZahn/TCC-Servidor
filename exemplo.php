@@ -118,12 +118,18 @@ include("./backend/conexao.php");
                   ),
                   "templateColunas" => array(
                     function($exibe){return "<span>$exibe[produto_nome]</span>";},
-                    function($exibe){return "R\$ $exibe[produto_preco]";}
+
+                    function($exibe){
+                      if($exibe["produto_preco"] > 8) $classes = "text-red-700 bg-red-100 dark:text-red-100 dark:bg-red-700";
+                      else $classes = "text-green-700 bg-green-100 dark:bg-green-700 dark:text-green-100";
+
+                      return "<span class='px-2 py-1 font-semibold leading-tight rounded-full $classes'>$exibe[produto_preco]</span>";
+                    }
                   ),
                   "dados" => mysqli_query($con, $queryDados),
                   "numDaPag" => $numDaPag,
                   "qtdDeLinhas" => $qtdDeLinhas,
-                  "itensPorPag" => $itensPorPag,
+                  "itensPorPag" => $itensPorPag
                 ));
             ?>
           </div>
