@@ -27,9 +27,10 @@
 
 - Tela pedidos realizados (que foram entregues e que ainda falta entregar)
 ├─ tabela dos pedidos
-│   ⤷ campos: status, cod pedido, cliente, valor total, qtd itens, botao ver mais
+│   ⤷ campos: status, cod pedido, cliente, valor total, data, qtd itens, botao ver mais
 │   ⤷ filtro: por status, cliente
 ├─ detelhe do pedido
+    ⤷dados: cod pedido, cliente, valor total, status, data, qtd itens, tabela com itens do pedido,
 │   ⤷ ver e atualizar dados
 │   ⤷ cancelar compra
 
