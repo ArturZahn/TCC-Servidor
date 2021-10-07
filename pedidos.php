@@ -1,3 +1,4 @@
+<?php include("global.php"); ?>
 <?php
 include("tabletemplate.php");
 

@@ -1,5 +1,7 @@
 <?php
 
+include("global.php");
+
 if(false) // se usuario esta logado
 {
   // vai para painel
