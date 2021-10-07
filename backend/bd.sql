@@ -134,3 +134,9 @@ CREATE TABLE console (
 	cod INT PRIMARY KEY AUTO_INCREMENT,
 	log VARCHAR(1000)
 );
+
+CREATE TABLE admin (
+    admin_cod INT PRIMARY KEY AUTO_INCREMENT,
+    admin_login VARCHAR(50),
+    admin_senha VARCHAR(32)
+);

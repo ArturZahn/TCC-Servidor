@@ -1,8 +1,26 @@
 <?php
 
-function formatReal($val)
+if(!isset($verificarLogin)) $verificarLogin = true;
+session_start();
+// var_dump($_SESSION, "@", $verificarLogin);
+if($verificarLogin)
 {
-    return "R$ ".number_format($val, 2, ',', ' ');
+    if(empty($_SESSION["admin_cod"]))
+    {
+        // echo "n ta logado";
+        header("location: login.php");
+        die();
+    }
+}
+
+function formatPreco($valor)
+{
+    return "R$ ".number_format($valor, 2, ',', ' ');
+}
+
+function formatData($data)
+{
+    return date("d/m/Y", strtotime($data));
 }
 
 ?>
