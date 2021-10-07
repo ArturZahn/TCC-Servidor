@@ -1,6 +1,7 @@
 <?php
-include("tabletemplate.php");
 
+include("global.php");
+include("tabletemplate.php");
 include("./backend/conexao.php");
 
 
@@ -101,7 +102,7 @@ include("./backend/conexao.php");
 
 
                 // altere esses dados ↓↓↓
-                $itensPorPag = 3;
+                $itensPorPag = 10;
                 $queryDados       = "SELECT produto_nome, produto_preco from produto limit $itensPorPag offset ".($numDaPag-1)*$itensPorPag;
                 $queryQtdDeLinhas = "SELECT count(produto_cod) from produto";
                 // altere esses dados ↑↑↑

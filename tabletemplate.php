@@ -28,10 +28,12 @@ function tabela($t)
   }
 
   ?>
-  <!-- With actions -->
+  
+  <?php if(!empty($t["titulo"])) { ?>
   <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
     <?php echo $t["titulo"] ?>
   </h4>
+  <?php } ?>
   <div class="w-full overflow-hidden rounded-lg shadow-xs">
     <div class="w-full overflow-x-auto">
       <table class="w-full whitespace-no-wrap">

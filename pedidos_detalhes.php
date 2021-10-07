@@ -1,6 +1,6 @@
 <?php
+include("global.php");
 include("tabletemplate.php");
-
 include("./backend/conexao.php");
 ?>
 

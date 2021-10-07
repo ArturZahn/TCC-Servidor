@@ -1,3 +1,4 @@
+<?php include("global.php"); ?>
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="pt-BR">
   <head>
