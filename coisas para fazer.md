@@ -53,7 +53,7 @@ Coisas para fazer:
 - roteiro apresentacao
 
 Coisas no projeto:
-- design tela login
+- design tela login `Ok`
 - design tela tabela dos produtos
 - design tela formulario editar/cadastrar produtos
 - design tela tabela produtos
@@ -62,10 +62,10 @@ Coisas no projeto:
 - design tela pagar produtor
 - design tela ver todos os pagamentos do produtor
 - design tela ver detalhes do pagamento
-- design tela tabela dos pedidos
+- design tela tabela dos pedidos `Ok`
 - design tela detelhe do pedido
 
-- backend tela login
+- backend tela login `Ok`
 - backend tela tabela dos produtos
 - backend tela formulario editar/cadastrar produtos
 - backend tela tabela produtos
@@ -74,7 +74,7 @@ Coisas no projeto:
 - backend tela pagar produtor
 - backend tela ver todos os pagamentos do produtor
 - backend tela ver detalhes do pagamento
-- backend tela tabela dos pedidos
+- backend tela tabela dos pedidos `Ok`
 - backend tela detelhe do pedido
 
 ---------------------------------

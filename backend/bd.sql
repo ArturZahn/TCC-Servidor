@@ -109,7 +109,6 @@ CREATE TABLE itempedido (
     itempedido_cod INT PRIMARY KEY AUTO_INCREMENT,
     itempedido_quantidade INT NOT NULL,
     itempedido_precounitariopago REAL NOT NULL,
-
     pedido_cod INT NOT NULL,
     produto_cod INT NOT NULL,
     FOREIGN KEY (pedido_cod) REFERENCES pedido(pedido_cod),

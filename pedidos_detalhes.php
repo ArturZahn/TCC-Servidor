@@ -95,13 +95,13 @@ include("./backend/conexao.php");
 				// DADOS GERAIS DO PEDIDO
 				$cod_pedido = $_GET["cod"];
 
-				$q = "SELECT pedido_cod, estadopedido_cod, pedido_datacompra, cliente_nome, estadopedido_estado, SUM(itempedido_quantidade * itempedido_precounitariopago) AS precototal from pedido  JOIN itempedido USING(pedido_cod) JOIN estadopedido USING(estadopedido_cod) JOIN cliente USING(cliente_cod) Where pedido_cod = $cod_pedido";
+				$q = "SELECT pedido_cod, estadopedido_cod, pedido_datacompra, cliente_nome, estadopedido_estado, SUM(itempedido_quantidade * itempedido_precounitariopago) AS precototal FROM pedido  JOIN itempedido USING(pedido_cod) JOIN estadopedido USING(estadopedido_cod) JOIN cliente USING(cliente_cod) WHERE pedido_cod = $cod_pedido";
 				$e = mysqli_fetch_array(mysqli_query($con, $q));
 				
 				echo "<span class='text-gray-700 dark:text-gray-400'>Código: $e[pedido_cod]</span><br>";
 				echo "<span class='text-gray-700 dark:text-gray-400'>Cliente: $e[cliente_nome]</span><br>";
-				echo "<span class='text-gray-700 dark:text-gray-400'>Data: ". date('d/m/Y', strtotime($e['pedido_datacompra'])) ."</span><br>";
-				echo "<span class='text-gray-700 dark:text-gray-400 font-semibold'>Valor total: R$" . number_format($e['precototal'], 2, ',', ' ') . "</span><br>";
+				echo "<span class='text-gray-700 dark:text-gray-400'>Data: ". formatData($e['pedido_datacompra']) ."</span><br>";
+				echo "<span class='text-gray-700 dark:text-gray-400 font-semibold'>Valor do pedido: R$" . formatPreco($e['precototal']) . "</span><br>";
 
 				if ($e['estadopedido_cod'] == 1){
 
@@ -123,7 +123,7 @@ include("./backend/conexao.php");
 					$classes = "text-gray-700 dark:text-gray-100";
 				}
 
-				echo "<span class='text-gray-700 dark:text-gray-400 $classes'> Status: $e[estadopedido_estado]</span><br>";
+				echo "<span class='text-gray-700 dark:text-gray-400 font-semibold $classes'> Status: $e[estadopedido_estado]</span><br>";
 
 				// ========================================================================================================================================
 				// DETALHES DO PEDIDO
@@ -132,66 +132,35 @@ include("./backend/conexao.php");
 				$numDaPag = !empty($_GET["p"])?intval($_GET["p"]):1;
 
 				// altere esses dados ↓↓↓
-				$itensPorPag = 3;
-				$queryDados       = "SELECT pedido_cod, estadopedido_cod, pedido_datacompra, cliente_nome, estadopedido_estado, SUM(itempedido_quantidade * itempedido_precounitariopago) AS precototal from pedido  JOIN itempedido USING(pedido_cod) JOIN estadopedido USING(estadopedido_cod) JOIN cliente USING(cliente_cod) Where pedido_cod = $cod_pedido GROUP BY pedido_cod ORDER BY pedido_datacompra DESC  LIMIT $itensPorPag OFFSET ".($numDaPag-1)*$itensPorPag;
-				$queryQtdDeLinhas = "SELECT count(pedido_cod) from pedido";
+				$itensPorPag = 15;
+				$queryDados       = "SELECT produto_cod, produto_nome, produto_preco, itempedido_quantidade, itempedido_quantidade * produto_preco AS precototal FROM itempedido JOIN produto USING(produto_cod) WHERE pedido_cod = $cod_pedido LIMIT $itensPorPag OFFSET ".($numDaPag-1)*$itensPorPag;
+				$queryQtdDeLinhas = "SELECT count(pedido_cod) FROM itempedido WHERE pedido_cod = $cod_pedido";
 				// altere esses dados ↑↑↑
 
 				// não precisa alterar essa linha ↓↓↓
 				$qtdDeLinhas = mysqli_fetch_array(mysqli_query($con, $queryQtdDeLinhas))[0];
 
+				// INSERT INTO itempedido (itempedido_quantidade, itempedido_precounitariopago, pedido_cod, produto_cod) VALUES
+				// (2, 10.0, 1, 1),
+				// (3, 10.0, 1, 2),
+				// (2, 20.0, 1, 3);
 				tabela(array(
 				"titulo" => "Produtos do pedido",
 				"nomeColunas" => array(
-					"Código do pedido",
-					"Cliente",
-					"Valor total",
-					"Data",
-					"Status",
-					"Ver mais"
+					"Código do produto",
+					"Produto",
+					"Quantidade",
+					"Valor unitário",
+					"Valor total"
 				),
 
 				"templateColunas" => array(
-					function($exibe){return "$exibe[pedido_cod]";},
-					function($exibe){return "$exibe[cliente_nome]";},
-
-					// valor total
-					function($exibe){
-					
-					return "R$ " . number_format($exibe['precototal'], 2, ',', ' ');
-					},
-					function($exibe){return date("d/m/Y", strtotime($exibe["pedido_datacompra"]));},
-
-					// status
-					function($exibe){
-					
-					if ($exibe['estadopedido_cod'] == 1){
-						// pendente
-						$classes = "text-red-700 bg-red-100 dark:text-red-100 dark:bg-red-700";
-					}
-
-					else if ($exibe['estadopedido_cod'] == 2){
-						// pronto para entrega
-						$classes = "text-orange-700 bg-orange-100 dark:text-white dark:bg-orange-600";
-					}
-
-					else if ($exibe['estadopedido_cod'] == 3){
-						// entregue
-						$classes = "text-green-700 bg-green-100 dark:bg-green-700 dark:text-green-100";
-					}
-
-					else if ($exibe['estadopedido_cod'] == 4){
-						//cancelado
-						$classes = "text-gray-700 bg-gray-100 dark:text-gray-100 dark:bg-gray-700";
-					}
-
-					return "<span class='px-2 py-1 font-semibold leading-tight rounded-full $classes'> $exibe[estadopedido_estado] </span>";
-					
-					},
-					function($exibe){
-					$cod = $exibe['pedido_cod'];
-					return "<button class='px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-verdecoopaf-600 border border-transparent rounded-md active:bg-verdecoopaf-600 hover:bg-verdecoopaf-700 focus:outline-none focus:shadow-outline-verdecoopaf' onclick=window.location.href='./pedidos_detalhes.php?cod=$cod'> Ver mais </button>";},
-				),
+					function($exibe){return "$exibe[produto_cod]";},
+					function($exibe){return "$exibe[produto_nome]";},
+					function($exibe){return "$exibe[itempedido_quantidade]";},
+					function($exibe){return "$exibe[produto_preco]";},
+					function($exibe){return "$exibe[precototal]";}
+					),
 
 				"dados" => mysqli_query($con, $queryDados),
 				"numDaPag" => $numDaPag,
