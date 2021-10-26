@@ -101,7 +101,7 @@ include("./backend/conexao.php");
 				echo "<span class='text-gray-700 dark:text-gray-400'>Código: $e[pedido_cod]</span><br>";
 				echo "<span class='text-gray-700 dark:text-gray-400'>Cliente: $e[cliente_nome]</span><br>";
 				echo "<span class='text-gray-700 dark:text-gray-400'>Data: ". formatData($e['pedido_datacompra']) ."</span><br>";
-				echo "<span class='text-gray-700 dark:text-gray-400 font-semibold'>Valor do pedido: R$" . formatPreco($e['precototal']) . "</span><br>";
+				echo "<span class='text-gray-700 dark:text-gray-400 font-semibold'>Valor do pedido: " . formatPreco($e['precototal']) . "</span><br>";
 
 				if ($e['estadopedido_cod'] == 1){
 
