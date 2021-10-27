@@ -181,8 +181,8 @@ include("./backend/conexao.php");
 					function($exibe){return "$exibe[produto_cod]";},
 					function($exibe){return "$exibe[produto_nome]";},
 					function($exibe){return "$exibe[itempedido_quantidade]";},
-					function($exibe){return "$exibe[produto_preco]";},
-					function($exibe){return "$exibe[precototal]";}
+					function($exibe){return formatPreco("$exibe[produto_preco]");},
+					function($exibe){return formatPreco("$exibe[precototal]");}	
 					),
 
 				"dados" => mysqli_query($con, $queryDados),
