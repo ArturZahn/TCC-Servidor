@@ -1,5 +1,5 @@
 `Funcionalidades do sistema`
-- login para o sistema
+  - login para o sistema
 ├─ login
 
 - Produtos
@@ -65,9 +65,7 @@ Coisas no projeto:
 - design tela tabela dos pedidos `Ok`
 - design tela detelhe do pedido
 
-- backend tela login `Ok`
-
-
+- backend tela login `Ok`   
 
 - backend tela tabela dos produtos
 - backend tela formulario editar/cadastrar produtos
