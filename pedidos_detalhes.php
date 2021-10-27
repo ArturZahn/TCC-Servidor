@@ -105,25 +105,25 @@ include("./backend/conexao.php");
 
 				if ($e['estadopedido_cod'] == 1){
 
-					$classes = "text-red-700 dark:text-red-100";
+					$classes = "text-red-700 bg-red-100 dark:text-red-100 dark:bg-red-700";
 				}
 
 				else if ($e['estadopedido_cod'] == 2){
 
-					$classes = "text-orange-700 dark:text-white";
+					$classes = "text-orange-700 bg-orange-100 dark:text-white dark:bg-orange-600";
 				}
 
 				else if ($e['estadopedido_cod'] == 3){
 
-					$classes = "text-green-700 dark:text-green-100";
+					$classes = "text-green-700 bg-green-100 dark:bg-green-700 dark:text-green-100";
 				}
 
 				else if ($e['estadopedido_cod'] == 4){
 
-					$classes = "text-gray-700 dark:text-gray-100";
+					$classes = "text-gray-700 bg-gray-100 dark:text-gray-100 dark:bg-gray-700";
 				}
 
-				echo "<span class='text-gray-700 dark:text-gray-400 font-semibold $classes'> Status: $e[estadopedido_estado]</span><br>";
+				echo "<span class='px-3 py-1 font-semibold leading-tight rounded-full text-gray-700 dark:text-gray-400 font-semibold $classes'> Status: $e[estadopedido_estado]</span><br>";
 
 				// ========================================================================================================================================
 				// DETALHES DO PEDIDO
@@ -144,6 +144,29 @@ include("./backend/conexao.php");
 				// (2, 10.0, 1, 1),
 				// (3, 10.0, 1, 2),
 				// (2, 20.0, 1, 3);
+
+				$q2 = mysqli_query($con, "SELECT * FROM estadopedido");
+
+				echo "
+				<form action='editar.php' method='POST'>
+					<div class='relative text-gray-500 focus-within:text-verdecoopaf-600'>
+						<input type='hidden' name='cod' value='$e[pedido_cod]' />
+						<select class='block w-full pr-20 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:focus:shadow-outline-gray form-input' name='status'>";
+							
+					while($e2 = mysqli_fetch_array($q2)){
+						$s= ($e2['estadopedido_cod'] == $e['estadopedido_cod']) ? ("selected") : (""); 
+						echo "<option $s value='$e2[estadopedido_cod]'>$e2[estadopedido_estado]</option>";
+						}
+
+					echo "
+						</select>
+						<button type='submit' class='absolute inset-y-0 right-0 px-4 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-verdecoopaf-600 border border-transparent rounded-r-md active:bg-verdecoopaf-600 hover:bg-verdecoopaf-700 focus:outline-none focus:shadow-outline-verdecoopaf'>
+							Salvar 
+						</button>
+					</div> 
+				</form>
+				";
+
 				tabela(array(
 				"titulo" => "Produtos do pedido",
 				"nomeColunas" => array(
