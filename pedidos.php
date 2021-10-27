@@ -142,7 +142,7 @@ include("./backend/conexao.php");
 
 											else if ($exibe['estadopedido_cod'] == 3){
 												// entregue
-												$classes = "text-orange-700 bg-orange-100 dark:text-white dark:bg-orange-600";
+												$classes = "text-green-700 bg-green-100 dark:text-white dark:bg-green-600";
 											}
 
 											else if ($exibe['estadopedido_cod'] == 4){
