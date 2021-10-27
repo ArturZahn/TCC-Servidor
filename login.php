@@ -54,7 +54,6 @@ include("global.php");
                   </span>
                   <input
                     class="block w-full mt-1 text-sm dark:text-gray-300 dark:bg-gray-700 focus:outline-none form-input <?php if(!empty($_GET["err"])) echo "border-red-600 focus:border-red-400 focus:shadow-outline-red" ?>"
-                    placeholder="exemple@email"
                     name="login"
                   />  
                 </label>
@@ -65,8 +64,8 @@ include("global.php");
                   </span>
                   <input 
                     class="block w-full mt-1 text-sm dark:text-gray-300 dark:bg-gray-700 focus:outline-none form-input <?php if(!empty($_GET["err"])) echo "border-red-600 focus:border-red-400 focus:shadow-outline-red" ?>"
-                    placeholder="***************"
                     name="senha"
+                    type="password"
                   />
                   <?php if(!empty($_GET["err"])){ ?>
                   <span class="text-xs text-red-600 dark:text-red-400">

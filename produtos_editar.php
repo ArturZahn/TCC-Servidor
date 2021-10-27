@@ -2,6 +2,34 @@
 include("global.php");
 include("tabletemplate.php");
 include("./backend/conexao.php");
+
+if(!empty($_POST)) // se tiver post, entra no if para editar dados do produto
+{
+  echo "editar dados";
+
+  // $query = mysqli_query($con, "UPDATE produtor SET produtor_nome='$_POST[produtor_nome]', produtor_email='$_POST[produtor_email]', produtor_telefone='$_POST[produtor_telefone]', produtor_cpfcnpj='$_POST[produtor_cpfcnpj]' WHERE produtor_cod = '$_POST[cod]';");
+  // header("location: ./produtor.php");
+  // die(); // para de executar antes de rodar o resto do arquivo
+}
+
+if(empty($_GET["cod"]))
+{
+  echo "Erro, produto não informado.";
+  die();
+}
+
+$produto_cod = $_GET["cod"];
+
+$query = mysqli_query($con, "SELECT produto_nome, produto_descricao, produto_quantidadeemestoque, produto_preco, produto_tipocontagem FROM produto WHERE produto_cod = $produto_cod");
+
+if($query === false)
+{
+  echo "Erro, não foi possível encontrar produto especificado.";
+  die();
+}
+
+$e = mysqli_fetch_array($query);
+
 ?>
 
 <!DOCTYPE html>
@@ -9,7 +37,7 @@ include("./backend/conexao.php");
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Produtor - CoopAF</title>
+    <title>Produto - CoopAF</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
@@ -93,34 +121,48 @@ include("./backend/conexao.php");
             <form role="form" action="" method="post">
               <label class="block text-sm">
                   <span class="text-gray-700 dark:text-gray-400">Nome</span>
-                  <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_nome" value = ''>
+                  <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_nome" value="<?php echo $e['produto_nome'] ?>">
               </label>
               <br>
               <label class="block mt-4 text-sm">
                   <span class="text-gray-700 dark:text-gray-400">Descrição</span>
-                  <textarea class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:focus:shadow-outline-gray" rows="3" name="produto_descricao" value = ''></textarea>
+                  <textarea class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:focus:shadow-outline-gray" rows="3" name="produto_descricao"><?php echo $e['produto_descricao'] ?></textarea>
                 </label>
               <br>
               <label class="block text-sm">
                   <span class="text-gray-700 dark:text-gray-400">Quantidade em estoque</span>
-                  <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_estoque" value = ''>
+                  <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_quantidadeemestoque" value="<?php echo $e['produto_quantidadeemestoque'] ?>">
               </label>
               <br>
+              <style>
+                /* Chrome, Safari, Edge, Opera */
+                input::-webkit-outer-spin-button,
+                input::-webkit-inner-spin-button {
+                  -webkit-appearance: none;
+                  margin: 0;
+                }
+
+                /* Firefox */
+                input[type=number] {
+                  -moz-appearance: textfield;
+                }
+              </style>
               <label class="block text-sm">
                   <span class="text-gray-700 dark:text-gray-400">Preço</span>
-                  <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_preco" value = ''>
+                  <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_preco" type="number" step="0.01" value="<?php echo $e['produto_preco'] ?>">
               </label>
               <br>
               <label class="block mt-4 text-sm">
                   <span class="text-gray-700 dark:text-gray-400">
                     Tipo de contagem
                   </span>
-                  <select class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:focus:shadow-outline-gray" name="produto_contagem">
-                    <option>Penca</option>
-                    <option>Bandeja</option>
-                    <option>Unidades</option>
-                    <option>Kg</option>
-                    <option>Pés</option>
+                  <select class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:focus:shadow-outline-gray" name="produto_tipocontagem">
+
+                    <option <?php if($e["produto_tipocontagem"] == "Penca") echo "selected"; ?> value="Penca">Penca</option>
+                    <option <?php if($e["produto_tipocontagem"] == "Bandeja") echo "selected"; ?> value="Bandeja">Bandeja</option>
+                    <option <?php if($e["produto_tipocontagem"] == "Unidades") echo "selected"; ?> value="Unidades">Unidades</option>
+                    <option <?php if($e["produto_tipocontagem"] == "Kg") echo "selected"; ?> value="Kg">Kg</option>
+                    <option <?php if($e["produto_tipocontagem"] == "Pés") echo "selected"; ?> value="Pés">Pés</option>
                   </select>
               </label>
             <br>

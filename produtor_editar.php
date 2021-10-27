@@ -20,7 +20,7 @@ if(empty($_GET["cod"]))
 
 $produtor_cod = $_GET["cod"];
 
-$query = mysqli_query($con, "SELECT produtor_nome, produtor_email, produtor_telefone, produtor_cpfcnpj FROM produtor WHERE produtor_cod = $_GET[cod]");
+$query = mysqli_query($con, "SELECT produtor_nome, produtor_email, produtor_telefone, produtor_cpfcnpj FROM produtor WHERE produtor_cod = $produtor_cod");
 
 if($query === false)
 {
