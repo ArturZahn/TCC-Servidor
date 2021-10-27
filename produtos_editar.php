@@ -93,29 +93,29 @@ include("./backend/conexao.php");
             <form role="form" action="" method="post">
               <label class="block text-sm">
                   <span class="text-gray-700 dark:text-gray-400">Nome</span>
-                  <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_nome" value = ''>
+                  <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_nome" value = ''>
               </label>
               <br>
               <label class="block mt-4 text-sm">
                   <span class="text-gray-700 dark:text-gray-400">Descrição</span>
-                  <textarea class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" rows="3" name="produto_descricao" value = ''></textarea>
+                  <textarea class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:focus:shadow-outline-gray" rows="3" name="produto_descricao" value = ''></textarea>
                 </label>
               <br>
               <label class="block text-sm">
                   <span class="text-gray-700 dark:text-gray-400">Quantidade em estoque</span>
-                  <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_estoque" value = ''>
+                  <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_estoque" value = ''>
               </label>
               <br>
               <label class="block text-sm">
                   <span class="text-gray-700 dark:text-gray-400">Preço</span>
-                  <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_preco" value = ''>
+                  <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_preco" value = ''>
               </label>
               <br>
               <label class="block mt-4 text-sm">
                   <span class="text-gray-700 dark:text-gray-400">
                     Tipo de contagem
                   </span>
-                  <select class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" name="produto_contagem">
+                  <select class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:focus:shadow-outline-gray" name="produto_contagem">
                     <option>Penca</option>
                     <option>Bandeja</option>
                     <option>Unidades</option>
@@ -124,7 +124,7 @@ include("./backend/conexao.php");
                   </select>
               </label>
             <br>
-            <button class="px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" type="submit">
+            <button class="px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-verdecoopaf-600 border border-transparent rounded-lg active:bg-verdecoopaf-600 hover:bg-verdecoopaf-700 focus:outline-none focus:shadow-outline-verdecoopaf" type="submit">
                   Editar
             </button>
             </form>

@@ -2,6 +2,34 @@
 include("global.php");
 include("tabletemplate.php");
 include("./backend/conexao.php");
+
+if(!empty($_POST)) // se tiver post, entra no if para editar dados do produtor
+{
+
+  $query = mysqli_query($con, "UPDATE produtor SET produtor_nome='$_POST[produtor_nome]', produtor_email='$_POST[produtor_email]', produtor_telefone='$_POST[produtor_telefone]', produtor_cpfcnpj='$_POST[produtor_cpfcnpj]' WHERE produtor_cod = '$_POST[cod]';");
+  header("location: ./produtor.php");
+  die(); // para de executar antes de rodar o resto do arquivo
+}
+
+
+if(empty($_GET["cod"]))
+{
+  echo "Erro, produtor não informado.";
+  die();
+}
+
+$produtor_cod = $_GET["cod"];
+
+$query = mysqli_query($con, "SELECT produtor_nome, produtor_email, produtor_telefone, produtor_cpfcnpj FROM produtor WHERE produtor_cod = $_GET[cod]");
+
+if($query === false)
+{
+  echo "Erro, não foi possível encontrar produtor especificado.";
+  die();
+}
+
+$e = mysqli_fetch_array($query);
+
 ?>
 
 <!DOCTYPE html>
@@ -90,33 +118,34 @@ include("./backend/conexao.php");
           <!-- Remove everything INSIDE this div to a really blank page -->
           <div class="container px-6 mx-auto grid">
             <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"> Editar Produtor</h2>
-            <form role="form" action="" method="post">
+            <form role="form" action="./produtor_editar.php" method="post">
+            <input class="hidden" name="cod" value="<?php echo $produtor_cod ?>">
               <label class="block text-sm">
                   <span class="text-gray-700 dark:text-gray-400">Nome</span>
-                  <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_nome" value = ''>
+                  <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produtor_nome" value="<?php echo $e['produtor_nome'] ?>" placeholder="<?php echo $e['produtor_nome'] ?>">
               </label>
               <br>
               <label class="block text-sm">
                   <span class="text-gray-700 dark:text-gray-400">Email</span>
-                  <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_email" value = ''>
+                  <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produtor_email" value="<?php echo $e['produtor_email'] ?>" placeholder="<?php echo $e['produtor_email'] ?>">
               </label>
               <br>
               <label class="block text-sm">
                   <span class="text-gray-700 dark:text-gray-400">Telefone</span>
-                  <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_telefone" value = ''>
+                  <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produtor_telefone" value="<?php echo $e['produtor_telefone'] ?>" placeholder="<?php echo $e['produtor_telefone'] ?>">
               </label>
               <br>
               <label class="block text-sm">
                   <span class="text-gray-700 dark:text-gray-400">Cpf/Cnpj</span>
-                  <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_cpfcnpj" value = ''>
+                  <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produtor_cpfcnpj" value="<?php echo $e['produtor_cpfcnpj'] ?>" placeholder="<?php echo $e['produtor_cpfcnpj'] ?>">
               </label>
               <br>
-              <label class="block text-sm">
+              <!-- <label class="block text-sm">
                   <span class="text-gray-700 dark:text-gray-400">Senha</span>
-                  <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_senha" value = ''>
+                  <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produtor_senha" value = ''>
               </label>
-              <br>
-              <button class="px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" type="submit">
+              <br> -->
+              <button class="px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-verdecoopaf-600 border border-transparent rounded-lg active:bg-verdecoopaf-600 hover:bg-verdecoopaf-700 focus:outline-none focus:shadow-outline-verdecoopaf" type="submit">
                     Editar
               </button>
             </form>
