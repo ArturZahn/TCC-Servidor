@@ -134,6 +134,7 @@ $e = mysqli_fetch_array($query);
                   <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_quantidadeemestoque" value="<?php echo $e['produto_quantidadeemestoque'] ?>">
               </label>
               <br>
+              
               <style>
                 /* Chrome, Safari, Edge, Opera */
                 input::-webkit-outer-spin-button,
@@ -147,6 +148,7 @@ $e = mysqli_fetch_array($query);
                   -moz-appearance: textfield;
                 }
               </style>
+              
               <label class="block text-sm">
                   <span class="text-gray-700 dark:text-gray-400">Preço</span>
                   <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_preco" type="number" step="0.01" value="<?php echo $e['produto_preco'] ?>">

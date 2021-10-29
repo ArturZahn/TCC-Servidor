@@ -104,26 +104,28 @@ include("./backend/conexao.php");
 				echo "<span class='text-gray-700 dark:text-gray-400 font-semibold'>Valor do pedido: " . formatPreco($e['precototal']) . "</span><br>";
 
 				if ($e['estadopedido_cod'] == 1){
-
+					// pendente
 					$classes = "text-red-700 bg-red-100 dark:text-red-100 dark:bg-red-700";
 				}
 
 				else if ($e['estadopedido_cod'] == 2){
-
+					// pronto para entrega
 					$classes = "text-orange-700 bg-orange-100 dark:text-white dark:bg-orange-600";
 				}
 
 				else if ($e['estadopedido_cod'] == 3){
-
+					// entregue
 					$classes = "text-green-700 bg-green-100 dark:bg-green-700 dark:text-green-100";
 				}
 
 				else if ($e['estadopedido_cod'] == 4){
-
+					//cancelado
 					$classes = "text-gray-700 bg-gray-100 dark:text-gray-100 dark:bg-gray-700";
 				}
 
-				echo "<span class='px-3 py-1 font-semibold leading-tight rounded-full text-gray-700 dark:text-gray-400 font-semibold $classes'> Status: $e[estadopedido_estado]</span><br>";
+					         //   "px-2 py-1 font-semibold leading-tight rounded-full"
+				echo "<div><span class='px-3 py-1 font-semibold leading-tight rounded-full font-semibold $classes'> Status: $e[estadopedido_estado]</span></div><br>";
+				// echo "<span class='px-3 py-1 font-semibold leading-tight rounded-full text-gray-700 dark:text-gray-400 font-semibold $classes'> Status: $e[estadopedido_estado]</span><br>";
 
 				// ========================================================================================================================================
 				// DETALHES DO PEDIDO
