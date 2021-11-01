@@ -96,8 +96,8 @@ include("./backend/conexao.php");
 
 
                             // altere esses dados ↓↓↓
-                            $itensPorPag = 3;
-                            $queryDados       = "SELECT produtor_cod, produtor_nome FROM produtor";
+                            $itensPorPag = 15;
+                            $queryDados       = "SELECT produtor_cod, produtor_nome, case when _valordevendo IS NULL then 0 ELSE _valordevendo END AS valordevendo FROM produtor LEFT JOIN (SELECT produtor_cod, SUM(itempedido_precounitariopago*itempedido_quantidade) AS _valordevendo FROM itempedido LEFT JOIN itempagamento USING(itempedido_cod) JOIN produto USING(produto_cod) JOIN produtor USING(produtor_cod) WHERE pagamento_cod IS NULL GROUP BY produtor_cod) tbA USING(produtor_cod) ORDER BY valordevendo DESC LIMIT $itensPorPag OFFSET ".($numDaPag-1)*$itensPorPag;
                             $queryQtdDeLinhas = "SELECT count(produtor_cod) FROM produtor";
                             // altere esses dados ↑↑↑
 
@@ -109,7 +109,7 @@ include("./backend/conexao.php");
                                 "nomeColunas" => array(
                                     "Código do produtor",
                                     "Produtor",
-                                    "Status",
+                                    "Valor devendo",
                                     "", // "Ver mais"
                                     "" // "Ver mais"
                                 ),
@@ -117,34 +117,18 @@ include("./backend/conexao.php");
                                 "templateColunas" => array(
                                     function($exibe){return "$exibe[produtor_cod]";},
                                     function($exibe){return "$exibe[produtor_nome]";},
-                                    function($exibe){return "$exibe[produtor_nome]";},
+                                    function($exibe){
 
-                                    // // status
-                                    // function($exibe){
-                                        
-                                    //     if ($exibe['estadopedido_cod'] == 1){
-                                    //         // pendente
-                                    //         $classes = "text-red-700 bg-red-100 dark:text-red-100 dark:bg-red-700";
-                                    //     }
+                                        if ($exibe['valordevendo'] == 0){
+                                            $classes = "text-green-700 bg-green-100 dark:bg-green-700 dark:text-green-100";
+                                            $txt = "Nada";
+                                        } else {
+                                            $classes = "text-red-700 bg-red-100 dark:text-red-100 dark:bg-red-700";
+                                            $txt = formatPreco($exibe["valordevendo"]);
+                                        }
 
-                                    //     else if ($exibe['estadopedido_cod'] == 2){
-                                    //         // pronto para entrega
-                                    //         $classes = "text-orange-700 bg-orange-100 dark:text-white dark:bg-orange-600";
-                                    //     }
-
-                                    //     else if ($exibe['estadopedido_cod'] == 3){
-                                    //         // entregue
-                                    //         $classes = "text-orange-700 bg-orange-100 dark:text-white dark:bg-orange-600";
-                                    //     }
-
-                                    //     else if ($exibe['estadopedido_cod'] == 4){
-                                    //         //cancelado
-                                    //         $classes = "text-gray-700 bg-gray-100 dark:text-gray-100 dark:bg-gray-700";
-                                    //     }
-
-                                    //     return "<span class='px-2 py-1 font-semibold leading-tight rounded-full $classes'> $exibe[estadopedido_estado] </span>";
-                                    
-                                    // },
+                                        return "<span class='px-2 py-1 font-semibold leading-tight rounded-full $classes'> $txt </span>";
+                                    },
 									function($exibe){
 										return "<button class='px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-verdecoopaf-600 border border-transparent rounded-md active:bg-verdecoopaf-600 hover:bg-verdecoopaf-700 focus:outline-none focus:shadow-outline-verdecoopaf' onclick=\"window.location.href='./pagamento_pagar.php?cod=$exibe[produtor_cod]'\"> Pagar </button>";
 									},
