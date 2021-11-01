@@ -107,7 +107,7 @@ include("./backend/conexao.php");
                             tabela(array(
                                 "titulo" => "",
                                 "nomeColunas" => array(
-                                    "Código do produtor",
+                                    "Código",
                                     "Produtor",
                                     "Valor devendo",
                                     "", // "Ver mais"

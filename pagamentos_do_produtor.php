@@ -97,7 +97,7 @@ include("./backend/conexao.php");
                 $q1 = mysqli_query($con, "SELECT count(DISTINCT pagamento_cod) AS num, produtor_nome FROM pagamento JOIN itempagamento USING(pagamento_cod) JOIN itempedido USING(itempedido_cod) JOIN produto USING(produto_cod) JOIN produtor USING(produtor_cod) WHERE produtor_cod = $cod_produtor");
                 $e1 = mysqli_fetch_array($q1);
                 
-                echo "<span class='text-gray-700 dark:text-gray-400'>Produtor: $e1[produtor_nome]</span><br>";
+                echo "<span class='mb-4 text-gray-700 dark:text-gray-400'>Produtor: $e1[produtor_nome]</span>";
 
                 // se o $_GET["p"] não esta vazio, coloca ele na variavel, se nao, define numero da pagina como 1
                 $numDaPag = !empty($_GET["p"])?intval($_GET["p"]):1;
@@ -114,12 +114,14 @@ include("./backend/conexao.php");
                 tabela(array(
                 "titulo" => "Todos os pagamentos ($e1[num]):",
                 "nomeColunas" => array(
+                  "Código",
                   "Data",
                   "Valor do pagamento",
                   "",
                 ),
 
                 "templateColunas" => array(
+                  function($exibe){return $exibe["pagamento_cod"];},
                   function($exibe){return formatData($exibe["pagamento_data"]);},
                   function($exibe){return formatPreco("$exibe[precoItem]");},
 									function($exibe){

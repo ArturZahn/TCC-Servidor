@@ -378,6 +378,33 @@
                   </button>
                 </div>
               </label>
+
+              
+              <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                  Button right
+                </span>
+                <div class="relative text-gray-500 focus-within:text-verdecoopaf-600">
+                  <select class="block w-full pr-20 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:focus:shadow-outline-gray form-input">
+                    <option value="1">opcao 1</option>
+                    <option value="2">opcao 2</option>
+                    <option value="3">opcao 3</option>
+                    <option value="4">opcao 4</option>
+                    <option value="5">opcao 5</option>
+                  </select>
+                  <button class="absolute inset-y-0 right-0 px-4 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-verdecoopaf-600 border border-transparent rounded-r-md active:bg-verdecoopaf-600 hover:bg-verdecoopaf-700 focus:outline-none focus:shadow-outline-verdecoopaf">
+                    oioioio
+                    <div style="margin-left: -1.5rem;" class="absolute inset-y-0 left-0 flex items-center pointer-events-none">
+                      <!-- <i class="text-gray-700 dark:text-gray-400 fas fa-chevron-down"></i> -->
+                      <!-- <i class="fas fa-angle-down dark:text-gray-400 fas fa-chevron-down"></i> -->
+                      <i class="fas fa-angle-down dark:text-gray-400 fas fa-angle-down"></i>
+                      <!-- <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                        <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                      </svg> -->
+                    </div>
+                  </button>
+                </div>
+              </label>
             </div>
           </div>
         </main>

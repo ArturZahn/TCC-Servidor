@@ -97,14 +97,14 @@ include("./backend/conexao.php");
                 $q1 = mysqli_query($con, "SELECT produtor_nome, pagamento_data FROM itempagamento JOIN itempedido USING(itempedido_cod) JOIN produto USING(produto_cod) JOIN produtor USING(produtor_cod) JOIN pagamento USING(pagamento_cod) WHERE pagamento_cod = $cod_pagamento LIMIT 1;");
                 $e1 = mysqli_fetch_array($q1);
                 
-                echo "<span class='text-gray-700 dark:text-gray-400'>Produtor: $e1[produtor_nome]</span><br>";
-                echo "<span class='text-gray-700 dark:text-gray-400'>Data do pagamento: ".formatData($e1["pagamento_data"])."</span><br>";
+                echo "<span class='mb-4 text-gray-700 dark:text-gray-400'>Produtor: $e1[produtor_nome]</span>";
+                echo "<span class='mb-4 text-gray-700 dark:text-gray-400'>Data do pagamento: ".formatData2($e1["pagamento_data"])."</span>";
 
                 // se o $_GET["p"] não esta vazio, coloca ele na variavel, se nao, define numero da pagina como 1
                 $numDaPag = !empty($_GET["p"])?intval($_GET["p"]):1;
                 // altere esses dados ↓↓↓
                 $itensPorPag = 15;
-                $queryDados       = "SELECT SUM(itempedido_precounitariopago*itempedido_quantidade) AS itemvalor, SUM(itempedido_quantidade) AS itemquantidade, produto_nome FROM itempagamento JOIN itempedido USING(itempedido_cod) JOIN produto USING(produto_cod) JOIN produtor USING(produtor_cod) WHERE pagamento_cod = $cod_pagamento GROUP BY produto_cod LIMIT $itensPorPag OFFSET ".($numDaPag-1)*$itensPorPag;
+                $queryDados       = "SELECT produto_cod, SUM(itempedido_precounitariopago*itempedido_quantidade) AS itemvalor, SUM(itempedido_quantidade) AS itemquantidade, produto_nome FROM itempagamento JOIN itempedido USING(itempedido_cod) JOIN produto USING(produto_cod) JOIN produtor USING(produtor_cod) WHERE pagamento_cod = $cod_pagamento GROUP BY produto_cod LIMIT $itensPorPag OFFSET ".($numDaPag-1)*$itensPorPag;
                 $queryQtdDeLinhas = "SELECT COUNT(DISTINCT produto_cod) FROM itempagamento JOIN itempedido USING(itempedido_cod) JOIN produto USING(produto_cod) JOIN produtor USING(produtor_cod) WHERE pagamento_cod = $cod_pagamento";
                 // altere esses dados ↑↑↑
 
@@ -114,12 +114,14 @@ include("./backend/conexao.php");
                 tabela(array(
                 "titulo" => "Produtos pagos:",
                 "nomeColunas" => array(
+                    "Código",
                     "Produto",
                     "Quantidade",
                     "Valor",
                 ),
 
                 "templateColunas" => array(
+                  function($exibe){return $exibe["produto_cod"];},
                   function($exibe){return $exibe["produto_nome"];},
                   function($exibe){return $exibe["itemquantidade"];},
                   function($exibe){return formatPreco($exibe["itemvalor"]);},

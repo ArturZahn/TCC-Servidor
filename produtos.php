@@ -100,7 +100,7 @@ include("./backend/conexao.php");
                         $numDaPag = !empty($_GET["p"])?intval($_GET["p"]):1;
 
                         // altere esses dados ↓↓↓
-                        $itensPorPag = 10;
+                        $itensPorPag = 15;
                         $queryDados       = "SELECT produto_cod, produto_nome, produto_quantidadeemestoque, produto_preco, produto_tipocontagem from produto limit $itensPorPag offset ".($numDaPag-1)*$itensPorPag;
                         $queryQtdDeLinhas = "SELECT count(produto_cod) from produto";
 
@@ -110,12 +110,14 @@ include("./backend/conexao.php");
                         tabela(array(
                         "titulo" => "Produtos",
                         "nomeColunas" => array(
+                            "Código",
                             "Produto",
                             "Quantidade em estoque",
                             "Preço",
                             "Ações"
                         ),
                         "templateColunas" => array(
+                            function($exibe){return "<span>$exibe[produto_cod]</span>";},
                             function($exibe){return "<span>$exibe[produto_nome]</span>";},
 
                             function($exibe){return "<span>$exibe[produto_quantidadeemestoque] $exibe[produto_tipocontagem]</span>";},

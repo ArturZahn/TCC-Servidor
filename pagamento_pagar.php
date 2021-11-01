@@ -97,7 +97,7 @@ include("./backend/conexao.php");
                 $q1 = mysqli_query($con, "SELECT produtor_cod, produtor_nome, case when _valordevendo IS NULL then 0 ELSE _valordevendo END AS valordevendo FROM produtor LEFT JOIN (SELECT produtor_cod, SUM(itempedido_precounitariopago*itempedido_quantidade) AS _valordevendo FROM itempedido LEFT JOIN itempagamento USING(itempedido_cod) JOIN produto USING(produto_cod) JOIN produtor USING(produtor_cod) WHERE pagamento_cod IS NULL GROUP BY produtor_cod) tabelaA USING(produtor_cod) WHERE produtor_cod = $cod_produtor");
                 $e1 = mysqli_fetch_array($q1);
                 
-                echo "<span class='text-gray-700 dark:text-gray-400'>Produtor: $e1[produtor_nome]</span><br>";
+                echo "<span class=' mb-4 text-gray-700 dark:text-gray-400'>Produtor: $e1[produtor_nome]</span>";
                 
                 // se o $_GET["p"] não esta vazio, coloca ele na variavel, se nao, define numero da pagina como 1
                 $numDaPag = !empty($_GET["p"])?intval($_GET["p"]):1;
@@ -134,7 +134,7 @@ include("./backend/conexao.php");
                 ?>
 
               <div class="flex items-center mt-4">
-                <span class='text-gray-700 dark:text-gray-200 mr-4'>Valor total: <?php echo formatPreco($e1["valordevendo"]); ?></span><br>
+                <span class='mb-4 text-gray-700 dark:text-gray-200 mr-4'>Valor total: <?php echo formatPreco($e1["valordevendo"]); ?></span>
                 <div style="flex-grow: 1"></div>
                 <div>
                   

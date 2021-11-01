@@ -22,5 +22,9 @@ function formatData($data)
 {
     return date("d/m/Y", strtotime($data));
 }
+function formatData2($data)
+{
+    return date("d/m/Y h:i", strtotime($data));
+}
 
 ?>

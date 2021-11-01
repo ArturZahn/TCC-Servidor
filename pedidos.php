@@ -96,8 +96,8 @@ include("./backend/conexao.php");
 
 
 								// altere esses dados ↓↓↓
-								$itensPorPag = 3;
-								$queryDados       = "SELECT pedido_cod, estadopedido_cod, pedido_datacompra, cliente_nome, estadopedido_estado, SUM(itempedido_quantidade * itempedido_precounitariopago) AS precototal  from pedido JOIN itempedido USING(pedido_cod) JOIN estadopedido USING(estadopedido_cod) JOIN cliente USING(cliente_cod) GROUP BY pedido_cod ORDER BY pedido_datacompra DESC LIMIT $itensPorPag OFFSET ".($numDaPag-1)*$itensPorPag;
+								$itensPorPag = 15;
+								$queryDados       = "SELECT pedido_cod, estadopedido_cod, pedido_datacompra, cliente_nome, estadopedido_estado, SUM(itempedido_quantidade * itempedido_precounitariopago) AS precototal  from pedido JOIN itempedido USING(pedido_cod) JOIN estadopedido USING(estadopedido_cod) JOIN cliente USING(cliente_cod) GROUP BY pedido_cod ORDER BY estadopedido_cod ASC, pedido_datacompra DESC LIMIT $itensPorPag OFFSET ".($numDaPag-1)*$itensPorPag;
 								$queryQtdDeLinhas = "SELECT count(pedido_cod) from pedido";
 								// altere esses dados ↑↑↑
 
@@ -108,7 +108,7 @@ include("./backend/conexao.php");
 								tabela(array(
 								 	"titulo" => "",
 									"nomeColunas" => array(
-										"Código do pedido",
+										"Código",
 										"Cliente",
 										"Valor total",
 										"Data",

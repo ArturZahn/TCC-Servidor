@@ -103,8 +103,8 @@ include("./backend/conexao.php");
                 $numDaPag = !empty($_GET["p"])?intval($_GET["p"]):1;
 
                 // altere esses dados ↓↓↓
-                $itensPorPag = 10;
-                $queryDados       = "SELECT produtor_cod, produtor_nome, produtor_email, produtor_telefone, produtor_cpfcnpj from produtor limit $itensPorPag offset ".($numDaPag-1)*$itensPorPag;
+                $itensPorPag = 15;
+                $queryDados       = "SELECT produtor_cod, produtor_nome, produtor_email, produtor_telefone, produtor_cpfcnpj, produtor_cod from produtor limit $itensPorPag offset ".($numDaPag-1)*$itensPorPag;
                 $queryQtdDeLinhas = "SELECT count(produtor_cod) from produtor";
                 // altere esses dados ↑↑↑
 
@@ -114,6 +114,7 @@ include("./backend/conexao.php");
                 tabela(array(
                   "titulo" => "Produtores",
                   "nomeColunas" => array(
+                    "Código",
                     "Produtor",
                     "Email",
                     "Telefone",
@@ -121,6 +122,7 @@ include("./backend/conexao.php");
                     "Ações"
                   ),
                   "templateColunas" => array(
+                    function($exibe){return "$exibe[produtor_cod]";},
                     function($exibe){return "$exibe[produtor_nome]";},
 
                     function($exibe){return "$exibe[produtor_email]";},

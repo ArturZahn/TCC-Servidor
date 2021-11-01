@@ -100,31 +100,26 @@ if(!empty($_POST)) // se tiver post, entra no if para cadastrar dados do produto
           <div class="container px-6 mx-auto grid">
             <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"> Adicionar Produtor</h2>
             <form role="form" action="./produtor_adicionar.php" method="post">
-              <label class="block text-sm">
-                  <span class="text-gray-700 dark:text-gray-400">Nome</span>
+              <label class="mb-4 block text-sm">
+                  <span class="text-gray-700 dark:text-gray-400">Nome:</span>
                   <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="" name="produtor_nome">
               </label>
-              <br>
-              <label class="block text-sm">
-                  <span class="text-gray-700 dark:text-gray-400">Email</span>
+              <label class="mb-4 block text-sm">
+                  <span class="text-gray-700 dark:text-gray-400">Email:</span>
                   <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="" name="produtor_email">
               </label>
-              <br>
-              <label class="block text-sm">
-                  <span class="text-gray-700 dark:text-gray-400">Telefone</span>
+              <label class="mb-4 block text-sm">
+                  <span class="text-gray-700 dark:text-gray-400">Telefone:</span>
                   <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="" name="produtor_telefone">
               </label>
-              <br>
-              <label class="block text-sm">
-                  <span class="text-gray-700 dark:text-gray-400">Cpf/Cnpj</span>
+              <label class="mb-4 block text-sm">
+                  <span class="text-gray-700 dark:text-gray-400">Cpf/Cnpj:</span>
                   <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="" name="produtor_cpfcnpj">
               </label>
-              <br>
-              <label class="block text-sm">
-                  <span class="text-gray-700 dark:text-gray-400">Senha</span>
+              <label class="mb-4 block text-sm">
+                  <span class="text-gray-700 dark:text-gray-400">Senha:</span>
                   <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="" name="produtor_senha">
               </label>
-              <br>
               <button class="px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-verdecoopaf-600 border border-transparent rounded-lg active:bg-verdecoopaf-600 hover:bg-verdecoopaf-700 focus:outline-none focus:shadow-outline-verdecoopaf" type="submit">
                     Cadastrar
               </button>

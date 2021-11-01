@@ -5,9 +5,8 @@
 
     if(!empty($_POST)) // se tiver post, entra no if para cadastrar dados do produtor
     {
-        $query = mysqli_query($con, "INSERT INTO produto (produto_nome, produto_descricao, produto_estoque, produtor_cpfcnpj, produtor_senha) VALUES ('$_POST[produtor_nome]', '$_POST[produtor_email]', '$_POST[produtor_telefone]', '$_POST[produtor_cpfcnpj]', '".md5($_POST["produtor_senha"])."')");
-        
-        header("location: ./produtor.php");
+        $query = mysqli_query($con, "INSERT INTO produto (produto_nome, produto_descricao, produto_quantidadeemestoque, produto_preco, produto_tipocontagem, produtor_cod) VALUES ('$_POST[produto_nome]', '$_POST[produto_descricao]', $_POST[produto_quantidadeemestoque], $_POST[produto_preco], '$_POST[produto_tipocontagem]', $_POST[produtor_cod])");
+        header("location: ./produtos.php");
         die(); // para de executar antes de rodar o resto do arquivo
     }
 ?>
@@ -94,40 +93,47 @@
             <main class="h-full pb-16 overflow-y-auto">
                 <div class="container px-6 mx-auto grid">
                     <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"> Adicionar Produto</h2>
-                    <form role="form" action="" method="post">
-                    <label class="block text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">Nome</span>
+                    <form role="form" action="./produtos_adicionar.php" method="post">
+                    <label class="mb-4 block text-sm">
+                        <span class="text-gray-700 dark:text-gray-400">Nome:</span>
                         <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_nome">
                     </label>
-                    <br>
-                    <label class="block mt-4 text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">Descrição</span>
+                    <label class="mb-4 block text-sm">
+                        <span class="text-gray-700 dark:text-gray-400">Descrição:</span>
                         <textarea class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:focus:shadow-outline-gray" rows="3" name="produto_descricao"></textarea>
                         </label>
-                    <br>
-                    <label class="block text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">Quantidade em estoque</span>
-                        <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_estoque">
+                    <label class="mb-4 block text-sm">
+                        <span class="text-gray-700 dark:text-gray-400">Quantidade em estoque:</span>
+                        <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_quantidadeemestoque">
                     </label>
-                    <br>
-                    <label class="block text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">Preço</span>
+                    <label class="mb-4 block text-sm">
+                        <span class="text-gray-700 dark:text-gray-400">Preço:</span>
                         <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_preco">
                     </label>
-                    <br>
-                    <label class="block mt-4 text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">
-                            Tipo de contagem
-                        </span>
-                        <select class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:focus:shadow-outline-gray" name="produto_contagem">
-                            <option>Penca</option>
-                            <option>Bandeja</option>
-                            <option>Unidades</option>
-                            <option>Kg</option>
-                            <option>Pés</option>
+                    <label class="mb-4 block text-sm">
+                        <span class="text-gray-700 dark:text-gray-400">Tipo de contagem:</span>
+                        <select class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:focus:shadow-outline-gray" name="produto_tipocontagem">
+                            <option value="Penca">Penca</option>
+                            <option value="Bandeja">Bandeja</option>
+                            <option value="Unidades">Unidades</option>
+                            <option value="Kg">Kg</option>
+                            <option value="Pés">Pés</option>
                         </select>
                         </label>
-                    <br>
+                    <label class="mb-4 block text-sm">
+                        <span class="text-gray-700 dark:text-gray-400">Produtor:</span>
+                        <select class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:focus:shadow-outline-gray" name="produtor_cod">
+                            <?php
+                            
+                            $q2 = mysqli_query($con, "SELECT produtor_cod, produtor_nome FROM produtor");
+                            while($e2 = mysqli_fetch_array($q2))
+                            {
+                                echo "<option value='$e2[produtor_cod]'>$e2[produtor_cod]: $e2[produtor_nome]</option>";
+                            }
+
+                            ?>
+                        </select>
+                        </label>
                     <button class="px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-verdecoopaf-600 border border-transparent rounded-lg active:bg-verdecoopaf-600 hover:bg-verdecoopaf-700 focus:outline-none focus:shadow-outline-verdecoopaf" type="submit">
                         Cadastrar
                     </button>

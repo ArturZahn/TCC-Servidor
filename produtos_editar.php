@@ -114,26 +114,25 @@
                     <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"> Editar Produto</h2>
 
                     <form role="form" action="produtos_editar.php" method="post">
-
-                        <input type="hidden" name="cod" value="<?php echo $produto_cod?>">
                         
-                        <label class="block text-sm">
-                            <span class="text-gray-700 dark:text-gray-400">Nome</span>
+                        <label class="mb-4 block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Código:</span>
+                            <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 form-input opacity-50 cursor-not-allowed" name="cod" value="<?php echo $produto_cod ?>">
+                        </label>
+                        <label class="mb-4 block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Nome:</span>
                             <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_nome" value="<?php echo $e['produto_nome'] ?>">
                         </label>
-                        <br>
                         
-                        <label class="block mt-4 text-sm">
-                            <span class="text-gray-700 dark:text-gray-400">Descrição</span>
+                        <label class="mb-4 block mt-4 text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Descrição:</span>
                             <textarea class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:focus:shadow-outline-gray" rows="3" name="produto_descricao"><?php echo $e['produto_descricao'] ?></textarea>
                         </label>
-                        <br>
                         
-                        <label class="block text-sm">
-                            <span class="text-gray-700 dark:text-gray-400">Quantidade em estoque</span>
+                        <label class="mb-4 block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Quantidade em estoque:</span>
                             <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_quantidadeemestoque" type="number" value="<?php echo $e['produto_quantidadeemestoque'] ?>">
                         </label>
-                        <br>
 
                         <!-- CSS input type number -->
                         <style>
@@ -150,16 +149,13 @@
                             }
                         </style>
 
-                        <label class="block text-sm">
-                            <span class="text-gray-700 dark:text-gray-400">Preço</span>
+                        <label class="mb-4 block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Preço:</span>
                             <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_preco" type="number" step="0.01" value="<?php echo $e['produto_preco'] ?>">
                         </label>
-                        <br>
 
-                        <label class="block mt-4 text-sm">
-                            <span class="text-gray-700 dark:text-gray-400">
-                                Tipo de contagem
-                            </span>
+                        <label class="mb-4 block mt-4 text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Tipo de contagem:</span>
                             <select class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:focus:shadow-outline-gray" name="produto_tipocontagem">
 
                                 <option <?php if($e["produto_tipocontagem"] == "Penca") echo "selected"; ?> value="Penca">Penca</option>
@@ -169,7 +165,6 @@
                                 <option <?php if($e["produto_tipocontagem"] == "Pés") echo "selected"; ?> value="Pés">Pés</option>
                             </select>
                         </label>
-                        <br>
                         
                         <button class="px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-verdecoopaf-600 border border-transparent rounded-lg active:bg-verdecoopaf-600 hover:bg-verdecoopaf-700 focus:outline-none focus:shadow-outline-verdecoopaf" type="submit">
                             Editar

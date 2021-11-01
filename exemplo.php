@@ -102,7 +102,7 @@ include("./backend/conexao.php");
 
 
                 // altere esses dados ↓↓↓
-                $itensPorPag = 10;
+                $itensPorPag = 15;
                 $queryDados       = "SELECT produto_nome, produto_preco from produto limit $itensPorPag offset ".($numDaPag-1)*$itensPorPag;
                 $queryQtdDeLinhas = "SELECT count(produto_cod) from produto";
                 // altere esses dados ↑↑↑
