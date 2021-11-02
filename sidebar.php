@@ -45,9 +45,10 @@ function itemMenuEstaSelecionado($urlItemMenu)
 ?>
 
 <!-- Desktop sidebar -->
-<aside class="z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0">
-    <div class="py-4 text-gray-500 dark:text-gray-400">
-        <a class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200">
+<aside class="z-20 hidden w-64 overflow-y-auto bg-white bg-verdecoopaf-300 dark:bg-gray-800 md:block flex-shrink-0">
+    <!-- @@ -->
+    <div class="py-4 xtext-gray-700 text-white dark:text-gray-400">
+        <a class="ml-6 text-lg font-bold text-white dark:text-gray-200">
             CoopAF
         </a>
         <ul class="mt-6">
@@ -58,13 +59,13 @@ function itemMenuEstaSelecionado($urlItemMenu)
                     $itemEstaSelecionado = itemMenuEstaSelecionado($itemMenu["url"]);
             ?>
 
-            <li class="relative px-6 py-3">
+            <li class="relative">
 
                 <?php if($itemEstaSelecionado) { ?>
                     <span class="absolute inset-y-0 left-0 w-1 bg-verdecoopaf-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
                 <?php } ?>
                 
-                <a class="inline-flex items-center w-full text-sm font-semibold <?php if($itemEstaSelecionado) echo "text-gray-800 dark:text-gray-100"; ?> transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="<?php echo $itemMenu["url"]; ?>">
+                <a class="px-6 py-3 focus:outline-none focus-visible:shadow-outline-gray inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 XXXXX_hover:text-gray-800 dark:hover:text-gray-200 <?php if($itemEstaSelecionado) echo "XXXXX_hover:text-gray-800 dark:text-gray-100"; ?>" href="<?php echo $itemMenu["url"]; ?>">
                     <?php echo $itemMenu["icone"]?>
                     <span class="ml-4"><?php echo $itemMenu["titulo"] ?></span>
                 </a>
@@ -154,7 +155,8 @@ function itemMenuEstaSelecionado($urlItemMenu)
     @click.away="closeSideMenu"
     @keydown.escape="closeSideMenu"
 >
-    <div class="py-4 text-gray-500 dark:text-gray-400">
+    <!-- @@ -->
+    <div class="py-4 xtext-gray-700 text-white dark:text-gray-400">
         <a class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200" href="#">
             Windmill
         </a>

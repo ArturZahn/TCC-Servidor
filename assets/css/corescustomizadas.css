@@ -10,6 +10,14 @@
     --verdecoopaf-300-tranparente: hsla(119, 44%, 52%, 0.45);
 }
 
+.focus-visible\:shadow-outline-gray:focus-visible {
+    box-shadow:0 0 0 3px rgba(213,214,215,.45);
+}
+
+.dark\:focus-visible\:shadow-outline-gray:focus-visible {
+    box-shadow:0 0 0 3px rgba(213,214,215,.45);
+}
+
 .text-verdecoopaf-100{
     color:var(--verdecoopaf-100);
 }
@@ -39,8 +47,26 @@
     color:var(--verdecoopaf-500);
 }
 /*-----------------------------------*/
+.bg-verdecoopaf-100{
+    background-color:var(--verdecoopaf-100);
+}
+.bg-verdecoopaf-200{
+    background-color:var(--verdecoopaf-200);
+}
+.bg-verdecoopaf-300{
+    background-color:var(--verdecoopaf-300);
+}
+.bg-verdecoopaf-400{
+    background-color:var(--verdecoopaf-400);
+}
+.bg-verdecoopaf-500{
+    background-color:var(--verdecoopaf-500);
+}
 .bg-verdecoopaf-600{
     background-color:var(--verdecoopaf-600);
+}
+.bg-verdecoopaf-700{
+    background-color:var(--verdecoopaf-700);
 }
 .active\:bg-verdecoopaf-600:active{
     background-color:var(--verdecoopaf-600);
