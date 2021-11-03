@@ -33,7 +33,7 @@ include("./backend/conexao.php");
 		include("./sidebar.php");
 			?>
 			<div class="flex flex-col flex-1">
-        		<?php include("header.php") ?>
+        		<?php include("header.php"); ?>
 				<main class="h-full pb-16 overflow-y-auto">
 					<!-- Remove everything INSIDE this div to a really blank page -->
 					<div class="container px-6 mx-auto grid">
