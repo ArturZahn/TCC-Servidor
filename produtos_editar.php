@@ -71,6 +71,10 @@
                             <span class="text-gray-700 dark:text-gray-400">Nome:</span>
                             <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_nome" value="<?php echo $e['produto_nome'] ?>">
                         </label>
+                        <label class="mb-4 block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Produtor:</span>
+                            <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_nome" value="<?php echo $e['produtor_nome'] ?>">
+                        </label>
                         
                         <label class="mb-4 block mt-4 text-sm">
                             <span class="text-gray-700 dark:text-gray-400">Descrição:</span>

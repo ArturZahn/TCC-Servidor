@@ -50,7 +50,7 @@ include("./backend/conexao.php");
 
                         // altere esses dados ↓↓↓
                         $itensPorPag = 15;
-                        $queryDados       = "SELECT produto_cod, produto_nome, produto_quantidadeemestoque, produto_preco, produto_tipocontagem from produto limit $itensPorPag offset ".($numDaPag-1)*$itensPorPag;
+                        $queryDados       = "SELECT produto_cod, produto_nome, produto_quantidadeemestoque, produto_preco, produto_tipocontagem, produtor_nome from produto join produtor using(produtor_cod) limit $itensPorPag offset ".($numDaPag-1)*$itensPorPag;
                         $queryQtdDeLinhas = "SELECT count(produto_cod) from produto";
 
                         // não precisa alterar essa linha ↓↓↓
@@ -61,6 +61,7 @@ include("./backend/conexao.php");
                         "nomeColunas" => array(
                             "Código",
                             "Produto",
+                            "Produtor",
                             "Quantidade em estoque",
                             "Preço",
                             "Ações"
@@ -68,6 +69,7 @@ include("./backend/conexao.php");
                         "templateColunas" => array(
                             function($exibe){return "<span>$exibe[produto_cod]</span>";},
                             function($exibe){return "<span>$exibe[produto_nome]</span>";},
+                            function($exibe){return "<span>$exibe[produtor_nome]</span>";},
 
                             function($exibe){return "<span>$exibe[produto_quantidadeemestoque] $exibe[produto_tipocontagem]</span>";},
 

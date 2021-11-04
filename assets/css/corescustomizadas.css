@@ -1,11 +1,20 @@
 * {
     --verdecoopaf-100: hsl(120, 58%, 84%);
     --verdecoopaf-200: hsl(119, 36%, 60%);
-    --verdecoopaf-300: hsl(119, 44%, 52%);
+    /* --verdecoopaf-300: hsl(119, 44%, 52%); */
+
+    /* 
+    #238521
+    
+    
+    */
+    --verdecoopaf-300: hsl(119, 68%, 28%);
     --verdecoopaf-400: hsl(119, 52%, 44%);
     --verdecoopaf-500: hsl(119, 60%, 36%);
     --verdecoopaf-600: hsl(119, 68%, 28%);
     --verdecoopaf-700: hsl(119, 76%, 20%);
+
+    --verdecoopaf-menu: #238521;
 
     --verdecoopaf-300-tranparente: hsla(119, 44%, 52%, 0.45);
 }
@@ -67,6 +76,9 @@
 }
 .bg-verdecoopaf-700{
     background-color:var(--verdecoopaf-700);
+}
+.bg-verdecoopaf-menu{
+    background-color:var(--verdecoopaf-menu);
 }
 .active\:bg-verdecoopaf-600:active{
     background-color:var(--verdecoopaf-600);
