@@ -34,7 +34,7 @@ function tabela($t)
     <?php echo $t["titulo"] ?>
   </h4>
   <?php } ?>
-  <div class="w-full overflow-hidden rounded-lg shadow-xs">
+  <div style="box-shadow: 0 0 0 1px rgb(0 0 0 / 15%);" class="w-full overflow-hidden rounded-lg">
     <div class="w-full overflow-x-auto">
       <table class="w-full whitespace-no-wrap">
         <thead>

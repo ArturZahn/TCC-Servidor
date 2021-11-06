@@ -62,7 +62,7 @@ function itemMenuEstaSelecionado($urlItemMenu)
             <li class="relative">
 
                 <?php if($itemEstaSelecionado) { ?>
-                    <span class="absolute inset-y-0 left-0 w-1 bg-verdecoopaf-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
+                    <span class="absolute inset-y-0 left-0 w-1 Xbg-white bg-verdecoopaf-700 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
                 <?php } ?>
                 
                 <a class="px-6 py-3 focus:outline-none focus-visible:shadow-outline-gray inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 XXXXX_hover:text-gray-800 dark:hover:text-gray-200 <?php if($itemEstaSelecionado) echo "XXXXX_hover:text-gray-800 dark:text-gray-100"; ?>" href="<?php echo $itemMenu["url"]; ?>">
