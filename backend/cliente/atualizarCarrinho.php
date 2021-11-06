@@ -15,7 +15,7 @@ if(empty($json)) {
     die();
 }
 
-include("../conexao.php");
+include_once ("../conexao.php");
 
 foreach ($json as $item) {
     if(!empty($item->produtoCod))

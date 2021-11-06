@@ -1,13 +1,13 @@
 <?php
     include("global.php");
     include("tabletemplate.php");
-    include("./backend/conexao.php");
+    include_once ("./backend/conexao.php");
 
     if(!empty($_POST)) // se tiver post, entra no if para cadastrar dados do produtor
     {
-        $query = mysqli_query($con, "INSERT INTO produto (produto_nome, produto_descricao, produto_quantidadeemestoque, produto_preco, produto_tipocontagem, produtor_cod) VALUES ('$_POST[produto_nome]', '$_POST[produto_descricao]', $_POST[produto_quantidadeemestoque], $_POST[produto_preco], '$_POST[produto_tipocontagem]', $_POST[produtor_cod])");
+        $query = mysqli_query($con, "INSERT INTO produto (produto_nome, produto_descricao, produto_quantidadeemestoque, produto_precoantigo, produto_tipocontagem, produtor_cod) VALUES ('$_POST[produto_nome]', '$_POST[produto_descricao]', $_POST[produto_quantidadeemestoque], $_POST[produto_precoantigo], '$_POST[produto_tipocontagem]', $_POST[produtor_cod])");
 
-        // var_dump("INSERT INTO produto (produto_nome, produto_descricao, produto_quantidadeemestoque, produto_preco, produto_tipocontagem, produtor_cod) VALUES ('$_POST[produto_nome]', '$_POST[produto_descricao]', $_POST[produto_quantidadeemestoque], $_POST[produto_preco], '$_POST[produto_tipocontagem]', $_POST[produtor_cod])",$query);
+        // var_dump("INSERT INTO produto (produto_nome, produto_descricao, produto_quantidadeemestoque, produto_precoantigo, produto_tipocontagem, produtor_cod) VALUES ('$_POST[produto_nome]', '$_POST[produto_descricao]', $_POST[produto_quantidadeemestoque], $_POST[produto_precoantigo], '$_POST[produto_tipocontagem]', $_POST[produtor_cod])",$query);
         header("location: ./produtos.php");
         die(); // para de executar antes de rodar o resto do arquivo
     }
@@ -59,7 +59,7 @@
                     </label>
                     <label class="mb-4 block text-sm">
                         <span class="text-gray-700 dark:text-gray-400">Preço:</span>
-                        <input type="number" step="0.01" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_preco">
+                        <input type="number" step="0.01" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_precoantigo">
                     </label>
                     <label class="mb-4 block text-sm">
                         <span class="text-gray-700 dark:text-gray-400">Tipo de contagem:</span>

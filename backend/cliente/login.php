@@ -7,7 +7,7 @@
         die();
     }
 
-    include("../conexao.php");
+    include_once ("../conexao.php");
 
     $query = mysqli_query($con, "SELECT cliente_cod FROM cliente WHERE cliente_email = '$_POST[email]' AND cliente_senha = '".MD5($_POST['senha'])."'");
     

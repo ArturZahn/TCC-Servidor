@@ -2,7 +2,7 @@
 
 header("Access-Control-Allow-Origin: *");
 session_start();
-include("../conexao.php");
+include_once ("../conexao.php");
 
 //========================================= endereco =========================================//
 $endereco = "";
@@ -84,7 +84,7 @@ while($e = mysqli_fetch_object($query))
     $produtos .= $e->itemcarrinho_quantidade."x $e->produto_nome<br>";
 }
 
-$query = mysqli_query($con, "SELECT SUM(itemcarrinho_quantidade * produto_preco) AS preco FROM itemcarrinho JOIN produto USING(produto_cod) WHERE cliente_cod = $_SESSION[cliente_cod];");
+$query = mysqli_query($con, "SELECT SUM(itemcarrinho_quantidade * produto_precoantigo) AS preco FROM itemcarrinho JOIN produto USING(produto_cod) WHERE cliente_cod = $_SESSION[cliente_cod];");
 
 if($query == false || mysqli_num_rows($query) < 1)
 {

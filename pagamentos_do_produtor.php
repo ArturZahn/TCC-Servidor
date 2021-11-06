@@ -1,7 +1,7 @@
 <?php
 include("global.php");
 include("tabletemplate.php");
-include("./backend/conexao.php");
+include_once ("./backend/conexao.php");
 ?>
 
 <!DOCTYPE html>
@@ -42,6 +42,8 @@ include("./backend/conexao.php");
                 // DADOS GERAIS
                 $cod_produtor = $_GET["cod"];
 
+                include("./backend/taxaatual.php");
+
                 $q1 = mysqli_query($con, "SELECT count(DISTINCT pagamento_cod) AS num, produtor_nome FROM pagamento JOIN itempagamento USING(pagamento_cod) JOIN itempedido USING(itempedido_cod) JOIN produto USING(produto_cod) JOIN produtor USING(produtor_cod) WHERE produtor_cod = $cod_produtor");
                 $e1 = mysqli_fetch_array($q1);
                 
@@ -52,7 +54,7 @@ include("./backend/conexao.php");
 
                 // altere esses dados ↓↓↓
                 $itensPorPag = 15;
-                $queryDados       = "SELECT SUM(itempedido_precounitariopago*itempedido_quantidade) AS precoItem, pagamento_data, pagamento_cod FROM itempedido JOIN produto USING(produto_cod) JOIN itempagamento USING(itempedido_cod) JOIN pagamento USING(pagamento_cod) WHERE produtor_cod = $cod_produtor GROUP BY pagamento_cod ORDER BY pagamento_data DESC LIMIT $itensPorPag OFFSET ".($numDaPag-1)*$itensPorPag;
+                $queryDados       = "SELECT SUM(itempedido_precounitariopago*itempedido_quantidade)*".(1-$taxaAtual)." AS precoItem, pagamento_data, pagamento_cod FROM itempedido JOIN produto USING(produto_cod) JOIN itempagamento USING(itempedido_cod) JOIN pagamento USING(pagamento_cod) WHERE produtor_cod = $cod_produtor GROUP BY pagamento_cod ORDER BY pagamento_data DESC LIMIT $itensPorPag OFFSET ".($numDaPag-1)*$itensPorPag;
                 $queryQtdDeLinhas = "SELECT count(DISTINCT pagamento_cod) FROM pagamento JOIN itempagamento USING(pagamento_cod) JOIN itempedido USING(itempedido_cod) JOIN produto USING(produto_cod) JOIN produtor USING(produtor_cod) WHERE produtor_cod = $cod_produtor";
                 // altere esses dados ↑↑↑
 

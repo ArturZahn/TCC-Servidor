@@ -48,10 +48,11 @@ function itemMenuEstaSelecionado($urlItemMenu)
 <aside class="z-20 hidden w-64 overflow-y-auto bg-white bg-verdecoopaf-menu dark:bg-gray-800 md:block flex-shrink-0">
     <!-- @@ -->
     <div class="py-4 xtext-gray-700 text-white dark:text-gray-400">
-        <a class="ml-6 text-lg font-bold text-white dark:text-gray-200">
+        <!-- <a class="ml-6 text-lg font-bold text-white dark:text-gray-200">
             CoopAF
-        </a>
-        <ul class="mt-6">
+        </a> -->
+        <img class="px-6" style="width: 10rem" src="./assets/img/coopaf_b.png">
+        <ul class="mt-4">
 
             <?php
                 foreach ($menu as $keyItemMenu => $itemMenu)

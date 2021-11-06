@@ -2,7 +2,7 @@
 
 header("Access-Control-Allow-Origin: *");
 session_start();
-include("../conexao.php");
+include_once ("../conexao.php");
 
 
 //========================================= endereco =========================================//
@@ -109,7 +109,9 @@ $pagamento .= ".";
 //=============================================================================================//
 
 //========================================= pedido =========================================//
-$query = mysqli_query($con, "INSERT INTO pedido (pedido_datacompra, cliente_cod, estadopedido_cod, pedido_pagamento, endereco_cod) VALUES ('".date("Y-m-d H:i:s")."', $_SESSION[cliente_cod], 1, '$pagamento', $endereco_cod)");
+include("../taxaatual.php");
+
+$query = mysqli_query($con, "INSERT INTO pedido (pedido_datacompra, cliente_cod, estadopedido_cod, pedido_pagamento, endereco_cod, pedido_taxa) VALUES ('".date("Y-m-d H:i:s")."', $_SESSION[cliente_cod], 1, '$pagamento', $endereco_cod, $taxaAtual)");
 if($query == false)
 {
     echo json_encode(Array("success"=> false)); 
@@ -121,7 +123,7 @@ $pedido_cod = mysqli_insert_id($con);
 
 //========================================= produtos =========================================//
 $produtos = "";
-$query = mysqli_query($con, "SELECT itemcarrinho_quantidade, produto_preco, produto_cod FROM itemcarrinho JOIN produto USING(produto_cod) WHERE cliente_cod = $_SESSION[cliente_cod];");
+$query = mysqli_query($con, "SELECT itemcarrinho_quantidade, produto_precoantigo, produto_cod FROM itemcarrinho JOIN produto USING(produto_cod) WHERE cliente_cod = $_SESSION[cliente_cod];");
 
 if($query == false || mysqli_num_rows($query) < 1)
 {
@@ -131,7 +133,7 @@ if($query == false || mysqli_num_rows($query) < 1)
 
 while($e = mysqli_fetch_object($query))
 {
-    $query2 = mysqli_query($con, "INSERT INTO itempedido (itempedido_quantidade, itempedido_precounitariopago, pedido_cod, produto_cod) VALUES ($e->itemcarrinho_quantidade, $e->produto_preco, $pedido_cod, $e->produto_cod)");
+    $query2 = mysqli_query($con, "INSERT INTO itempedido (itempedido_quantidade, itempedido_precounitariopago, pedido_cod, produto_cod) VALUES ($e->itemcarrinho_quantidade, $e->produto_precoantigo, $pedido_cod, $e->produto_cod)");
 }
 
 $query = mysqli_query($con, "DELETE FROM itemcarrinho WHERE cliente_cod = $_SESSION[cliente_cod];");

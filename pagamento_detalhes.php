@@ -1,7 +1,7 @@
 <?php
 include("global.php");
 include("tabletemplate.php");
-include("./backend/conexao.php");
+include_once ("./backend/conexao.php");
 ?>
 
 <!DOCTYPE html>
@@ -48,11 +48,13 @@ include("./backend/conexao.php");
                 echo "<span class='mb-4 text-gray-700 dark:text-gray-400'>Produtor: $e1[produtor_nome]</span>";
                 echo "<span class='mb-4 text-gray-700 dark:text-gray-400'>Data do pagamento: ".formatData2($e1["pagamento_data"])."</span>";
 
+                include("./backend/taxaatual.php");
+
                 // se o $_GET["p"] não esta vazio, coloca ele na variavel, se nao, define numero da pagina como 1
                 $numDaPag = !empty($_GET["p"])?intval($_GET["p"]):1;
                 // altere esses dados ↓↓↓
                 $itensPorPag = 15;
-                $queryDados       = "SELECT produto_cod, SUM(itempedido_precounitariopago*itempedido_quantidade) AS itemvalor, SUM(itempedido_quantidade) AS itemquantidade, produto_nome FROM itempagamento JOIN itempedido USING(itempedido_cod) JOIN produto USING(produto_cod) JOIN produtor USING(produtor_cod) WHERE pagamento_cod = $cod_pagamento GROUP BY produto_cod LIMIT $itensPorPag OFFSET ".($numDaPag-1)*$itensPorPag;
+                $queryDados       = "SELECT produto_cod, SUM(itempedido_precounitariopago*itempedido_quantidade)*".(1-$taxaAtual)." AS itemvalor, SUM(itempedido_quantidade) AS itemquantidade, produto_nome FROM itempagamento JOIN itempedido USING(itempedido_cod) JOIN produto USING(produto_cod) JOIN produtor USING(produtor_cod) WHERE pagamento_cod = $cod_pagamento GROUP BY produto_cod LIMIT $itensPorPag OFFSET ".($numDaPag-1)*$itensPorPag;
                 $queryQtdDeLinhas = "SELECT COUNT(DISTINCT produto_cod) FROM itempagamento JOIN itempedido USING(itempedido_cod) JOIN produto USING(produto_cod) JOIN produtor USING(produtor_cod) WHERE pagamento_cod = $cod_pagamento";
                 // altere esses dados ↑↑↑
 

@@ -2,7 +2,7 @@
 <?php
 include("tabletemplate.php");
 
-include("./backend/conexao.php");
+include_once ("./backend/conexao.php");
 ?>
 
 <!DOCTYPE html>

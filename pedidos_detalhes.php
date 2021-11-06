@@ -1,7 +1,7 @@
 <?php
 include("global.php");
 include("tabletemplate.php");
-include("./backend/conexao.php");
+include_once ("./backend/conexao.php");
 ?>
 
 <!DOCTYPE html>
@@ -77,7 +77,7 @@ include("./backend/conexao.php");
 				
 				?>
 				
-				<form action='editar.php' method='POST'>
+				<form action='pedido_status_editar.php' method='POST'>
 					<input type='hidden' name='cod' value='<?php echo $e["pedido_cod"] ?>' />
 					<div class="mb-4 relative text-gray-500 focus-within:text-verdecoopaf-600">
 						<select type='submit' name='status' class="block w-full pr-20 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:focus:shadow-outline-gray form-input">

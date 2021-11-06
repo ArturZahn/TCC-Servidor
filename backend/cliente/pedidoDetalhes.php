@@ -2,7 +2,7 @@
 
     header("Access-Control-Allow-Origin: *");
     session_start();
-    include("../conexao.php");
+    include_once ("../conexao.php");
 
     if(empty($_GET['p']))
     {

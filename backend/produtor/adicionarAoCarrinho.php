@@ -21,7 +21,7 @@ $itemcarrinho_quantidade = intval($_POST['produtoQuantidade']);
 
 $asd .= $itemcarrinho_quantidade."\n";
 
-include("../conexao.php");
+include_once ("../conexao.php");
 
 $query = mysqli_query($con, "SELECT itemcarrinho_quantidade FROM itemcarrinho WHERE produto_cod = $_POST[produtoCod] AND cliente_cod = $_SESSION[cliente_cod] ORDER BY itemcarrinho_cod DESC;");
 

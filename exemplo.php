@@ -2,7 +2,7 @@
 
 include("global.php");
 include("tabletemplate.php");
-include("./backend/conexao.php");
+include_once ("./backend/conexao.php");
 
 
 ?>
@@ -51,7 +51,7 @@ include("./backend/conexao.php");
 
                 // altere esses dados ↓↓↓
                 $itensPorPag = 15;
-                $queryDados       = "SELECT produto_nome, produto_preco from produto limit $itensPorPag offset ".($numDaPag-1)*$itensPorPag;
+                $queryDados       = "SELECT produto_nome, produto_precoantigo from produto limit $itensPorPag offset ".($numDaPag-1)*$itensPorPag;
                 $queryQtdDeLinhas = "SELECT count(produto_cod) from produto";
                 // altere esses dados ↑↑↑
 
@@ -69,10 +69,10 @@ include("./backend/conexao.php");
                     function($exibe){return "<span>$exibe[produto_nome]</span>";},
 
                     function($exibe){
-                      if($exibe["produto_preco"] > 8) $classes = "text-red-700 bg-red-100 dark:text-red-100 dark:bg-red-700";
+                      if($exibe["produto_precoantigo"] > 8) $classes = "text-red-700 bg-red-100 dark:text-red-100 dark:bg-red-700";
                       else $classes = "text-green-700 bg-green-100 dark:bg-green-700 dark:text-green-100";
 
-                      return "<span class='px-2 py-1 font-semibold leading-tight rounded-full $classes'>$exibe[produto_preco]</span>";
+                      return "<span class='px-2 py-1 font-semibold leading-tight rounded-full $classes'>$exibe[produto_precoantigo]</span>";
                     }
                   ),
                   "dados" => mysqli_query($con, $queryDados),

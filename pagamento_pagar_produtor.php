@@ -1,6 +1,6 @@
 <?php
 include("global.php");
-include("./backend/conexao.php");
+include_once ("./backend/conexao.php");
 
 $cod_produtor = $_GET["cod"];
 
@@ -33,7 +33,7 @@ $q3 = mysqli_query($con, $sqlInsert);
 if($q3 === false)
 {
     include("./msg.php");
-    msg("Erro", "Não foi possível realizar pagamento (erro 1)", "Ok", "./pagamento_pagar.php?cod=$cod_produtor");
+    msg("Erro", "Não foi possível realizar pagamento (erro 2)", "Ok", "./pagamento_pagar.php?cod=$cod_produtor");
     die();
 }
 

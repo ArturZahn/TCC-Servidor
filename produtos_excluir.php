@@ -1,6 +1,6 @@
 <?php
     include("global.php");
-    include('./backend/conexao.php');
+    include_once("./backend/conexao.php");
     
     if(empty($_GET["cod"]))
     {

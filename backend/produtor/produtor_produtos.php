@@ -2,11 +2,11 @@
 
     header("Access-Control-Allow-Origin: *");
 
-    include("../conexao.php");
+    include_once ("../conexao.php");
 
     session_start();
     if(!empty($_GET['s'])) $sqlQuery = "SELECT produtor_cod, produto_cod, produto_foto, produto_nome, produto_quantidadeemestoque FROM produto JOIN produtor USING(produtor_cod) WHERE produto_nome LIKE '%$_GET[s]%'";
-    else $sqlQuery = "SELECT produtor_cod, produto_cod, produto_foto, produto_nome, produto_tipocontagem, produto_quantidadeemestoque, produto_preco FROM produto JOIN produtor USING(produtor_cod) WHERE produtor_cod = $_SESSION[produtor_cod]";
+    else $sqlQuery = "SELECT produtor_cod, produto_cod, produto_foto, produto_nome, produto_tipocontagem, produto_quantidadeemestoque, produto_precoantigo FROM produto JOIN produtor USING(produtor_cod) WHERE produtor_cod = $_SESSION[produtor_cod]";
 
     $query = mysqli_query($con, $sqlQuery);
 
@@ -30,7 +30,7 @@
             'produtoNome'=> "$produto->produto_nome",
             'produtotipocontagem'=> "$produto->produto_tipocontagem",
             'produtoQuantidadeEmEstoque'=> $produto->produto_quantidadeemestoque,
-            'produtoPreco'=> $produto->produto_preco
+            'produtoPreco'=> $produto->produto_precoantigo
         );
     }
 

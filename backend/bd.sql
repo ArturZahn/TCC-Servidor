@@ -20,7 +20,7 @@ CREATE TABLE cooperativa (
     cooperativa_cnpj VARCHAR(20) NOT NULL,
     cooperativa_email VARCHAR(256) NOT NULL,
     cooperativa_telefone VARCHAR(20) NOT NULL,
-    cooperativa_senha VARCHAR(32) NOT NULL,
+    cooperativa_taxa_vendas FLOAT NOT NULL,
     
     endereco_cod INT,
 
@@ -65,6 +65,7 @@ CREATE TABLE produto (
     produto_nome VARCHAR(100) NOT NULL,
     produto_descricao VARCHAR(1000) NOT NULL,
     produto_quantidadeemestoque INT NOT NULL,
+    produto_precoantigo REAL NOT NULL,
     produto_preco REAL NOT NULL,
     produto_foto MEDIUMBLOB,
 
@@ -95,6 +96,7 @@ CREATE TABLE pedido (
     pedido_cod INT PRIMARY KEY AUTO_INCREMENT,
     pedido_datacompra DATETIME,
     pedido_pagamento VARCHAR(100),
+    pedido_taxa VARCHAR(100),
 
     cliente_cod INT NOT NULL,
     estadopedido_cod INT NOT NULL,
@@ -138,4 +140,10 @@ CREATE TABLE admin (
     admin_cod INT PRIMARY KEY AUTO_INCREMENT,
     admin_login VARCHAR(50),
     admin_senha VARCHAR(32)
+);
+
+CREATE TABLE paginasparapesquisar (
+    paginasparapesquisar_cod INT PRIMARY KEY AUTO_INCREMENT,
+    paginasparapesquisar_titulo VARCHAR(250),
+    paginasparapesquisar_endereco VARCHAR(250)
 );

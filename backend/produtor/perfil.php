@@ -2,7 +2,7 @@
 
     header("Access-Control-Allow-Origin: *");
 
-    include("../conexao.php");
+    include_once ("../conexao.php");
 
     session_start();
     $query = mysqli_query($con, "SELECT cliente_nome, cliente_fotodeperfil FROM cliente WHERE cliente_cod = $_SESSION[cliente_cod]");

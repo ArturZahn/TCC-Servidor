@@ -9,7 +9,7 @@ if(empty($login) && empty($senha))
 }
 else
 {
-    include("./backend/conexao.php");
+    include_once ("./backend/conexao.php");
     
     $query = mysqli_query($con, "SELECT admin_cod FROM admin WHERE admin_login='$login' AND admin_senha=MD5('$senha')");
     

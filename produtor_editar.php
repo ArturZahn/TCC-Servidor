@@ -1,7 +1,7 @@
 <?php
 include("global.php");
 include("tabletemplate.php");
-include("./backend/conexao.php");
+include_once ("./backend/conexao.php");
 
 if(!empty($_POST)) // se tiver post, entra no if para editar dados do produtor
 {

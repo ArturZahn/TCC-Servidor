@@ -7,7 +7,7 @@
         die();
     }
 
-    include("../conexao.php");
+    include_once ("../conexao.php");
 
     $query = mysqli_query($con, "SELECT COUNT(cliente_cod) FROM cliente WHERE cliente_email = '$_POST[email]'");
     

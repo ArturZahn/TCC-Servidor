@@ -1,7 +1,7 @@
 <?php
 
     header("Access-Control-Allow-Origin: *");
-    include("../conexao.php");
+    include_once ("../conexao.php");
     session_start();
     
     $query = mysqli_query($con, "SELECT endereco_cod, endereco_cidade, endereco_bairro, endereco_rua, endereco_estado, endereco_numero FROM cliente LEFT JOIN endereco USING(endereco_cod) WHERE cliente_cod = $_SESSION[cliente_cod] LIMIT 1;");

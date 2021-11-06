@@ -2,7 +2,7 @@
 
     header("Access-Control-Allow-Origin: *");
 
-    include("../conexao.php");
+    include_once ("../conexao.php");
 
     session_start();
     $query = mysqli_query($con, "SELECT SUM(itempedido_precounitariopago * itempedido_quantidade) AS totalItem, produto_nome, produto_foto, SUM(itempedido_quantidade) AS quantidade FROM itempagamento RIGHT JOIN itempedido USING(itempedido_cod) JOIN produto USING(produto_cod) WHERE pagamento_cod IS NULL AND produtor_cod = $_SESSION[produtor_cod] GROUP BY produto_cod;");

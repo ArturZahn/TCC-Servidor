@@ -7,7 +7,7 @@
         die();
     }
 
-    include("../conexao.php");
+    include_once ("../conexao.php");
 
     $query = mysqli_query($con, "SELECT produtor_cod FROM produtor WHERE produtor_email = '$_POST[email]' AND produtor_senha = '".MD5($_POST['senha'])."'");
     

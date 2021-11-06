@@ -1,7 +1,7 @@
 <?php
 include("global.php");
 include("tabletemplate.php");
-include("./backend/conexao.php");
+include_once ("./backend/conexao.php");
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +50,7 @@ include("./backend/conexao.php");
 
                         // altere esses dados ↓↓↓
                         $itensPorPag = 15;
-                        $queryDados       = "SELECT produto_cod, produto_nome, produto_quantidadeemestoque, produto_preco, produto_tipocontagem, produtor_nome from produto join produtor using(produtor_cod) limit $itensPorPag offset ".($numDaPag-1)*$itensPorPag;
+                        $queryDados       = "SELECT produto_cod, produto_nome, produto_quantidadeemestoque, produto_precoantigo, produto_tipocontagem, produtor_nome from produto join produtor using(produtor_cod) limit $itensPorPag offset ".($numDaPag-1)*$itensPorPag;
                         $queryQtdDeLinhas = "SELECT count(produto_cod) from produto";
 
                         // não precisa alterar essa linha ↓↓↓
@@ -74,7 +74,7 @@ include("./backend/conexao.php");
                             function($exibe){return "<span>$exibe[produto_quantidadeemestoque] $exibe[produto_tipocontagem]</span>";},
 
                             function($exibe){
-                            return formatPreco($exibe["produto_preco"]);
+                            return formatPreco($exibe["produto_precoantigo"]);
                             },
 
                             function($exibe){

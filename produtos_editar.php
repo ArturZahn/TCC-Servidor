@@ -1,11 +1,11 @@
 <?php
     include("global.php");
     include("tabletemplate.php");
-    include("./backend/conexao.php");
+    include_once ("./backend/conexao.php");
 
     if(!empty($_POST)) // Se tiver post, entra no if para editar dados do produto
     {
-        $query = mysqli_query($con, "UPDATE produto SET produto_nome = '$_POST[produto_nome]', produto_descricao = '$_POST[produto_descricao]', produto_quantidadeemestoque = $_POST[produto_quantidadeemestoque], produto_preco = $_POST[produto_preco], produto_tipocontagem ='$_POST[produto_tipocontagem]' WHERE produto_cod = $_POST[cod];");
+        $query = mysqli_query($con, "UPDATE produto SET produto_nome = '$_POST[produto_nome]', produto_descricao = '$_POST[produto_descricao]', produto_quantidadeemestoque = $_POST[produto_quantidadeemestoque], produto_precoantigo = $_POST[produto_precoantigo], produto_tipocontagem ='$_POST[produto_tipocontagem]' WHERE produto_cod = $_POST[cod];");
         header("location: ./produtos.php");
         die(); // Para de executar antes de rodar o resto do arquivo
     }
@@ -18,7 +18,7 @@
 
     $produto_cod = $_GET["cod"];
 
-    $query = mysqli_query($con, "SELECT produto_nome, produto_descricao, produto_quantidadeemestoque, produto_preco, produto_tipocontagem FROM produto WHERE produto_cod = $produto_cod");
+    $query = mysqli_query($con, "SELECT produto_nome, produto_descricao, produto_quantidadeemestoque, produto_precoantigo, produto_tipocontagem FROM produto WHERE produto_cod = $produto_cod");
 
     if($query === false)
     {
@@ -88,7 +88,7 @@
 
                         <label class="mb-4 block text-sm">
                             <span class="text-gray-700 dark:text-gray-400">Preço:</span>
-                            <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_preco" type="number" step="0.01" value="<?php echo $e['produto_preco'] ?>">
+                            <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_precoantigo" type="number" step="0.01" value="<?php echo $e['produto_precoantigo'] ?>">
                         </label>
 
                         <label class="mb-4 block mt-4 text-sm">
