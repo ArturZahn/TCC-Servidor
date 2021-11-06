@@ -4,8 +4,11 @@
 
     include_once ("../conexao.php");
 
-    if(!empty($_GET['s'])) $sqlQuery = "SELECT produto_nome, produto_cod, produto_precoantigo, produto_foto, produtor_nome FROM produto JOIN produtor USING(produtor_cod) WHERE produto_nome LIKE '%$_GET[s]%'";
-    else $sqlQuery = "SELECT produto_nome, produto_cod, produto_precoantigo, produto_foto, produtor_nome FROM produto JOIN produtor USING(produtor_cod) ORDER BY RAND() ASC";
+    if(!empty($_GET["cp"])) $cp = $_GET["cp"];
+    else $cp = false;
+
+    if(!empty($_GET['s'])) $sqlQuery = "SELECT produto_nome, produto_cod, produto_precoantigo, produto_foto, produtor_nome FROM produto JOIN produtor USING(produtor_cod) WHERE produto_nome LIKE '%$_GET[s]%' ".($cp !== false?" AND produtor_cod = $cp ":"")."";
+    else $sqlQuery = "SELECT produto_nome, produto_cod, produto_precoantigo, produto_foto, produtor_nome FROM produto JOIN produtor USING(produtor_cod) ".($cp !== false?" WHERE produtor_cod = $cp ":"")." ORDER BY RAND() ASC";
 
     $query = mysqli_query($con, $sqlQuery);
 

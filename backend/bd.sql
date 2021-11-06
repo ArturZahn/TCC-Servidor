@@ -147,3 +147,12 @@ CREATE TABLE paginasparapesquisar (
     paginasparapesquisar_titulo VARCHAR(250),
     paginasparapesquisar_endereco VARCHAR(250)
 );
+
+CREATE TABLE produtorimagem (
+    produtorimagem_cod INT PRIMARY KEY AUTO_INCREMENT,
+    produtorimagem_foto MEDIUMBLOB,
+    
+    produtor_cod INT,
+    
+    FOREIGN KEY (produtor_cod) REFERENCES produtor(produtor_cod)
+);
