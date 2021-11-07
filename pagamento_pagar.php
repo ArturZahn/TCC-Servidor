@@ -41,10 +41,8 @@ include_once ("./backend/conexao.php");
             <?php
                 // DADOS GERAIS
                 $cod_produtor = $_GET["cod"];
-                
-                include("./backend/taxaatual.php");
 
-                $q1 = mysqli_query($con, "SELECT produtor_cod, produtor_nome, case when _valordevendo IS NULL then 0 ELSE _valordevendo END AS valordevendo FROM produtor LEFT JOIN (SELECT produtor_cod, SUM(itempedido_precounitariopago*itempedido_quantidade)*".(1-$taxaAtual)." AS _valordevendo FROM itempedido LEFT JOIN itempagamento USING(itempedido_cod) JOIN produto USING(produto_cod) JOIN produtor USING(produtor_cod) WHERE pagamento_cod IS NULL GROUP BY produtor_cod) tabelaA USING(produtor_cod) WHERE produtor_cod = $cod_produtor");
+                $q1 = mysqli_query($con, "SELECT produtor_cod, produtor_nome, case when _valordevendo IS NULL then 0 ELSE _valordevendo END AS valordevendo FROM produtor LEFT JOIN (SELECT produtor_cod, SUM(itempedido_precounitariopago*itempedido_quantidade*(1-pedido_taxa)) AS _valordevendo FROM itempedido LEFT JOIN itempagamento USING(itempedido_cod) JOIN pedido USING(pedido_cod) JOIN produto USING(produto_cod) JOIN produtor USING(produtor_cod) WHERE pagamento_cod IS NULL GROUP BY produtor_cod) tabelaA USING(produtor_cod) WHERE produtor_cod = $cod_produtor");
                 $e1 = mysqli_fetch_array($q1);
                 
                 echo "<span class=' mb-4 text-gray-700 dark:text-gray-400'>Produtor: $e1[produtor_nome]</span>";
@@ -53,7 +51,7 @@ include_once ("./backend/conexao.php");
                 $numDaPag = !empty($_GET["p"])?intval($_GET["p"]):1;
                 // altere esses dados ↓↓↓
                 $itensPorPag = 15;
-                $queryDados       = "SELECT produto_nome, SUM(itempedido_quantidade) AS itemquantidade, SUM(itempedido_quantidade*itempedido_precounitariopago)*".(1-$taxaAtual)." AS itemvalor FROM itempedido LEFT JOIN itempagamento USING(itempedido_cod) JOIN produto USING(produto_cod) WHERE pagamento_cod IS NULL AND produtor_cod = $cod_produtor GROUP BY produto_cod LIMIT $itensPorPag OFFSET ".($numDaPag-1)*$itensPorPag;
+                $queryDados       = "SELECT produto_nome, SUM(itempedido_quantidade) AS itemquantidade, SUM(itempedido_quantidade*itempedido_precounitariopago*(1-pedido_taxa)) AS itemvalor FROM itempedido JOIN pedido USING(pedido_cod) LEFT JOIN itempagamento USING(itempedido_cod) JOIN produto USING(produto_cod) WHERE pagamento_cod IS NULL AND produtor_cod = $cod_produtor GROUP BY produto_cod LIMIT $itensPorPag OFFSET ".($numDaPag-1)*$itensPorPag;
                 $queryQtdDeLinhas = "SELECT COUNT(distinct produto_cod) FROM itempedido LEFT JOIN itempagamento USING(itempedido_cod) JOIN produto USING(produto_cod) WHERE pagamento_cod IS NULL AND produtor_cod = $cod_produtor";
                 // altere esses dados ↑↑↑
 

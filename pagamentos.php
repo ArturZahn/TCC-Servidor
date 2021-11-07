@@ -39,16 +39,13 @@ include_once ("./backend/conexao.php");
                         <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"> Detalhes do pagamento </h2>
                         <?php
 
-                            include("./backend/taxaatual.php");
-                            // $taxaAtual = 0;
-
                             // se o $_GET["p"] não esta vazio, coloca ele na variavel, se nao, define numero da pagina como 1
                             $numDaPag = !empty($_GET["p"])?intval($_GET["p"]):1;
 
 
                             // altere esses dados ↓↓↓
                             $itensPorPag = 15;
-                            $queryDados       = "SELECT produtor_cod, produtor_nome, case when _valordevendo IS NULL then 0 ELSE _valordevendo END AS valordevendo FROM produtor LEFT JOIN (SELECT produtor_cod, SUM(itempedido_precounitariopago*itempedido_quantidade)*".(1-$taxaAtual)." AS _valordevendo FROM itempedido LEFT JOIN itempagamento USING(itempedido_cod) JOIN produto USING(produto_cod) JOIN produtor USING(produtor_cod) WHERE pagamento_cod IS NULL GROUP BY produtor_cod) tbA USING(produtor_cod) ORDER BY valordevendo DESC LIMIT $itensPorPag OFFSET ".($numDaPag-1)*$itensPorPag;
+                            $queryDados       = "SELECT produtor_cod, produtor_nome, case when _valordevendo IS NULL then 0 ELSE _valordevendo END AS valordevendo FROM produtor LEFT JOIN (SELECT produtor_cod, SUM(itempedido_precounitariopago*itempedido_quantidade*(1-pedido_taxa)) AS _valordevendo FROM itempedido JOIN pedido USING(pedido_cod) LEFT JOIN itempagamento USING(itempedido_cod) JOIN produto USING(produto_cod) JOIN produtor USING(produtor_cod) WHERE pagamento_cod IS NULL GROUP BY produtor_cod) tbA USING(produtor_cod) ORDER BY valordevendo DESC LIMIT $itensPorPag OFFSET ".($numDaPag-1)*$itensPorPag;
                             $queryQtdDeLinhas = "SELECT count(produtor_cod) FROM produtor";
                             // altere esses dados ↑↑↑
 

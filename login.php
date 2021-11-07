@@ -28,19 +28,24 @@ include("global.php");
         class="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800"
       >
         <div class="flex flex-col overflow-y-auto md:flex-row">
-          <div class="h-32 md:h-auto md:w-1/2">
-            <img
+          <div class="md:h-auto md:w-1/2"><img
               aria-hidden="true"
-              class="object-cover w-full h-full dark:hidden p-4"
-              src="./assets/img/logo.png"
+              class="object-contain w-full p-4"
+              src="./assets/img/coopaf.png"
+              alt="Logo CoopAF"
+            />
+            <!-- <img
+              aria-hidden="true"
+              class="object-contain w-full dark:hidden p-4"
+              src="./assets/img/coopaf.png"
               alt="Logo CoopAF"
             />
             <img
               aria-hidden="true"
-              class="hidden object-cover w-full h-full dark:block p-4"
-              src="./assets/img/logo.png"
+              class="hidden object-contain w-full dark:block p-4"
+              src="./assets/img/coopaf.png"
               alt="Logo CoopAF"
-            />
+            /> -->
           </div>
           <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div class="w-full">

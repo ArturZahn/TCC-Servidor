@@ -48,6 +48,7 @@ CREATE TABLE produtor (
     produtor_telefone VARCHAR(20) NOT NULL,
     produtor_cpfcnpj VARCHAR(20) NOT NULL,
     produtor_senha VARCHAR(32) NOT NULL,
+    produtor_sobre VARCHAR(1000),
     produtor_fotodeperfil MEDIUMBLOB,
 
     endereco_cod INT,

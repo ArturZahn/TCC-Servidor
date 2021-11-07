@@ -6,7 +6,7 @@
 
     session_start();
 
-    $query = mysqli_query($con, "SELECT produtor_nome, produtor_fotodeperfil, endereco_estado, endereco_cidade, endereco_bairro, endereco_cod FROM produtor LEFT JOIN endereco USING(endereco_cod) WHERE produtor_cod = $_GET[cp]");
+    $query = mysqli_query($con, "SELECT produtor_nome, produtor_fotodeperfil, endereco_estado, endereco_cidade, endereco_bairro, endereco_cod, produtor_sobre FROM produtor LEFT JOIN endereco USING(endereco_cod) WHERE produtor_cod = $_GET[cp]");
 
     if($query == false || mysqli_num_rows($query) < 1)
     {
@@ -18,20 +18,11 @@
 
     $resposta = array(
         'produtor_nome' => $e->produtor_nome,
-        'produtor_fotodeperfil' => "data:image/gif;base64,$e->produtor_fotodeperfil"
+        'produtor_sobre' => $e->produtor_sobre,
+        'produtor_fotodeperfil' => "data:image/gif;base64,$e->produtor_fotodeperfil",
     );
 
-    if(empty($e->endereco_cod))
-    {
-        $resposta["endereco"] = "Nenhum endereco cadastrado";
-        // $resposta['endereco'] = "$e->endereco_bairro, $e->endereco_cidade-$e->endereco_estado @";
-    }
-
-    else 
-    {
-        $resposta['endereco'] = "$e->endereco_bairro, $e->endereco_cidade-$e->endereco_estado";
-    }
-
+    $resposta["endereco"] = empty($e->endereco_cod)?"Nenhum endereco cadastrado":"$e->endereco_bairro, $e->endereco_cidade-$e->endereco_estado";
 
     echo json_encode($resposta);
 

@@ -5,7 +5,7 @@
     include_once ("../conexao.php");
 
     session_start();
-    $query = mysqli_query($con, "SELECT SUM(itempedido_precounitariopago * itempedido_quantidade) AS totalItem, produto_nome, produto_foto, SUM(itempedido_quantidade) AS quantidade FROM itempagamento RIGHT JOIN itempedido USING(itempedido_cod) JOIN produto USING(produto_cod) WHERE pagamento_cod IS NULL AND produtor_cod = $_SESSION[produtor_cod] GROUP BY produto_cod;");
+    $query = mysqli_query($con, "SELECT SUM(itempedido_precounitariopago * itempedido_quantidade * (1-pedido_taxa)) AS totalItem, produto_nome, produto_foto, SUM(itempedido_quantidade) AS quantidade, itempedido_precounitariopago FROM itempagamento RIGHT JOIN itempedido USING(itempedido_cod) JOIN produto USING(produto_cod) JOIN pedido USING(pedido_cod) WHERE pagamento_cod IS NULL AND produtor_cod = $_SESSION[produtor_cod] GROUP BY produto_cod;");
 
     if($query == false)
     {
