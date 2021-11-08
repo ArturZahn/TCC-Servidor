@@ -10,7 +10,7 @@
         </button>
         <!-- Search input -->
         <div class="flex justify-center flex-1 lg:mr-32">
-            <input type="hidden" class="relative align-middle rounded-md focus:outline-none focus:shadow-outline-verdecoopaf" @click="toggleNotificationsMenu" @keydown.escape="closeNotificationsMenu" aria-label="Notifications" aria-haspopup="true" id="openSearchPageBtn">
+            <input type="hidden" @click="toggleNotificationsMenu" @keydown.escape="closeNotificationsMenu" aria-label="Notifications" aria-haspopup="true" id="openSearchPageBtn">
             <div class="relative w-full max-w-xl mr-6 focus-within:text-verdecoopaf-500">
                 <div class="absolute inset-y-0 flex items-center pl-2">
                     <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">

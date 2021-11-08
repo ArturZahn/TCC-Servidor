@@ -78,6 +78,10 @@
 .bg-verdecoopaf-700{
     background-color:var(--verdecoopaf-700);
 }
+
+.theme-dark .dark\:bg-verdecoopaf-700 {
+    background-color:var(--verdecoopaf-700);
+}
 .bg-verdecoopaf-menu{
     background-color:var(--verdecoopaf-menu);
 }

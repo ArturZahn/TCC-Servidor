@@ -23,6 +23,7 @@ include_once ("./backend/conexao.php");
     defer
     ></script>
     <script src="./assets/js/init-alpine.js"></script>
+    <script src="./assets/js/filter.js"></script>
 </head>
 <body>
     <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen}">
@@ -43,6 +44,31 @@ include_once ("./backend/conexao.php");
                         <span>Adicionar novo produto</span>
                     </div>
                     </a>
+
+                    <!-- <input type="button" @click="toggleProfileMenu" @keydown.escape="closeProfileMenu" aria-label="Profile" aria-haspopup="true" id="openSearchPageBtn"> -->
+                    <input type="button"
+                        class="align-middle rounded-full focus:shadow-outline-verdecoopaf focus:outline-none"
+                        @click="toggleProfileMenu"
+                        @keydown.escape="closeProfileMenu"
+                        aria-label="Account"
+                        aria-haspopup="true">
+                    <span style="position: relative" class="mb-4 text-gray-700 dark:text-gray-400">
+                        Filtrar produtor:
+                        <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="Pesquise um nome">
+                                                                <template x-if="isProfileMenuOpen">
+                                                                <ul
+                                                                    x-transition:leave="transition ease-in duration-150"
+                                                                    x-transition:leave-start="opacity-100"
+                                                                    x-transition:leave-end="opacity-0"
+                                                                    @click.away="closeProfileMenu"
+                                                                    @keydown.escape="closeProfileMenu"
+                                                                    class="absolute left-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:border-gray-700 dark:text-gray-300 dark:bg-gray-700"
+                                                                    aria-label="submenu" id="filterlist">
+                                                                    
+                                                                </ul>
+                                                                </template>
+
+                    </span>
 
                     <?php
                         // se o $_GET["p"] não esta vazio, coloca ele na variavel, se nao, define numero da pagina como 1

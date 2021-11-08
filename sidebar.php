@@ -51,7 +51,17 @@ function itemMenuEstaSelecionado($urlItemMenu)
         <!-- <a class="ml-6 text-lg font-bold text-white dark:text-gray-200">
             CoopAF
         </a> -->
-        <img class="px-6" style="width: 10rem" src="./assets/img/coopaf_b.png">
+        <!-- <img class="px-6" style="width: 10rem" src="./assets/img/coopaf.png"> -->
+        <img aria-hidden="true"
+            style="width: 10rem"
+            class="px-6 dark:hidden p-4"
+            src="./assets/img/coopaf_b.png"
+            alt="Logo CoopAF" />
+        <img aria-hidden="true"
+            style="width: 10rem"
+            class="hidden px-6 dark:block p-4"
+            src="./assets/img/coopaf.png"
+            alt="Logo CoopAF" />
         <ul class="mt-4">
 
             <?php
@@ -63,7 +73,7 @@ function itemMenuEstaSelecionado($urlItemMenu)
             <li class="relative">
 
                 <?php if($itemEstaSelecionado) { ?>
-                    <span class="absolute inset-y-0 left-0 w-1 Xbg-white bg-verdecoopaf-700 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
+                    <span class="absolute inset-y-0 left-0 w-1 bg-white dark:bg-verdecoopaf-700 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
                 <?php } ?>
                 
                 <a class="px-6 py-3 focus:outline-none focus-visible:shadow-outline-gray inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 XXXXX_hover:text-gray-800 dark:hover:text-gray-200 <?php if($itemEstaSelecionado) echo "XXXXX_hover:text-gray-800 dark:text-gray-100"; ?>" href="<?php echo $itemMenu["url"]; ?>">

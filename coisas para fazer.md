@@ -95,3 +95,20 @@ Para mudar no aplicativo mobile:
 
 outros:
 - aplicativo entregador?
+
+
+
+----------------------------------
+- Correcão de erros:
+
+Erro no cadastro de produto
+Add tipo contagem na tela de detalhes do pedido, pagamentos do produtor
+Formatação de dinheiro no pagamentos do produtor
+Tirar o link no app do produtor
+Retirar a repetição "produtor" no app cliente
+add forma de pagamento nos detalhes do pagamento
+falto o R$ na tela pagamentos_do_produtor
+faltou os campos para cadastrar o endereco do produtor
+
+Colocar PIX como forma de pagamento
+mudar logos
