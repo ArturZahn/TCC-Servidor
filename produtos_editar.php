@@ -18,7 +18,7 @@
 
     $produto_cod = $_GET["cod"];
 
-    $query = mysqli_query($con, "SELECT produto_nome, produto_descricao, produto_quantidadeemestoque, produto_precoantigo, produto_tipocontagem FROM produto WHERE produto_cod = $produto_cod");
+    $query = mysqli_query($con, "SELECT produto_nome, produto_descricao, produto_quantidadeemestoque, produto_precoantigo, produto_tipocontagem, produtor_nome FROM produto JOIN produtor USING(produtor_cod) WHERE produto_cod = $produto_cod");
 
     if($query === false)
     {
@@ -65,17 +65,16 @@
                         
                         <label class="mb-4 block text-sm">
                             <span class="text-gray-700 dark:text-gray-400">Código:</span>
-                            <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 form-input opacity-50 cursor-not-allowed" name="cod" value="<?php echo $produto_cod ?>">
+                            <input disabled class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 form-input opacity-50 cursor-not-allowed" name="cod" value="<?php echo $produto_cod ?>">
+                        </label>
+                        <label class="mb-4 block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Produtor:</span>
+                            <input disabled class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input opacity-50 cursor-not-allowed" value="<?php echo $e['produtor_nome'] ?>">
                         </label>
                         <label class="mb-4 block text-sm">
                             <span class="text-gray-700 dark:text-gray-400">Nome:</span>
                             <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_nome" value="<?php echo $e['produto_nome'] ?>">
                         </label>
-                        <label class="mb-4 block text-sm">
-                            <span class="text-gray-700 dark:text-gray-400">Produtor:</span>
-                            <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_nome" value="<?php echo $e['produtor_nome'] ?>">
-                        </label>
-                        
                         <label class="mb-4 block mt-4 text-sm">
                             <span class="text-gray-700 dark:text-gray-400">Descrição:</span>
                             <textarea class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:focus:shadow-outline-gray" rows="3" name="produto_descricao"><?php echo $e['produto_descricao'] ?></textarea>

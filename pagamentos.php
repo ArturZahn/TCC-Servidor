@@ -36,7 +36,7 @@ include_once ("./backend/conexao.php");
                 <?php include("header.php") ?>
                 <main class="h-full pb-16 overflow-y-auto">
                     <div class="container px-6 mx-auto grid">
-                        <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"> Detalhes do pagamento </h2>
+                        <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"> Pagamentos </h2>
                         <?php
 
                             // se o $_GET["p"] não esta vazio, coloca ele na variavel, se nao, define numero da pagina como 1
@@ -57,7 +57,7 @@ include_once ("./backend/conexao.php");
                                 "nomeColunas" => array(
                                     "Código",
                                     "Produtor",
-                                    "Valor devendo",
+                                    "Valor a pagar",
                                     "", // "Ver mais"
                                     "" // "Ver mais"
                                 ),
@@ -69,7 +69,8 @@ include_once ("./backend/conexao.php");
 
                                         if ($exibe['valordevendo'] == 0){
                                             $classes = "text-green-700 bg-green-100 dark:bg-green-700 dark:text-green-100";
-                                            $txt = "Nada";
+                                            $txt = formatPreco($exibe["valordevendo"]);
+                                            // $txt = "Nada";
                                         } else {
                                             $classes = "text-red-700 bg-red-100 dark:text-red-100 dark:bg-red-700";
                                             $txt = formatPreco($exibe["valordevendo"]);

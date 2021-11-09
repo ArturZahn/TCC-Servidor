@@ -110,7 +110,7 @@ include_once ("./backend/conexao.php");
 
 				// altere esses dados ↓↓↓
 				$itensPorPag = 15;
-				$queryDados       = "SELECT produto_cod, produto_nome, itempedido_precounitariopago, itempedido_quantidade, itempedido_quantidade * itempedido_precounitariopago AS precototal FROM itempedido JOIN produto USING(produto_cod) WHERE pedido_cod = $cod_pedido LIMIT $itensPorPag OFFSET ".($numDaPag-1)*$itensPorPag;
+				$queryDados       = "SELECT produto_cod, produto_nome, itempedido_precounitariopago, itempedido_quantidade, itempedido_quantidade * itempedido_precounitariopago AS precototal, produto_tipocontagem FROM itempedido JOIN produto USING(produto_cod) WHERE pedido_cod = $cod_pedido LIMIT $itensPorPag OFFSET ".($numDaPag-1)*$itensPorPag;
 				$queryQtdDeLinhas = "SELECT count(pedido_cod) FROM itempedido WHERE pedido_cod = $cod_pedido";
 				// altere esses dados ↑↑↑
 
@@ -130,7 +130,7 @@ include_once ("./backend/conexao.php");
 				"templateColunas" => array(
 					function($exibe){return "$exibe[produto_cod]";},
 					function($exibe){return "$exibe[produto_nome]";},
-					function($exibe){return "$exibe[itempedido_quantidade]";},
+					function($exibe){return "$exibe[itempedido_quantidade] $exibe[produto_tipocontagem]";},
 					function($exibe){return formatPreco("$exibe[itempedido_precounitariopago]");},
 					function($exibe){return formatPreco("$exibe[precototal]");}	
 					),

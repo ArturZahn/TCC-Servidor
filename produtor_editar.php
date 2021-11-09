@@ -72,7 +72,7 @@ $e = mysqli_fetch_array($query);
             <form role="form" action="./produtor_editar.php" method="post">
               <label class="mb-4 block text-sm">
                   <span class="text-gray-700 dark:text-gray-400">Código:</span>
-                  <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 form-input opacity-50 cursor-not-allowed" name="cod" value="<?php echo $produtor_cod ?>">
+                  <input disabled class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 form-input opacity-50 cursor-not-allowed" name="cod" value="<?php echo $produtor_cod ?>">
               </label>
               <label class="mb-4 block text-sm">
                   <span class="text-gray-700 dark:text-gray-400">Nome:</span>

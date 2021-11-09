@@ -52,7 +52,7 @@ include_once ("./backend/conexao.php");
                 $numDaPag = !empty($_GET["p"])?intval($_GET["p"]):1;
                 // altere esses dados ↓↓↓
                 $itensPorPag = 15;
-                $queryDados       = "SELECT produto_cod, SUM(itempedido_precounitariopago*itempedido_quantidade*(1-pedido_taxa)) AS itemvalor, SUM(itempedido_quantidade) AS itemquantidade, produto_nome FROM itempagamento JOIN itempedido USING(itempedido_cod) JOIN pedido USING(pedido_cod) JOIN produto USING(produto_cod) JOIN produtor USING(produtor_cod) WHERE pagamento_cod = $cod_pagamento GROUP BY produto_cod LIMIT $itensPorPag OFFSET ".($numDaPag-1)*$itensPorPag;
+                $queryDados       = "SELECT produto_cod, SUM(itempedido_precounitariopago*itempedido_quantidade*(1-pedido_taxa)) AS itemvalor, SUM(itempedido_quantidade) AS itemquantidade, produto_nome, produto_tipocontagem FROM itempagamento JOIN itempedido USING(itempedido_cod) JOIN pedido USING(pedido_cod) JOIN produto USING(produto_cod) JOIN produtor USING(produtor_cod) WHERE pagamento_cod = $cod_pagamento GROUP BY produto_cod LIMIT $itensPorPag OFFSET ".($numDaPag-1)*$itensPorPag;
                 $queryQtdDeLinhas = "SELECT COUNT(DISTINCT produto_cod) FROM itempagamento JOIN itempedido USING(itempedido_cod) JOIN produto USING(produto_cod) JOIN produtor USING(produtor_cod) WHERE pagamento_cod = $cod_pagamento";
                 // altere esses dados ↑↑↑
 
@@ -71,7 +71,7 @@ include_once ("./backend/conexao.php");
                 "templateColunas" => array(
                   function($exibe){return $exibe["produto_cod"];},
                   function($exibe){return $exibe["produto_nome"];},
-                  function($exibe){return $exibe["itemquantidade"];},
+                  function($exibe){return "$exibe[itemquantidade] $exibe[produto_tipocontagem]";},
                   function($exibe){return formatPreco($exibe["itemvalor"]);},
                 ),
 

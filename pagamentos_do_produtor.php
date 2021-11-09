@@ -72,7 +72,7 @@ include_once ("./backend/conexao.php");
                   function($exibe){return $exibe["pagamento_cod"];},
                   function($exibe){return formatData($exibe["pagamento_data"]);},
                   // function($exibe){return formatPreco("$exibe[precoItem]");},
-                  function($exibe){return "$exibe[precoItem]";},
+                  function($exibe){return formatPreco($exibe["precoItem"]);},
 									function($exibe){
 										return "<button class='px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-verdecoopaf-600 border border-transparent rounded-md active:bg-verdecoopaf-600 hover:bg-verdecoopaf-700 focus:outline-none focus:shadow-outline-verdecoopaf' onclick=\"window.location.href='./pagamento_detalhes.php?cod=$exibe[pagamento_cod]'\"> Ver detalhes </button>";
 									},

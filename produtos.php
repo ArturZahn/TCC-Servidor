@@ -23,7 +23,7 @@ include_once ("./backend/conexao.php");
     defer
     ></script>
     <script src="./assets/js/init-alpine.js"></script>
-    <script src="./assets/js/filter.js"></script>
+    <!-- <script src="./assets/js/filter.js"></script> -->
 </head>
 <body>
     <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen}">
@@ -46,7 +46,7 @@ include_once ("./backend/conexao.php");
                     </a>
 
                     <!-- <input type="button" @click="toggleProfileMenu" @keydown.escape="closeProfileMenu" aria-label="Profile" aria-haspopup="true" id="openSearchPageBtn"> -->
-                    <input type="button"
+                    <!-- <input type="button"
                         class="align-middle rounded-full focus:shadow-outline-verdecoopaf focus:outline-none"
                         @click="toggleProfileMenu"
                         @keydown.escape="closeProfileMenu"
@@ -68,7 +68,7 @@ include_once ("./backend/conexao.php");
                                                                 </ul>
                                                                 </template>
 
-                    </span>
+                    </span> -->
 
                     <?php
                         // se o $_GET["p"] não esta vazio, coloca ele na variavel, se nao, define numero da pagina como 1

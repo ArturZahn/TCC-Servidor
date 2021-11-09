@@ -70,22 +70,31 @@ function openSearchResults()
 
 function closeSearchResults()
 {
-    if(searchResultsIsOpen())
-    {
-        toggleSearchResults();
+    // if(searchResultsIsOpen())
+    // {
+    //     toggleSearchResults();
         
-        var interval2 = setInterval(() => {
-            if(searchResultsIsOpen())
-            {
-                clearInterval(interval2);
-                searchResultsClosed();
-            }
-        }, 1);
-    }
+    //     var interval2 = setInterval(() => {
+    //         if(searchResultsIsOpen())
+    //         {
+    //             clearInterval(interval2);
+    //             searchResultsClosed();
+    //         }
+    //     }, 1);
+    // }
 }
 
 function updateSearchResults()
 {
+    if(shownPages.length == 0)
+    {
+        // console.log($("#resultList").length);
+        // $("#resultList").html("<li>aaaaaa</li>");
+        // $("#resultList").html("<li class=\"flex\">\n            <a class=\"inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200\" href=\"pagamentos.php\">\n                <span>Pagamentos</span>\n            </a>\n        </li>");
+
+        $("#resultList").html(`<li class="flex"><a class="inline-flex items-center justify-between w-full px-2 py-1 text-sm text-red-700 font-semibold transition-colors duration-150 rounded-md"><span>Nenhuma página encontrada</span></a></li>`);
+        return;
+    }
 
     htmlItems = "";
     shownPages.forEach(page => {
