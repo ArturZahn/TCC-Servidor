@@ -42,6 +42,9 @@ case "cartao":
 case "boleto":
     $pagamento = "Via boleto";
     break;
+case "pix":
+    $pagamento = "Via pix";
+    break;
 case "presencialCartao":
     $pagamento = "Via cartão, na hora da entrega";
     break;

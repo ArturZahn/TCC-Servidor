@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS tcc;
-CREATE DATABASE tcc;
-USE tcc;
+DROP DATABASE IF EXISTS coopaftcc;
+CREATE DATABASE coopaftcc;
+USE coopaftcc;
 
 CREATE TABLE endereco (
     endereco_cod INT PRIMARY KEY AUTO_INCREMENT,

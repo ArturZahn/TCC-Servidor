@@ -5,10 +5,11 @@ include_once ("./backend/conexao.php");
 
 if(!empty($_POST)) // se tiver post, entra no if para editar dados do produtor
 {
+  
+  var_dump($_POST);
   $qt = "UPDATE produtor JOIN endereco USING(endereco_cod) SET produtor_nome='$_POST[produtor_nome]', produtor_email='$_POST[produtor_email]', produtor_telefone='$_POST[produtor_telefone]', produtor_cpfcnpj='$_POST[produtor_cpfcnpj]', endereco_cidade = '$_POST[endereco_cidade]', endereco_bairro = '$_POST[endereco_bairro]', endereco_rua = '$_POST[endereco_rua]', endereco_estado = '$_POST[endereco_estado]', endereco_numero = '$_POST[endereco_numero]', endereco_cep = '$_POST[endereco_cep]', endereco_complemento = '$_POST[endereco_complemento]', endereco_informacoesadicinais = '$_POST[endereco_informacoesadicinais]' WHERE produtor_cod = '$_POST[cod]';";
 
   $query = mysqli_query($con, $qt);
-  // var_dump($qt, $query);
   header("location: ./produtor.php");
   die(); // para de executar antes de rodar o resto do arquivo
 }
@@ -72,7 +73,7 @@ $e = mysqli_fetch_array($query);
             <form role="form" action="./produtor_editar.php" method="post">
               <label class="mb-4 block text-sm">
                   <span class="text-gray-700 dark:text-gray-400">Código:</span>
-                  <input disabled class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 form-input opacity-50 cursor-not-allowed" name="cod" value="<?php echo $produtor_cod ?>">
+                  <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 form-input opacity-50 cursor-not-allowed" name="cod" value="<?php echo $produtor_cod ?>">
               </label>
               <label class="mb-4 block text-sm">
                   <span class="text-gray-700 dark:text-gray-400">Nome:</span>

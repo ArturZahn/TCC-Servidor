@@ -43,13 +43,14 @@ include_once ("./backend/conexao.php");
 				// DADOS GERAIS DO PEDIDO
 				$cod_pedido = $_GET["cod"];
 
-				$q = "SELECT pedido_cod, estadopedido_cod, pedido_datacompra, cliente_nome, estadopedido_estado, SUM(itempedido_quantidade * itempedido_precounitariopago) AS precototal, pedido.endereco_cod, endereco_cidade, endereco_bairro, endereco_rua, endereco_estado, endereco_numero, endereco_cep FROM pedido JOIN itempedido USING(pedido_cod) JOIN estadopedido USING(estadopedido_cod) JOIN cliente USING(cliente_cod) JOIN endereco ON pedido.endereco_cod = endereco.endereco_cod WHERE pedido_cod = $cod_pedido";
+				$q = "SELECT pedido_cod, estadopedido_cod, pedido_datacompra, cliente_nome, estadopedido_estado, SUM(itempedido_quantidade * itempedido_precounitariopago) AS precototal, pedido.endereco_cod, endereco_cidade, endereco_bairro, endereco_rua, endereco_estado, endereco_numero, endereco_cep, pedido_pagamento FROM pedido JOIN itempedido USING(pedido_cod) JOIN estadopedido USING(estadopedido_cod) JOIN cliente USING(cliente_cod) JOIN endereco ON pedido.endereco_cod = endereco.endereco_cod WHERE pedido_cod = $cod_pedido";
 				$e = mysqli_fetch_array(mysqli_query($con, $q));
 				
 				echo "<span class='mb-4 text-gray-700 dark:text-gray-400'>Código: $e[pedido_cod]</span>";
 				echo "<span class='mb-4 text-gray-700 dark:text-gray-400'>Cliente: $e[cliente_nome]</span>";
 				echo "<span class='mb-4 text-gray-700 dark:text-gray-400'>Data: ". formatData2($e['pedido_datacompra']) ."</span>";
 				echo "<span class='mb-4 text-gray-700 dark:text-gray-400'>Endereço: $e[endereco_rua], $e[endereco_numero] - $e[endereco_bairro], $e[endereco_cidade] - $e[endereco_estado], $e[endereco_cep]</span>";
+				echo "<span class='mb-4 text-gray-700 dark:text-gray-400'>Pagamento: $e[pedido_pagamento]</span>";
 
 				if ($e['estadopedido_cod'] == 1){
 					// pendente

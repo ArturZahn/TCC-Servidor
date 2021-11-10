@@ -85,6 +85,9 @@ case "boleto":
 case "presencialCartao":
     $pagamento = "Via cartão, na hora da entrega";
     break;
+case "pix":
+    $pagamento = "Via pix";
+    break;
 case "presencialDinheiro":
     $pagamento = "Em Dinheiro, na hora da entrega";
 
