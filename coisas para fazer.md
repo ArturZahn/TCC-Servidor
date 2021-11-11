@@ -93,6 +93,7 @@ Para mudar no aplicativo mobile:
 - alterar selecao de endereco do pedido 
 - mudar imagem de cadastro
 - cadastro de foto 
+- imagem da home do site
 
 outros:
 - aplicativo entregador?
