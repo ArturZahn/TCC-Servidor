@@ -94,6 +94,7 @@ Para mudar no aplicativo mobile:
 - mudar imagem de cadastro
 - cadastro de foto 
 - imagem da home do site
+- criar os dados do blog
 
 outros:
 - aplicativo entregador?
