@@ -83,20 +83,19 @@ Coisas secundárias:
 
 Para mudar no aplicativo mobile:
 - simplificar texto da index `ok`
-- mudar imagem de cadastro
 - aumentar tamanho do preco e mudar a posicao (telas: home, carrinho, detalhes da compra) `ok`
-- mudar card do carrinho (e lugares onde a foto do produto nao é o foco)
 - colocar pix como opcao de pagamento `ok`
-- alterar selecao de endereco do pedido 
-- cadastro de foto 
 - pesquisa por produtor `ok`
 - adicionar mais informacoes sobre o produtor `ok`
 - trocar a ordem do card do produtor na tela do produto `ok`
 
+- mudar card do carrinho (e lugares onde a foto do produto nao é o foco)
+- alterar selecao de endereco do pedido 
+- mudar imagem de cadastro
+- cadastro de foto 
+
 outros:
 - aplicativo entregador?
-
-
 
 ----------------------------------
 - Correcão de erros:
@@ -104,22 +103,11 @@ outros:
 Erro no cadastro de produto `ok`
 Add tipo contagem na tela de detalhes do pedido, pagamentos do produtor `ok`
 Formatação de dinheiro no pagamentos do produtor `ok`
-Tirar o link no app do produtor 
-Retirar a repetição "produtor" no app cliente 
-add forma de pagamento nos detalhes do pagamento
-falto o R$ na tela pagamentos_do_produtor
+add forma de pagamento nos detalhes do pagamento `ok`
+falto o R$ na tela pagamentos_do_produtor `ok`
 faltou os campos para cadastrar o endereco do produtor `ok` 
-
 Colocar PIX como forma de pagamento `ok`
 mudar logos `ok`
 
-
------------------------------
-sudo apt-get install -y php libapache2-mod-php php-common php-curl php-dev php-gd php-idn php-pear php-imagick php-imap php-json php-mcrypt php-memcache php-mhash php-ming php-mysql php-ps php-pspell php-recode php-snmp php-sqlite php-tidy php-xmlrpc php-xsl
-
-original:
-sudo apt-get install -y php5 libapache2-mod-php5 php5-common php5-curl php5-dev php5-gd php5-idn
-php-pear php5-imagick php5-imap php5-json php5-mcrypt php5-memcache php5-mhash php5-ming
-php5-mysql php5-ps php5-pspell php5-recode php5-snmp php5-sqlite php5-tidy php5-xmlrpc php5-xsl
-
-sudo apt install php-pear php7.4-curl php7.4-dev php7.4-gd php7.4-mbstring php7.4-zip php7.4-mysql php7.4-xml
+Tirar o link no app do produtor 
+Retirar a repetição "produtor" no app cliente 
