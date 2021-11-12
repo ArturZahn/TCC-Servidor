@@ -95,6 +95,7 @@ Para mudar no aplicativo mobile:
 - cadastro de foto 
 - imagem da home do site
 - criar os dados do blog
+- painel
 
 outros:
 - aplicativo entregador?
