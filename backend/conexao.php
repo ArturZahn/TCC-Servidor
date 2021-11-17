@@ -11,4 +11,6 @@
     $con = mysqli_connect($mysql_endereco, $mysql_usuario, $mysql_senha, "coopaftcc") or die("FALHA AO CONECTAR COM O BANCO");
     mysqli_set_charset($con, "utf8");
 
+    mysqli_query($con, "SET lc_time_names = 'pt_BR';");
+
 ?>
