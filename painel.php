@@ -1,4 +1,30 @@
-<?php include("global.php"); ?>
+<?php
+
+include("global.php");
+include("./backend/conexao.php");
+
+if(!empty($_POST))
+{
+  var_dump($_POST, "@", empty($_POST["taxa"]));
+
+  if(!is_numeric($_POST["taxa"]))
+  {
+    echo "erro";
+    die();
+  }
+
+  $taxa = floatval($_POST["taxa"])/100;
+
+  $q = mysqli_query($con, "UPDATE cooperativa SET cooperativa_taxa_vendas = $taxa WHERE cooperativa_cod = 1");
+
+  header("location: ./painel.php");
+  die();
+}
+
+$q = mysqli_query($con, "SELECT cooperativa_taxa_vendas FROM cooperativa WHERE cooperativa_cod = 1");
+$taxa = floatval(mysqli_fetch_array($q)["cooperativa_taxa_vendas"])*100;
+
+?>
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="pt-BR">
   <head>
@@ -21,96 +47,39 @@
     include("./backend/conexao.php");
 
     $q = mysqli_query($con, "SELECT valor, CONCAT(UPPER(SUBSTRING(_mesano,1,1)),LOWER(SUBSTRING(_mesano,2))) AS mesano FROM ( SELECT SUM(itempedido_precounitariopago*itempedido_quantidade*pedido_taxa) AS valor, DATE_FORMAT(pedido_datacompra,'%M %Y') AS _mesano FROM itempedido JOIN pedido USING(pedido_cod) GROUP BY EXTRACT(YEAR_MONTH FROM pedido_datacompra) ORDER BY EXTRACT(YEAR_MONTH FROM pedido_datacompra) LIMIT 7 ) AS tabela");
-    $labels = "";
-    $data = "";
-    $formatedData = "";
+    $lucro_labels = "";
+    $lucro_data = "";
+    $lucro_formatedData = "";
     while($e = mysqli_fetch_array($q))
     {
-      $labels .= "'$e[mesano]',";
-      $data .= "'$e[valor]',";
-      $formatedData .= "'". formatPreco($e["valor"])  ."',";
+      $lucro_labels .= "'$e[mesano]',";
+      $lucro_data .= "'$e[valor]',";
+      $lucro_formatedData .= "'". formatPreco($e["valor"])  ."',";
+    }
+
+    $q = mysqli_query($con, "SELECT qtd, CONCAT(UPPER(SUBSTRING(_mesano,1,1)),LOWER(SUBSTRING(_mesano,2))) AS mesano FROM ( SELECT COUNT(DISTINCT pedido_cod) AS qtd, DATE_FORMAT(pedido_datacompra,'%M %Y') AS _mesano FROM pedido GROUP BY EXTRACT(YEAR_MONTH FROM pedido_datacompra) ORDER BY EXTRACT(YEAR_MONTH FROM pedido_datacompra) LIMIT 7 ) AS tabela");
+    $pedidos_labels = "";
+    $pedidos_data = "";
+    $pedidos_formatedData = "";
+    while($e = mysqli_fetch_array($q))
+    {
+      $pedidos_labels .= "'$e[mesano]',";
+      $pedidos_data .= "'$e[qtd]',";
+      $pedidos_formatedData .= "'$e[qtd]',";
     }
     ?>
 
 <script>
-        window.addEventListener('load', criarChartGanhos);
+  var lucro_dadosformatado = [<?php echo $lucro_formatedData ?>];
+  var lucro_dadoslabel = [<?php echo $lucro_labels ?>];
+  var lucro_dados = [<?php echo $lucro_data ?>];
 
-        var dadosformatado = [<?php echo $formatedData ?>];
-
-        function criarChartGanhos()
-        {
-            var ctx = document.getElementById("myChart");
-        var data = {
-        labels: [<?php echo $labels ?>],
-        datasets: [{
-            data: [<?php echo $data ?>],
-            backgroundColor: "#187817"
-            // backgroundColor: "#0F0"
-        }]
-        }
-        var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: data,
-        options: {
-            "hover": {
-            "animationDuration": 0
-            },
-            "animation": {
-            "duration": 1,
-            "onComplete": function() {
-                var chartInstance = this.chart,
-                ctx = chartInstance.ctx;
-
-                ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
-                ctx.fillStyle = Chart.defaults.global.defaultFontColor;
-                // console.log(ctx.fillStyle);
-                
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'bottom';
-
-                this.data.datasets.forEach(function(dataset, i) {
-                var meta = chartInstance.controller.getDatasetMeta(i);
-                meta.data.forEach(function(bar, index) {
-                    // var data = dataset.data[index];
-                    var data = dadosformatado[index];
-                    console.log(data)
-                    ctx.fillText(data, bar._model.x, bar._model.y - 5);
-                });
-                });
-            }
-            },
-            legend: {
-            "display": false
-            },
-            tooltips: {
-            // "enabled": false
-            "enabled": true
-            },
-            scales: {
-            yAxes: [{
-                display: true,
-                gridLines: {
-                display: true
-                },
-                ticks: {
-                max: Math.max(...data.datasets[0].data) *1.05,
-                display: true,
-                beginAtZero: true
-                }
-            }],
-            xAxes: [{
-                gridLines: {
-                display: false
-                },
-                ticks: {
-                beginAtZero: true
-                }
-            }]
-            }
-        }
-        });
-        }
-    </script>
+  var pedidos_dadosformatado = [<?php echo $pedidos_formatedData ?>];
+  var pedidos_dadoslabel = [<?php echo $pedidos_labels ?>];
+  var pedidos_dados = [<?php echo $pedidos_data ?>];
+</script>
+<script src="./assets/js/chart-lucro.js"></script>
+<script src="./assets/js/chart-pedidos.js"></script>
 
   </head>
   <body>
@@ -132,7 +101,7 @@
               Open Modal
             </button> -->
             <!-- CTA -->
-            <span class="mb-4 text-gray-700 dark:text-gray-400">Taxa atual de vendas: 5%</span>
+            <span class="mb-4 text-gray-700 dark:text-gray-400">Taxa atual de vendas: <?php echo $taxa; ?>%</span>
             <button @click="openModal" class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-verdecoopaf-100 bg-verdecoopaf-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-verdecoopaf">
               <div class="flex items-center">
                 <i class="fas fa-money-bill-wave-alt mr-2"></i>
@@ -144,13 +113,21 @@
             <div class="grid gap-6 mb-8 md:grid-cols-2">
 
 
-              <!-- Ganhos chart -->
+              <!-- Grafico lucro -->
               <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
                 <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
                   Lucro mensal
                 </h4>
-                <!-- <canvas id="ganhos-chart"></canvas> -->
-                <canvas id="myChart"></canvas>
+                <canvas id="chartLucro"></canvas>
+                <div class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400"></div>
+              </div>
+              
+              <!-- Grafico pedidos -->
+              <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+                  Quantidade de pedios mensal
+                </h4>
+                <canvas id="chartPedidos"></canvas>
                 <div class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400"></div>
               </div>
 
@@ -208,7 +185,7 @@
             </p> -->
             <label class="block text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Digite o valor em porcentagem</span>
-                <input value="5" placeholder="5%" type="number" step="0.01" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input">
+                <input max="100" min="0" value="<?php echo $taxa; ?>" placeholder="<?php echo $taxa; ?>%" type="number" name="taxa" step="0.01" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input">
               </label>
           </div>
           <footer class="flex flex-col items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row bg-gray-50 dark:bg-gray-800">
