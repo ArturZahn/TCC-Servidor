@@ -1,4 +1,13 @@
 `Funcionalidades do sistema`
+Tirar o link no app do produtor `ok`
+Retirar a repetição "produtor" no app cliente `ok`
+- mudar imagem de cadastro
+- cadastro de foto 
+- imagem da home do site `ok`
+- criar os dados do blog `ok`
+- painel `ok`
+
+`Funcionalidades do sistema`
   - login para o sistema
 ├─ login `ok`
 
