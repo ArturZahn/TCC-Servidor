@@ -6,12 +6,35 @@ include_once ("./backend/conexao.php");
 if(!empty($_POST)) // se tiver post, entra no if para editar dados do produtor
 {
   
-  var_dump($_POST);
+  // var_dump($_POST);
+  // echo "<br>arquivos:";
   $qt = "UPDATE produtor JOIN endereco USING(endereco_cod) SET produtor_nome='$_POST[produtor_nome]', produtor_email='$_POST[produtor_email]', produtor_telefone='$_POST[produtor_telefone]', produtor_cpfcnpj='$_POST[produtor_cpfcnpj]', endereco_cidade = '$_POST[endereco_cidade]', endereco_bairro = '$_POST[endereco_bairro]', endereco_rua = '$_POST[endereco_rua]', endereco_estado = '$_POST[endereco_estado]', endereco_numero = '$_POST[endereco_numero]', endereco_cep = '$_POST[endereco_cep]', endereco_complemento = '$_POST[endereco_complemento]', endereco_informacoesadicinais = '$_POST[endereco_informacoesadicinais]' WHERE produtor_cod = '$_POST[cod]';";
 
   $query = mysqli_query($con, $qt);
-  header("location: ./produtor.php");
+
+  cadastrarImg();
+
+  // header("location: ./produtor.php");
   die(); // para de executar antes de rodar o resto do arquivo
+}
+
+
+function cadastrarImg()
+{
+  // se a imagem existe...
+  if(!empty($_FILES["produtor_foto"]) && $_FILES["produtor_foto"]["error"] == UPLOAD_ERR_OK)
+  {
+    // salva ela
+    $img = $_FILES["produtor_foto"];
+
+    var_dump($img);
+
+    $allowed = array('png', 'gif', 'jpeg');
+    $ext = pathinfo($img['name'], PATHINFO_EXTENSION);
+    if (!in_array($ext, $allowed)) return;
+
+    echo "cadastrar";
+  }
 }
 
 
@@ -70,10 +93,14 @@ $e = mysqli_fetch_array($query);
           <!-- Remove everything INSIDE this div to a really blank page -->
           <div class="container px-6 mx-auto grid">
             <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"> Editar Produtor</h2>
-            <form role="form" action="./produtor_editar.php" method="post">
+            <form role="form" action="./produtor_editar.php" method="post" enctype="multipart/form-data">
               <label class="mb-4 block text-sm">
                   <span class="text-gray-700 dark:text-gray-400">Código:</span>
                   <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 form-input opacity-50 cursor-not-allowed" name="cod" value="<?php echo $produtor_cod ?>">
+              </label>
+              <label class="mb-4 block text-sm">
+                  <span class="text-gray-700 dark:text-gray-400">Foto:</span>
+                  <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produtor_foto" type="file" accept="image/png, image/gif, image/jpeg">
               </label>
               <label class="mb-4 block text-sm">
                   <span class="text-gray-700 dark:text-gray-400">Nome:</span>
