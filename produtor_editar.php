@@ -12,28 +12,59 @@ if(!empty($_POST)) // se tiver post, entra no if para editar dados do produtor
 
   $query = mysqli_query($con, $qt);
 
-  cadastrarImg();
+  cadastrarImg(Array(
+    "imgName" => "produtor_foto",
+    "imgFilePath" => "images\\produtor\\",
+    "produtor_cod" => $_POST["cod"],
+    "queryTemplate" => "UPDATE produtor SET produtor_fotodeperfil = '%img%' WHERE produtor_cod = $_POST[cod]",
+  ));
 
   // header("location: ./produtor.php");
   die(); // para de executar antes de rodar o resto do arquivo
 }
 
 
-function cadastrarImg()
+function cadastrarImg($a)
 {
+  $imgName = $a["imgName"];
+  $imgFilePath = $a["imgFilePath"];
+  $produtor_cod = $a["produtor_cod"];
+  $queryTemplate = $a["queryTemplate"];
+
   // se a imagem existe...
-  if(!empty($_FILES["produtor_foto"]) && $_FILES["produtor_foto"]["error"] == UPLOAD_ERR_OK)
+  if(!empty($_FILES[$imgName]) && $_FILES[$imgName]["error"] == UPLOAD_ERR_OK)
   {
     // salva ela
-    $img = $_FILES["produtor_foto"];
-
-    var_dump($img);
-
+    $fileImg = $_FILES[$imgName];
+    
     $allowed = array('png', 'gif', 'jpeg');
-    $ext = pathinfo($img['name'], PATHINFO_EXTENSION);
+    $ext = pathinfo($fileImg['name'], PATHINFO_EXTENSION);
+
     if (!in_array($ext, $allowed)) return;
 
-    echo "cadastrar";
+    
+    $imgFileName = "$produtor_cod.$ext";
+
+
+    $queryTemplate = str_replace("%img%", $imgFileName, $queryTemplate);
+
+    global $con;
+    mysqli_query($con, $queryTemplate);
+
+    var_dump($fileImg);
+    echo $fileImg["tmp_name"];
+    
+    // move_uploaded_file($fileImg['tmp_name'],"$imgFilePath$imgFileName");
+    // echo "$imgFilePath$imgFileName";
+
+
+    if (move_uploaded_file($_FILES['produtor_foto']['tmp_name'], __DIR__.'/../../uploads/'. $_FILES["image"]['name']))
+    {
+      echo "Uploaded";
+    } else {
+      echo "File not uploaded";
+    }
+
   }
 }
 
