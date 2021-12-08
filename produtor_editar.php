@@ -6,68 +6,12 @@ include_once ("./backend/conexao.php");
 if(!empty($_POST)) // se tiver post, entra no if para editar dados do produtor
 {
   
-  // var_dump($_POST);
-  // echo "<br>arquivos:";
-  $qt = "UPDATE produtor JOIN endereco USING(endereco_cod) SET produtor_nome='$_POST[produtor_nome]', produtor_email='$_POST[produtor_email]', produtor_telefone='$_POST[produtor_telefone]', produtor_cpfcnpj='$_POST[produtor_cpfcnpj]', endereco_cidade = '$_POST[endereco_cidade]', endereco_bairro = '$_POST[endereco_bairro]', endereco_rua = '$_POST[endereco_rua]', endereco_estado = '$_POST[endereco_estado]', endereco_numero = '$_POST[endereco_numero]', endereco_cep = '$_POST[endereco_cep]', endereco_complemento = '$_POST[endereco_complemento]', endereco_informacoesadicinais = '$_POST[endereco_informacoesadicinais]' WHERE produtor_cod = '$_POST[cod]';";
+  $query = mysqli_query($con, "UPDATE produtor JOIN endereco USING(endereco_cod) SET produtor_nome='$_POST[produtor_nome]', produtor_email='$_POST[produtor_email]', produtor_telefone='$_POST[produtor_telefone]', produtor_cpfcnpj='$_POST[produtor_cpfcnpj]', endereco_cidade = '$_POST[endereco_cidade]', endereco_bairro = '$_POST[endereco_bairro]', endereco_rua = '$_POST[endereco_rua]', endereco_estado = '$_POST[endereco_estado]', endereco_numero = '$_POST[endereco_numero]', endereco_cep = '$_POST[endereco_cep]', endereco_complemento = '$_POST[endereco_complemento]', endereco_informacoesadicinais = '$_POST[endereco_informacoesadicinais]' WHERE produtor_cod = '$_POST[cod]';");
+  cadastrarImgProdutor($_POST["cod"], "produtor_foto");
 
-  $query = mysqli_query($con, $qt);
-
-  cadastrarImg(Array(
-    "imgName" => "produtor_foto",
-    "imgFilePath" => "images\\produtor\\",
-    "produtor_cod" => $_POST["cod"],
-    "queryTemplate" => "UPDATE produtor SET produtor_fotodeperfil = '%img%' WHERE produtor_cod = $_POST[cod]",
-  ));
-
-  // header("location: ./produtor.php");
+  header("location: ./produtor.php");
   die(); // para de executar antes de rodar o resto do arquivo
 }
-
-
-function cadastrarImg($a)
-{
-  $imgName = $a["imgName"];
-  $imgFilePath = $a["imgFilePath"];
-  $produtor_cod = $a["produtor_cod"];
-  $queryTemplate = $a["queryTemplate"];
-
-  // se a imagem existe...
-  if(!empty($_FILES[$imgName]) && $_FILES[$imgName]["error"] == UPLOAD_ERR_OK)
-  {
-    // salva ela
-    $fileImg = $_FILES[$imgName];
-    
-    $allowed = array('png', 'gif', 'jpeg');
-    $ext = pathinfo($fileImg['name'], PATHINFO_EXTENSION);
-
-    if (!in_array($ext, $allowed)) return;
-
-    
-    $imgFileName = "$produtor_cod.$ext";
-
-
-    $queryTemplate = str_replace("%img%", $imgFileName, $queryTemplate);
-
-    global $con;
-    mysqli_query($con, $queryTemplate);
-
-    var_dump($fileImg);
-    echo $fileImg["tmp_name"];
-    
-    // move_uploaded_file($fileImg['tmp_name'],"$imgFilePath$imgFileName");
-    // echo "$imgFilePath$imgFileName";
-
-
-    if (move_uploaded_file($_FILES['produtor_foto']['tmp_name'], __DIR__.'/../../uploads/'. $_FILES["image"]['name']))
-    {
-      echo "Uploaded";
-    } else {
-      echo "File not uploaded";
-    }
-
-  }
-}
-
 
 if(empty($_GET["cod"]))
 {
@@ -131,7 +75,7 @@ $e = mysqli_fetch_array($query);
               </label>
               <label class="mb-4 block text-sm">
                   <span class="text-gray-700 dark:text-gray-400">Foto:</span>
-                  <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produtor_foto" type="file" accept="image/png, image/gif, image/jpeg">
+                  <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produtor_foto" type="file" accept="image/png, image/jpeg">
               </label>
               <label class="mb-4 block text-sm">
                   <span class="text-gray-700 dark:text-gray-400">Nome:</span>

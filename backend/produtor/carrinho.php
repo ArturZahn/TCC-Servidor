@@ -16,7 +16,7 @@
     while($produto = mysqli_fetch_object($query)){
         $itens[] = array(
             'produtoCod' => intval($produto->produto_cod),
-            'produtoFoto' => "data:image/gif;base64,$produto->produto_foto",
+            'produtoFoto' => "$produto->produto_foto",
             'produtoNome' => "$produto->produto_nome",
             'quantidade' => intval($produto->itemcarrinho_quantidade),
             'precoUnidade' => floatval($produto->produto_precoantigo),

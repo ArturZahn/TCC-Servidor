@@ -19,7 +19,7 @@
     $resposta = array(
         'produtor_nome' => $e->produtor_nome,
         'produtor_sobre' => $e->produtor_sobre,
-        'produtor_fotodeperfil' => "data:image/gif;base64,$e->produtor_fotodeperfil",
+        'produtor_fotodeperfil' => "$e->produtor_fotodeperfil",
     );
 
     $resposta["endereco"] = empty($e->endereco_cod)?"Nenhum endereco cadastrado":"$e->endereco_bairro, $e->endereco_cidade-$e->endereco_estado";

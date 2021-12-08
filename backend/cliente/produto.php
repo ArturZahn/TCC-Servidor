@@ -23,13 +23,13 @@
     echo json_encode(array(
         'produtoNome' => $exibe->produto_nome,
         'produtoDescricao' => $exibe->produto_descricao,
-        'produtoFoto' => "data:image/gif;base64,$exibe->produto_foto",
+        'produtoFoto' => "$exibe->produto_foto",
         'produtoPreco' => floatval($exibe->produto_precoantigo),
         'produtoQuantidadeEmEstoque' => intval($exibe->produto_quantidadeemestoque),
         'produtotipocontagem' => $exibe->produto_tipocontagem,
         'produtorNome' => $exibe->produtor_nome,
         'produtorCod' => $exibe->produtor_cod,
-        'produtorFotoDePerfil' => "data:image/gif;base64,$exibe->produtor_fotodeperfil"
+        'produtorFotoDePerfil' => "$exibe->produtor_fotodeperfil"
     ));
 
 ?>

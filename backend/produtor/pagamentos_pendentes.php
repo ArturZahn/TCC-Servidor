@@ -19,7 +19,7 @@
             'pagamento_total'=> $pagamento->totalItem,
             'quantidade'=> $pagamento->quantidade,
             'produto_nome'=> $pagamento->produto_nome,
-            'produto_foto'=> "data:image/gif;base64,$pagamento->produto_foto"
+            'produto_foto'=> "$pagamento->produto_foto"
         );
     }
 

@@ -22,7 +22,7 @@
             'produtorNome'=> "$produtor->produtor_nome",
             'produtorCidade'=> "$produtor->endereco_cidade",
             'produtorEstado'=> "$produtor->endereco_estado",
-            'produtorFoto'=> "data:image/gif;base64,$produtor->produtor_fotodeperfil",
+            'produtorFoto'=> "$produtor->produtor_fotodeperfil",
         );
     }
 

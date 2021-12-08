@@ -8,6 +8,8 @@ if(!empty($_POST)) // se tiver post, entra no if para cadastrar dados do produto
 
   $query = mysqli_query($con, "INSERT INTO produtor (produtor_nome, produtor_email, produtor_telefone, produtor_cpfcnpj, produtor_senha) VALUES ('$_POST[produtor_nome]', '$_POST[produtor_email]', '$_POST[produtor_telefone]', '$_POST[produtor_cpfcnpj]', '".md5($_POST["produtor_senha"])."')");
   
+  cadastrarImgProdutor(mysqli_insert_id($con), "produtor_foto");
+
   header("location: ./produtor.php");
   die(); // para de executar antes de rodar o resto do arquivo
 }
@@ -47,7 +49,11 @@ if(!empty($_POST)) // se tiver post, entra no if para cadastrar dados do produto
           <!-- Remove everything INSIDE this div to a really blank page -->
           <div class="container px-6 mx-auto grid">
             <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"> Adicionar Produtor</h2>
-            <form role="form" action="./produtor_adicionar.php" method="post" autocomplete="off">
+            <form role="form" action="./produtor_adicionar.php" method="post" enctype="multipart/form-data" autocomplete="off">
+              <label class="mb-4 block text-sm">
+                  <span class="text-gray-700 dark:text-gray-400">Foto:</span>
+                  <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produtor_foto" type="file" accept="image/png, image/jpeg">
+              </label>
               <label class="mb-4 block text-sm">
                   <span class="text-gray-700 dark:text-gray-400">Nome:</span>
                   <input autocomplete="off" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="" name="produtor_nome">

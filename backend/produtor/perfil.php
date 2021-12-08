@@ -17,7 +17,7 @@
 
     echo json_encode(array(
         'nome'=> $exibe->cliente_nome,
-        'fotoDePerfil'=> "data:image/gif;base64,$exibe->cliente_fotodeperfil"
+        'fotoDePerfil'=> "$exibe->cliente_fotodeperfil"
     ));
 
 ?>

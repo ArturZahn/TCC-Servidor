@@ -28,7 +28,7 @@
     while($produto = mysqli_fetch_object($query)){
         $produtos[] = array(
             'produtoPagina'=> "produto.html?p=$produto->produto_cod",
-            'produtoFoto'=> "data:image/gif;base64,$produto->produto_foto",
+            'produtoFoto'=> "$produto->produto_foto",
             'produtoNome'=> "$produto->produto_nome",
             'produtoPreco'=> $produto->produto_precoantigo,
             'produtorNome'=> "$produto->produtor_nome"

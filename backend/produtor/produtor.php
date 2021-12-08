@@ -18,7 +18,7 @@
 
     $resposta = array(
         'produtor_nome' => $e->produtor_nome,
-        'produtor_fotodeperfil' => "data:image/gif;base64,$e->produtor_fotodeperfil"
+        'produtor_fotodeperfil' => "$e->produtor_fotodeperfil"
     );
 
     if(empty($e->endereco_cod))

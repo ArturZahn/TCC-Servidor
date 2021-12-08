@@ -22,7 +22,7 @@
     while($e = mysqli_fetch_object($query))
     {
         $pedidos[] = array(
-            'produtoFoto' => "data:image/gif;base64,$e->produto_foto",
+            'produtoFoto' => "$e->produto_foto",
             'itemQuantidade' => $e->itempedido_quantidade,
             'nomeProduto' => $e->produto_nome,
             'itemPreco' => $e->precoItem

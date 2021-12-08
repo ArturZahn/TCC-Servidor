@@ -5,7 +5,11 @@
 
     if(!empty($_POST)) // Se tiver post, entra no if para editar dados do produto
     {
+        // var_dump($_POST);
+        // echo "<br><br>";
         $query = mysqli_query($con, "UPDATE produto SET produto_nome = '$_POST[produto_nome]', produto_descricao = '$_POST[produto_descricao]', produto_quantidadeemestoque = $_POST[produto_quantidadeemestoque], produto_precoantigo = $_POST[produto_precoantigo], produto_tipocontagem ='$_POST[produto_tipocontagem]' WHERE produto_cod = $_POST[cod];");
+        cadastrarImgProduto($_POST["cod"], "produto_foto");
+
         header("location: ./produtos.php");
         die(); // Para de executar antes de rodar o resto do arquivo
     }
@@ -61,11 +65,15 @@
 
                     <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"> Editar Produto</h2>
 
-                    <form role="form" action="produtos_editar.php" method="post">
+                    <form role="form" action="produtos_editar.php" method="post" enctype="multipart/form-data">
                         
                         <label class="mb-4 block text-sm">
                             <span class="text-gray-700 dark:text-gray-400">Código:</span>
-                            <input disabled class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 form-input opacity-50 cursor-not-allowed" name="cod" value="<?php echo $produto_cod ?>">
+                            <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 form-input opacity-50 cursor-not-allowed" name="cod" value="<?php echo $produto_cod ?>">
+                        </label>
+                        <label class="mb-4 block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Foto:</span>
+                            <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-verdecoopaf-400 focus:outline-none focus:shadow-outline-verdecoopaf dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="produto_foto" type="file" accept="image/png, image/jpeg">
                         </label>
                         <label class="mb-4 block text-sm">
                             <span class="text-gray-700 dark:text-gray-400">Produtor:</span>
