@@ -79,7 +79,8 @@ include_once ("./backend/conexao.php");
                                         return "<span class='px-2 py-1 font-semibold leading-tight rounded-full $classes'> $txt </span>";
                                     },
 									function($exibe){
-										return "<button class='px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-verdecoopaf-600 border border-transparent rounded-md active:bg-verdecoopaf-600 hover:bg-verdecoopaf-700 focus:outline-none focus:shadow-outline-verdecoopaf' onclick=\"window.location.href='./pagamento_pagar.php?cod=$exibe[produtor_cod]'\"> Pagar </button>";
+                                        if($exibe["valordevendo"] == 0) return "";
+                                        else return "<button class='px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-verdecoopaf-600 border border-transparent rounded-md active:bg-verdecoopaf-600 hover:bg-verdecoopaf-700 focus:outline-none focus:shadow-outline-verdecoopaf' onclick=\"window.location.href='./pagamento_pagar.php?cod=$exibe[produtor_cod]'\"> Pagar </button>";
 									},
 									function($exibe){
 										return "<button class='px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-verdecoopaf-600 border border-transparent rounded-md active:bg-verdecoopaf-600 hover:bg-verdecoopaf-700 focus:outline-none focus:shadow-outline-verdecoopaf' onclick=window.location.href='./pagamentos_do_produtor.php?cod=$exibe[produtor_cod]'> Ver pagamentos </button>";
